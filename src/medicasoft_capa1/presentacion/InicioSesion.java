@@ -9,6 +9,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import medicasoft_capa4.persistencia.UsuarioSqlServer;
 
 /**
  *
@@ -17,12 +18,44 @@ import javax.swing.JPanel;
 public class InicioSesion extends javax.swing.JFrame {
 
     FondoPanel fondo=new FondoPanel();
+    UsuarioSqlServer usuarioSqlServer;
+    String user,contra;
+    boolean validacion;
     public InicioSesion() {
         initComponents();
         //this.setContentPane(fondo);
         this.setLocationRelativeTo(null);
     }
-
+    
+    public void CapturaDatos()throws Exception{
+        try {
+            user=txtusuario.getText().trim();
+            contra="";
+            char password[]=jpcontraseña.getPassword();
+            contra=new String(password);
+                
+            if(user.equalsIgnoreCase("") && contra.equalsIgnoreCase("")){
+                throw new Exception("Ingresa Datos A Los Campos");
+            }
+                
+        } catch (Exception e) {
+            throw new Exception("Error Al Capturar Los Datos",e);
+        }
+        
+    }
+    public void Validar(){
+        try {
+            validacion=usuarioSqlServer.ValidarUsuario(user, contra);
+            if(validacion=true){
+                JOptionPane.showMessageDialog(this, "Bienvenido","Informacion",JOptionPane.INFORMATION_MESSAGE);
+            }else{
+                JOptionPane.showMessageDialog(this,"Datos Incorrectos","Advertencia",JOptionPane.WARNING_MESSAGE);
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this,e,"Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,29 +139,11 @@ public class InicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
-               
-        //CAPTURAR DATOS DE CAJAS 
-        
-        String user=txtusuario.getText();
-        String contra="";
-        char[] password=jpcontraseña.getPassword();
-        for (int x = 0; x < password.length; x++) {
-            contra+=password[x];
+        try {
+            CapturaDatos();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e,"Advertencia",JOptionPane.WARNING_MESSAGE);
         }
-        String usuario="Cirujano";
-        String contraseña="4Molar";
-       if(user.equalsIgnoreCase(usuario) &&contra.equalsIgnoreCase(contraseña)){
-           VentanaMenu venmenu=new VentanaMenu();
-           venmenu.setVisible(true);
-           this.dispose();
-       }else if(user.equalsIgnoreCase(usuario) &&contra!=contraseña){
-       JOptionPane.showMessageDialog(this,"Contraseña Incorrecta","Advertencia",JOptionPane.WARNING_MESSAGE);
-       }
-       else if(user!=usuario &&contra.equalsIgnoreCase(contraseña)){
-       JOptionPane.showMessageDialog(this,"Usuario Incorrecto","Advertencia",JOptionPane.WARNING_MESSAGE);
-       }       
-       else
-           JOptionPane.showMessageDialog(this,"Usuario y Contraseña Incorrecta","Advertencia",JOptionPane.WARNING_MESSAGE);
     }//GEN-LAST:event_btningresarActionPerformed
 
     /**
