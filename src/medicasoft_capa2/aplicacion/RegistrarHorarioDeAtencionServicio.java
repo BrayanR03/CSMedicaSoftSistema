@@ -6,34 +6,34 @@
 package medicasoft_capa2.aplicacion;
 
 import java.util.List;
+import medicasoft_capa3.dominio.HorarioAtencion;
 //import medicasoft_capa3.dominio.Horario;
 import medicasoft_capa3.dominio.Odontologo;
 import medicasoft_capa4.persistencia.AccesoDatosJDBC;
-import medicasoft_capa4.persistencia.AccesoDatosJDBCPostgreSQL;
-///import medicasoft_capa4.persistencia.HorarioPostgreSQL;
-//import medicasoft_capa4.persistencia.OdontologoPostgreSQL;
-
+import medicasoft_capa4.persistencia.AccesoDatosJDBCSqlServer;
+import medicasoft_capa4.persistencia.HorarioAtencionSqlServer;
+import medicasoft_capa4.persistencia.OdontologoSqlServer;
 public class RegistrarHorarioDeAtencionServicio {
-/*
+
     private AccesoDatosJDBC accesoDatosJDBC;
-    private HorarioPostgreSQL horarioPostgreSQL;
-    private OdontologoPostgreSQL odontologoPostgreSQL;
+    private HorarioAtencionSqlServer horarioAtencionSqlServer;
+    private OdontologoSqlServer odontologoSqlServer;
 
     public RegistrarHorarioDeAtencionServicio() {
-        accesoDatosJDBC = new AccesoDatosJDBCPostgreSQL();
-        horarioPostgreSQL = new HorarioPostgreSQL(accesoDatosJDBC);
-        odontologoPostgreSQL = new OdontologoPostgreSQL(accesoDatosJDBC);
+        accesoDatosJDBC = new AccesoDatosJDBCSqlServer();
+        horarioAtencionSqlServer = new HorarioAtencionSqlServer(accesoDatosJDBC);
+        odontologoSqlServer = new OdontologoSqlServer(accesoDatosJDBC);
     }
 
     public Odontologo buscar(String codigoodontologo) throws Exception {
 
         accesoDatosJDBC.abrirConexion();
-        Odontologo odontologo = odontologoPostgreSQL.buscar(codigoodontologo);
+        Odontologo odontologo = odontologoSqlServer.buscar(codigoodontologo);
         accesoDatosJDBC.cerrarConexion();
         return odontologo;
     }
 
-    public void guardar(Horario horario) throws Exception {
+    public void guardar(HorarioAtencion horario) throws Exception {
 
         if (!horario.tieneHoraValida()) {
             throw new Exception("La hora no es valida");
@@ -41,13 +41,13 @@ public class RegistrarHorarioDeAtencionServicio {
 
         accesoDatosJDBC.abrirConexion();
         accesoDatosJDBC.iniciarTransaccion();
-        List<String> horas = horarioPostgreSQL.obtenerHoras(horario);
+        List<String> horas = horarioAtencionSqlServer.obtenerHoras(horario);
 
         if (horario.tieneHoraUnicaValida(horas)) {
             throw new Exception("Ya existe un horario con las horas ingresadas");
         }
-        horarioPostgreSQL.guardar(horario);
+        horarioAtencionSqlServer.guardar(horario);
         accesoDatosJDBC.terminarTransaccion();
         accesoDatosJDBC.cerrarConexion();
-    }*/
+    }
 }

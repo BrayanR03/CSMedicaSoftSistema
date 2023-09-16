@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import medicasoft_capa3.dominio.Cita;
 import medicasoft_capa3.dominio.HorarioAtencion;
+import medicasoft_capa3.dominio.Paciente;
 
 /**
  *
@@ -19,9 +20,12 @@ public class CitaSqlServer {
     
     
      private AccesoDatosJDBC accesoDatosJDBC;
-
+     private HorarioAtencionSqlServer horarioAtencionSqlServer;
+     private PacienteSqlServer pacienteSqlServer;
     public CitaSqlServer(AccesoDatosJDBC accesoDatosJDBC) {
         this.accesoDatosJDBC = accesoDatosJDBC;
+        this.horarioAtencionSqlServer=new HorarioAtencionSqlServer(accesoDatosJDBC);
+        this.pacienteSqlServer=new PacienteSqlServer(accesoDatosJDBC);
     }
 
     public void guardar(Cita cita) {
@@ -118,4 +122,28 @@ public class CitaSqlServer {
         return total;
     }
     
+    public Cita BuscarCita(int IdCita){
+        
+        String consultaSQL="SELECT HorarioAtencionID,PacienteID,CitaEstado FROM Cita WHERE CitaID=?";
+        
+        PreparedStatement sentencia;
+        Cita cita=new Cita();
+        try {
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
+            sentencia.setInt(1, IdCita);
+            ResultSet resultado=sentencia.executeQuery();
+            
+            if(resultado.next()){
+                int idHorario=resultado.getInt("HorarioAtencionID");
+                HorarioAtencion horario=horarioAtencionSqlServer.buscar(idHorario);
+                int idPaciente=resultado.getInt("PacienteID");
+                Paciente paciente=pacienteSqlServer.buscarIdPaciente(idPaciente);
+                String estado=resultado.getString("CitaEstado");
+                cita=new Cita(IdCita,horario,paciente,estado);
+            }
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return cita;
+    }
 }

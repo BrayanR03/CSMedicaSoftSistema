@@ -47,7 +47,7 @@ public class HorarioAtencionSqlServer {
         }
 
     }
-    /*
+    
     public HorarioAtencion buscar(int horarioID) throws Exception {
         String consultaSQL ="SELECT HA.HorarioAtencionEstado,HA.HorarioAtencionFechaRegistro,HA.HorarioAtencionHoraInicio,\n" +
 "HA.HorarioAtencionHoraFin,ODO.OdontologoDni \n" +
@@ -77,7 +77,7 @@ public class HorarioAtencionSqlServer {
         } catch (Exception e) {
             throw new Exception("Error al buscar ", e);
         }
-    }*/
+    }
     
     
      public List<String> obtenerHoras(HorarioAtencion horario) throws Exception {

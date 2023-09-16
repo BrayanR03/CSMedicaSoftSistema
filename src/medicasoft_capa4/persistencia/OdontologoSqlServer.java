@@ -8,6 +8,7 @@ package medicasoft_capa4.persistencia;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import medicasoft_capa3.dominio.Empleado;
 import medicasoft_capa3.dominio.Odontologo;
 import medicasoft_capa3.dominio.Usuario;
 
@@ -18,11 +19,11 @@ import medicasoft_capa3.dominio.Usuario;
 public class OdontologoSqlServer {
     
     private AccesoDatosJDBC accesoDatosJDBC;
-    private UsuarioSqlServer usuarioSqlServer;
+    private EmpleadoSqlServer empleadoSqlServer;
     
     public OdontologoSqlServer(AccesoDatosJDBC accesoDatosJDBC) {
         this.accesoDatosJDBC = accesoDatosJDBC;
-        this.usuarioSqlServer=new UsuarioSqlServer(accesoDatosJDBC);
+        this.empleadoSqlServer=new EmpleadoSqlServer(accesoDatosJDBC);
     }
 
     
@@ -63,11 +64,11 @@ public class OdontologoSqlServer {
         }
         return dni;
     }
-    /*
+    
     public Odontologo buscar(String dni) throws Exception {
         String consultaSQL = "SELECT O.OdontologoID,O.OdontologoApellidos,O.OdontologoNombres,O.OdontologoFechaNacimiento,O.OdontologoDni,\n" +
-                             "O.OdontologoDireccion,O.OdontologoTelefono,O.OdontologoCorreo,u.Usuario as Usuario\n" +
-                             "FROM Odontologo O INNER JOIN Usuario u ON u.UsuarioID=O.UsuarioID\n" +
+                             "O.OdontologoDireccion,O.OdontologoTelefono,O.OdontologoCorreo,e.EmpleadoID as Empleado\n" +
+                             "FROM Odontologo O INNER JOIN Empleado E ON e.EmpleadoID=O.EmpleadoID\n" +
                              "WHERE OdontologoDni=?";
         PreparedStatement sentencia;        
         try {
@@ -84,8 +85,8 @@ public class OdontologoSqlServer {
                 odontologo.setOdontologoDireccion(resultado.getString("OdontologoDireccion"));
                 odontologo.setOdontologoTelefono(resultado.getString("OdontologoTelefono"));
                 odontologo.setOdontologoCorreo(resultado.getString("OdontologoCorreo"));
-                Usuario usu=usuarioSqlServer.BuscarUsuario(resultado.getString("Usuario"));
-                odontologo.setUsuarioID(usu);
+                Empleado empleado=empleadoSqlServer.BuscarEmpleado(resultado.getInt("EmpleadoID"));
+                odontologo.setEmpleadoID(empleado);
                
                 return odontologo;
             }
@@ -95,7 +96,7 @@ public class OdontologoSqlServer {
         } catch (Exception e) {
             throw new Exception("Error al intentar buscar el odontologo.", e);
         }
-    }*/
+    }
     
     public int OdontologoIDSiguiente(){
         

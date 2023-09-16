@@ -22,22 +22,21 @@ public class UsuarioSqlServer {
     }
     
     
-    public Usuario BuscarUsuario(String usuario)throws Exception{
+    public Usuario BuscarUsuario(int idusuario)throws Exception{
     
-        String consultaSQL="SELECT UsuarioID,Usuario,Password,Rol FROM Usuario WHERE Usuario=?";
+        String consultaSQL="SELECT Usuario,Password,Rol FROM Usuario WHERE UsuarioID=?";
         PreparedStatement sentencia;
         ResultSet resultado=null;
         Usuario user=null;
         try {
             sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
-            sentencia.setString(1, usuario);
+            sentencia.setInt(1, idusuario);
             resultado=sentencia.executeQuery();
             if(resultado.next()){
             
-                int idUsuario=resultado.getInt("UsuarioID");
+                String usuario=resultado.getString("Usuario");
                 String password=resultado.getString("Password");
-                String rol=resultado.getString("Rol");
-                user=new Usuario(idUsuario,usuario,password,rol);
+                user=new Usuario(idusuario,usuario,password);
                 
                 return user;
             }else{

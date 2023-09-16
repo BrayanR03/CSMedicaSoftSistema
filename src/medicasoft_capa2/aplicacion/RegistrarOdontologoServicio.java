@@ -4,7 +4,7 @@ package medicasoft_capa2.aplicacion;
 import java.util.List;
 import medicasoft_capa3.dominio.Odontologo;
 import medicasoft_capa4.persistencia.AccesoDatosJDBC;
-import medicasoft_capa4.persistencia.AccesoDatosJDBCPostgreSQL;
+import medicasoft_capa4.persistencia.AccesoDatosJDBCSqlServer;
 import medicasoft_capa4.persistencia.OdontologoSqlServer;
 
 public class RegistrarOdontologoServicio {
@@ -12,7 +12,7 @@ public class RegistrarOdontologoServicio {
     private OdontologoSqlServer odontologoSqlServer;
 
     public RegistrarOdontologoServicio() {
-        accesoDatosJDBC =new AccesoDatosJDBCPostgreSQL();
+        accesoDatosJDBC =new AccesoDatosJDBCSqlServer();
         odontologoSqlServer=new OdontologoSqlServer(accesoDatosJDBC);
     }
     

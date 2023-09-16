@@ -11,7 +11,7 @@ import java.sql.DriverManager;
  *
  * @author HOME
  */
-public class AccesoDatosJDBCPostgreSQL extends AccesoDatosJDBC {
+public class AccesoDatosJDBCSqlServer extends AccesoDatosJDBC {
 
     @Override
     public void abrirConexion() throws Exception {

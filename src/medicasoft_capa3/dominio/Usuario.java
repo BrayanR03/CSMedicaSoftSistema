@@ -14,16 +14,14 @@ public class Usuario {
     private int UsuarioID;
     private String Usuario;
     private String Password;
-    private String Rol;
 
     public Usuario() {
     }
 
-    public Usuario(int UsuarioID, String Usuario, String Password, String Rol) {
+    public Usuario(int UsuarioID, String Usuario, String Password) {
         this.UsuarioID = UsuarioID;
         this.Usuario = Usuario;
         this.Password = Password;
-        this.Rol = Rol;
     }
 
     public int getUsuarioID() {
@@ -50,13 +48,5 @@ public class Usuario {
         this.Password = Password;
     }
 
-    public String getRol() {
-        return Rol;
-    }
-
-    public void setRol(String Rol) {
-        this.Rol = Rol;
-    }
-    
     
 }

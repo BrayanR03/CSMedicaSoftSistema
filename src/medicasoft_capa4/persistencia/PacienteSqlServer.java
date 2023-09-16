@@ -90,5 +90,34 @@ public class PacienteSqlServer {
             throw new Exception("Error al intentar buscar el paciente.", e);
         }
     }
+    public Paciente buscarIdPaciente(int idPaciente) throws Exception {
+        String consultaSQL = "SELECT PacienteDni,PacienteApellidos,PacienteNombres,PacienteFechaNacimiento,PacienteDni,PacienteTelefono,PacienteDireccion,PacienteCorreo"
+                + " FROM Paciente WHERE PacienteID=?";
+        PreparedStatement sentencia;        
+        try {
+            sentencia = accesoDatosJDBC.prepararSentencia(consultaSQL);
+            sentencia.setInt(1, idPaciente);
+            ResultSet resultado = sentencia.executeQuery();
+            if (resultado.next()) {
+                Paciente paciente = new Paciente();
+                paciente.setPacienteDni("PacienteDni");
+                paciente.setPacienteID(resultado.getInt(idPaciente));
+                paciente.setPacienteApellidos(resultado.getString("PacienteApellidos"));
+                paciente.setPacienteNombres(resultado.getString("PacienteNombres"));
+                paciente.setPacienteFechaNacimiento(resultado.getDate("PacienteFechaNacimiento"));
+                paciente.setPacienteDni(resultado.getString("PacienteDni"));
+                paciente.setPacienteTelefono(resultado.getString("PacienteTelefono"));
+                paciente.setPacienteDireccion(resultado.getString("PacienteDireccion"));
+                paciente.setPacienteCorreo(resultado.getString("PacienteCorreo"));
+               
+                return paciente;
+            }
+            else {
+                throw new Exception("No existe el paciente.");
+            }
+        } catch (Exception e) {
+            throw new Exception("Error al intentar buscar el paciente.", e);
+        }
+    }
     
 }
