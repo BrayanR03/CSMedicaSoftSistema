@@ -30,7 +30,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
     public VentanaRegistrarCita(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        inicializarNuevaCita();
+         
        
         try {
             registrarCitaServicio.MostrarHorario(modelo);
@@ -405,6 +405,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
         
         try {
             guardarCita();
+            EnviaCorreoCita();
             inicializarNuevaCita();          
             
             
@@ -426,7 +427,13 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Se guardo la cita", "Información", JOptionPane.INFORMATION_MESSAGE);
                
     }
+    private void EnviaCorreoCita()throws Exception{
     
+        String dni=txtDniPaciente.getText().trim();
+        int idHorario=Integer.parseInt(txtIdHorarioAtencion.getText().trim());
+        int idCita=Integer.parseInt(txtIdCita.getText().trim());
+        registrarCitaServicio.EnviarCorreoCita(dni, idHorario, idCita);
+    }
     private void capturarDatosDeCita() throws NumberFormatException {
         cita.setCitaID(Integer.parseInt(txtIdCita.getText().trim()));
         cita.setCitaEstado(txtestadocita.getText().trim());

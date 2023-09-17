@@ -6,6 +6,8 @@
 package medicasoft_capa4.persistencia;
 
 import java.sql.*;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JComboBox;
 import medicasoft_capa3.dominio.FormaPago;
 
 /**
@@ -40,4 +42,25 @@ public class FormaPagoSqlServer {
         }
         return formaPago;
     }
+    
+    public DefaultComboBoxModel<FormaPago> FormaPagoDescripcion(){
+        String consultaSQL="SELECT FormaPagoCodigo,FormaPagoDescripcion FROM FormaPago ";
+        DefaultComboBoxModel<FormaPago> combito=new DefaultComboBoxModel<>();
+        PreparedStatement sentencia;
+        try {
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
+            combito.addElement(new FormaPago("","--SELECCIONAR--"));
+            ResultSet resultado=sentencia.executeQuery();
+            
+            while(resultado.next()){            
+                String codigo=resultado.getString("FormaPagoCodigo");
+                String descripcion=resultado.getString("FormaPagoDescripcion");
+                combito.addElement(new FormaPago(codigo,descripcion));
+            }
+        } catch (Exception e) {
+            System.out.println("Error"+e.getMessage());
+        }
+        return combito;
+    }
+    
 }

@@ -8,6 +8,7 @@ package medicasoft_capa4.persistencia;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.table.DefaultTableModel;
 import medicasoft_capa3.dominio.Cita;
 import medicasoft_capa3.dominio.HorarioAtencion;
 import medicasoft_capa3.dominio.Paciente;
@@ -161,5 +162,64 @@ public class CitaSqlServer {
             System.out.println("Error"+e.getMessage());
         }
         return id;
+    }
+    public void MostrarCitasDni(DefaultTableModel modelo,String dniPaciente){
+        String consultaSQL="SELECT c.CitaID,HA.HorarioAtencionFechaRegistro AS Fecha,HA.HorarioAtencionHoraInicio AS HoraInicio,\n" +
+"HA.HorarioAtencionHoraFin AS HoraFin\n" +
+"FROM Cita C INNER JOIN Paciente P\n" +
+"ON C.PacienteID=P.PacienteID\n" +
+"INNER JOIN HorarioAtencion HA \n" +
+"on ha.HorarioAtencionID=c.HorarioAtencionID\n" +
+"WHERE P.PacienteDni like ? AND HA.HorarioAtencionFechaRegistro=cast(GETDATE()as date)";
+        PreparedStatement sentencia;
+        String titulos[]={"CITA ID","FECHA","HORA INICIO","HORA FIN"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
+            sentencia.setString(1,dniPaciente+"%");
+            ResultSet resultado=sentencia.executeQuery();
+            while(resultado.next()){
+                
+                int idCita=resultado.getInt("CitaID");
+                java.sql.Date fecha=resultado.getDate("Fecha");
+                String hinicio=resultado.getString("HoraInicio");
+                String hfin=resultado.getString("HoraFin");
+                String fila[]={String.valueOf(idCita),String.valueOf(fecha),hinicio,hfin};
+                modelo.addRow(fila);
+            }
+            
+        } catch (Exception e) {
+            System.out.println("Error"+e.getMessage());
+        }
+    }
+    
+    public void MostrarCitas(DefaultTableModel modelo)throws Exception{
+        String consultaSQL="SELECT c.CitaID,HA.HorarioAtencionFechaRegistro AS Fecha,HA.HorarioAtencionHoraInicio AS HoraInicio,\n" +
+                           "HA.HorarioAtencionHoraFin AS HoraFin\n" +
+                            "FROM Cita C INNER JOIN Paciente P\n" +
+                            "ON C.PacienteID=P.PacienteID\n" +
+                            "INNER JOIN HorarioAtencion HA \n" +
+                            "on ha.HorarioAtencionID=c.HorarioAtencionID\n" +
+                            "WHERE HA.HorarioAtencionFechaRegistro=CAST(GETDATE()AS DATE)";
+        PreparedStatement sentencia;
+        String titulos[]={"CITA ID","FECHA CITA","HORA INICIO","HORA FIN"};
+        modelo.getDataVector().removeAllElements();
+        modelo.setColumnIdentifiers(titulos);
+        try {
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
+            ResultSet resultado=sentencia.executeQuery();
+            while(resultado.next()){
+                
+                int idCita=resultado.getInt("CitaID");
+                java.sql.Date fecha=resultado.getDate("Fecha");
+                String hinicio=resultado.getString("HoraInicio");
+                String hfin=resultado.getString("HoraFin");
+                String fila[]={String.valueOf(idCita),String.valueOf(fecha),hinicio,hfin};
+                modelo.addRow(fila);
+            }
+        } catch (Exception e) {
+            System.out.println("Error"+e.getMessage());
+        }
     }
 }
