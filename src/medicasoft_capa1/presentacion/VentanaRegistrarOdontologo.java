@@ -26,7 +26,7 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
         inicializarNuevoOdontologo();
         try {
             int id=registrarOdontologoServicio.retornarID();
-            txtcodigo.setText(String.valueOf(id));
+            txtIdOdontologo.setText(String.valueOf(id));
         } catch (Exception e) {
         }
     }
@@ -47,7 +47,7 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        txtcodigo = new javax.swing.JTextField();
+        txtIdOdontologo = new javax.swing.JTextField();
         txtfechanacimiento = new javax.swing.JTextField();
         txtnombres = new javax.swing.JTextField();
         txtapellidos = new javax.swing.JTextField();
@@ -64,7 +64,7 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("REGISTRAR ODONTOLOGO");
 
-        jLabel2.setText("CODIGO ODONTOLOGO:");
+        jLabel2.setText("ID ODONTOLOGO:");
 
         jLabel3.setText("FECHA NACIMIENTO:");
 
@@ -127,7 +127,7 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(27, 27, 27)
-                        .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdOdontologo, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(81, 81, 81)
                         .addComponent(jLabel7)
                         .addGap(90, 90, 90)
@@ -174,7 +174,7 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdOdontologo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txttelefono, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
@@ -205,7 +205,6 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(10, 10, 10)
                                 .addComponent(jLabel4)))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(txtfechanacimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -225,8 +224,8 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
     private void inicializarNuevoOdontologo(){
         registrarOdontologoServicio=new RegistrarOdontologoServicio();
         odontologo=new Odontologo();
-        txtcodigo.requestFocus();
-        txtcodigo.setText("");
+        txtIdOdontologo.requestFocus();
+        txtIdOdontologo.setText("");
         txtfechanacimiento.setText("");
         txtapellidos.setText("");
         txtnombres.setText("");
@@ -246,6 +245,7 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
         }
         try {
             guardarOdontologo();
+            envioUsuario();
             inicializarNuevoOdontologo();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertenia", JOptionPane.WARNING_MESSAGE);
@@ -260,12 +260,16 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
         registrarOdontologoServicio.guardar(odontologo);
         JOptionPane.showMessageDialog(this, "Se guardo el Odontologo", "Información", JOptionPane.INFORMATION_MESSAGE); 
     }
-    
+    private void envioUsuario()throws Exception{
+        int id=Integer.parseInt(txtIdOdontologo.getText().trim());
+        String correo=txtcorreo.getText().trim();
+        registrarOdontologoServicio.EnviarCorreo(id, correo);
+    }
     private void capturarDatosDeOdontologo(){
         String fechanacimiento=txtfechanacimiento.getText();
         Date date= Date.valueOf(fechanacimiento);
         
-        odontologo.setOdontologoID(Integer.parseInt(txtcodigo.getText().trim()));
+        odontologo.setOdontologoID(Integer.parseInt(txtIdOdontologo.getText().trim()));
         odontologo.setOdontologoDni(txtdni.getText().trim());
         odontologo.setOdontologoApellidos(txtapellidos.getText().trim());
         odontologo.setOdontologoNombres(txtnombres.getText().trim());
@@ -335,8 +339,8 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtIdOdontologo;
     private javax.swing.JTextField txtapellidos;
-    private javax.swing.JTextField txtcodigo;
     private javax.swing.JTextField txtcorreo;
     private javax.swing.JTextField txtdireccion;
     private javax.swing.JTextField txtdni;

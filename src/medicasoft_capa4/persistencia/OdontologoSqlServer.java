@@ -70,7 +70,7 @@ public class OdontologoSqlServer {
                              "O.OdontologoDireccion,O.OdontologoTelefono,O.OdontologoCorreo,e.EmpleadoID as Empleado\n" +
                              "FROM Odontologo O INNER JOIN Empleado E ON e.EmpleadoID=O.EmpleadoID\n" +
                              "WHERE OdontologoDni=?";
-        PreparedStatement sentencia;        
+        PreparedStatement sentencia;
         try {
             sentencia = accesoDatosJDBC.prepararSentencia(consultaSQL);
             sentencia.setString(1, dni);
@@ -81,13 +81,13 @@ public class OdontologoSqlServer {
                 odontologo.setOdontologoApellidos(resultado.getString("OdontologoApellidos"));
                 odontologo.setOdontologoNombres(resultado.getString("OdontologoNombres"));
                 odontologo.setOdontologoFechaNacimiento(resultado.getDate("OdontologoFechaNacimiento"));
-                odontologo.setOdontologoDni(resultado.getString(dni));
+                odontologo.setOdontologoDni(dni);
                 odontologo.setOdontologoDireccion(resultado.getString("OdontologoDireccion"));
                 odontologo.setOdontologoTelefono(resultado.getString("OdontologoTelefono"));
                 odontologo.setOdontologoCorreo(resultado.getString("OdontologoCorreo"));
-                Empleado empleado=empleadoSqlServer.BuscarEmpleado(resultado.getInt("EmpleadoID"));
+                Empleado empleado=empleadoSqlServer.BuscarEmpleado(resultado.getInt("Empleado"));
                 odontologo.setEmpleadoID(empleado);
-               
+                System.out.println("empleado "+empleado.getEmpleadoDescripcion());
                 return odontologo;
             }
             else {
@@ -113,5 +113,25 @@ public class OdontologoSqlServer {
             System.out.println(e.getMessage());
         }
         return idOdontologo;
+    }
+    
+    public Usuario DatosUsuarioOdontologo(int idOdontologo)throws Exception{
+        String consultaSQL="EXEC BusquedaUsuarioOdontologo @idOdontologo=?";
+        PreparedStatement sentencia;
+        Usuario usuaario=new Usuario();
+        try {
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
+            sentencia.setInt(1, idOdontologo);
+            ResultSet resultado=sentencia.executeQuery();
+            if(resultado.next()){
+                int idUsuario=resultado.getInt("UsuarioID");
+                String usuarioTabla=resultado.getString("Usuario");
+                String password=resultado.getString("Password");
+                usuaario=new Usuario(idUsuario,usuarioTabla,password);
+            }
+        } catch (Exception e) {
+            System.out.println("Error"+e.getMessage());
+        }
+        return usuaario;
     }
 }

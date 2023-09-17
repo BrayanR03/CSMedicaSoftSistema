@@ -56,9 +56,9 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                      <Component id="txtcodigohorario" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="txtIdHorarioAtencion" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
-                      <Component id="txtestado" min="-2" pref="100" max="-2" attributes="0"/>
+                      <Component id="txtestadohorario" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace min="40" pref="40" max="-2" attributes="0"/>
                       <Component id="txtfecha" min="-2" pref="100" max="-2" attributes="0"/>
                       <EmptySpace min="50" pref="50" max="-2" attributes="0"/>
@@ -103,8 +103,8 @@
               </Group>
               <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="txtcodigohorario" min="-2" pref="30" max="-2" attributes="0"/>
-                  <Component id="txtestado" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="txtIdHorarioAtencion" min="-2" pref="30" max="-2" attributes="0"/>
+                  <Component id="txtestadohorario" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="txtfecha" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="txthorainicio" min="-2" pref="30" max="-2" attributes="0"/>
                   <Component id="txthorafin" min="-2" pref="30" max="-2" attributes="0"/>
@@ -191,8 +191,8 @@
                   </Group>
                   <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtCodigoCita" min="-2" pref="151" max="-2" attributes="0"/>
-                      <Component id="txtMontoTotal" min="-2" pref="151" max="-2" attributes="0"/>
+                      <Component id="txtIdCita" min="-2" pref="151" max="-2" attributes="0"/>
+                      <Component id="txtestadocita" min="-2" pref="151" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="61" max="32767" attributes="0"/>
               </Group>
@@ -204,12 +204,12 @@
                   <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtCodigoCita" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtIdCita" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMontoTotal" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtestadocita" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="23" max="32767" attributes="0"/>
               </Group>
@@ -224,15 +224,18 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Monto Total"/>
+            <Property name="text" type="java.lang.String" value="Estado"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtCodigoCita">
+        <Component class="javax.swing.JTextField" name="txtIdCita">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMontoTotal">
+        <Component class="javax.swing.JTextField" name="txtestadocita">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="No Asisti&#xf3;"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -281,7 +284,7 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="txtNombrePaciente" max="32767" attributes="0"/>
                               <Group type="102" attributes="0">
-                                  <Component id="txtcodigopaciente" min="-2" pref="180" max="-2" attributes="0"/>
+                                  <Component id="txtidpaciente" min="-2" pref="180" max="-2" attributes="0"/>
                                   <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               </Group>
                           </Group>
@@ -306,7 +309,7 @@
                       <Component id="txtNombrePaciente" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtcodigopaciente" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtidpaciente" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -338,13 +341,13 @@
             <Property name="text" type="java.lang.String" value="Nombre del paciente"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtcodigopaciente">
+        <Component class="javax.swing.JTextField" name="txtidpaciente">
         </Component>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JLabel" name="jLabel10">
       <Properties>
-        <Property name="text" type="java.lang.String" value=" CODIGO HORARIO"/>
+        <Property name="text" type="java.lang.String" value=" ID HORARIO ATENCION"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel11">
@@ -372,7 +375,7 @@
         <Property name="text" type="java.lang.String" value="ODONTOLOGO"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtcodigohorario">
+    <Component class="javax.swing.JTextField" name="txtIdHorarioAtencion">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
@@ -382,7 +385,7 @@
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtestado">
+    <Component class="javax.swing.JTextField" name="txtestadohorario">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>

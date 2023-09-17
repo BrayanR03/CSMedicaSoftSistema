@@ -25,10 +25,11 @@ public class RegistrarHorarioDeAtencionServicio {
         odontologoSqlServer = new OdontologoSqlServer(accesoDatosJDBC);
     }
 
-    public Odontologo buscar(String codigoodontologo) throws Exception {
+    public Odontologo buscar(String dniodontologo) throws Exception {
 
         accesoDatosJDBC.abrirConexion();
-        Odontologo odontologo = odontologoSqlServer.buscar(codigoodontologo);
+        
+        Odontologo odontologo = odontologoSqlServer.buscar(dniodontologo);
         accesoDatosJDBC.cerrarConexion();
         return odontologo;
     }
@@ -49,5 +50,12 @@ public class RegistrarHorarioDeAtencionServicio {
         horarioAtencionSqlServer.guardar(horario);
         accesoDatosJDBC.terminarTransaccion();
         accesoDatosJDBC.cerrarConexion();
+    }
+    
+    public int idSiguiente()throws Exception{
+        accesoDatosJDBC.abrirConexion();
+        int horarioID=horarioAtencionSqlServer.SiguienteHorarioAtencionID();
+        accesoDatosJDBC.cerrarConexion();
+        return horarioID;
     }
 }

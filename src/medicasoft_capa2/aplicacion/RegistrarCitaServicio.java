@@ -74,4 +74,11 @@ public class RegistrarCitaServicio {
 
         
     }
+    
+    public int MostrarID()throws Exception{
+        accesoDatosJDBC.abrirConexion();
+        int idCita=citaSqlServer.SiguienteCita();
+        accesoDatosJDBC.cerrarConexion();
+        return idCita;
+    }
 }

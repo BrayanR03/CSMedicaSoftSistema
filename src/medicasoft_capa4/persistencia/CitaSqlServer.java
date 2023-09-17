@@ -146,4 +146,20 @@ public class CitaSqlServer {
         }
         return cita;
     }
+    
+    public int SiguienteCita()throws Exception{
+        String consultaSQL="SELECT ISNULL(MAX(CitaID),0)+1 AS CitaID FROM Cita";
+        PreparedStatement sentencia;
+        int id=0;
+        try {
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
+            ResultSet resultado=sentencia.executeQuery();
+            if(resultado.next()){
+                id=resultado.getInt("CitaID");
+            }
+        } catch (Exception e) {
+            System.out.println("Error"+e.getMessage());
+        }
+        return id;
+    }
 }

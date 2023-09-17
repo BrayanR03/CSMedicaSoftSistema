@@ -139,11 +139,13 @@ public class InicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
-        try {
-            CapturaDatos();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e,"Advertencia",JOptionPane.WARNING_MESSAGE);
-        }
+//        try {
+//            CapturaDatos();
+//        } catch (Exception e) {
+//            JOptionPane.showMessageDialog(this, e,"Advertencia",JOptionPane.WARNING_MESSAGE);
+//        }
+            VentanaMenu menu=new VentanaMenu();
+            menu.setVisible(true);
     }//GEN-LAST:event_btningresarActionPerformed
 
     /**

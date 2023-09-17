@@ -12,6 +12,7 @@ import medicasoft_capa2.aplicacion.RegistrarCitaServicio;
 import medicasoft_capa2.aplicacion.RegistrarHorarioDeAtencionServicio;
 import medicasoft_capa2.aplicacion.RegistrarPacienteServicio;
 import medicasoft_capa3.dominio.Cita;
+import medicasoft_capa3.dominio.HorarioAtencion;
 //import medicasoft_capa3.dominio.Horario;
 import medicasoft_capa3.dominio.Paciente;
 //import medicasoft_capa4.persistencia.CitaPostgreSQL;
@@ -30,7 +31,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         inicializarNuevaCita();
-      /*  
+       
         try {
             registrarCitaServicio.MostrarHorario(modelo);
             
@@ -47,9 +48,9 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
             Point point=Mouse_evt.getPoint();
             int row=table.rowAtPoint(point);
             if(Mouse_evt.getClickCount()==1){
-                txtcodigohorario.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(),0).toString());
+                txtIdHorarioAtencion.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(),0).toString());
                 txthorafin.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(),4).toString());
-                txtestado.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(),1).toString());
+                txtestadohorario.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(),1).toString());
                 txtfecha.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(),2).toString());
                 txthorainicio.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(),3).toString());
                 txtnombreodontologo.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(),5).toString());
@@ -58,22 +59,27 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
             }
         }
                
-        });*/
+        });
         
     }
     
 
     private void inicializarNuevaCita() {
         registrarCitaServicio = new RegistrarCitaServicio();
+        try {
+            int idSiguienteCita=registrarCitaServicio.MostrarID();
+            txtIdCita.setText(String.valueOf(idSiguienteCita));
+        } catch (Exception e) {
+        }
         cita = new Cita();
-        txtCodigoCita.requestFocus();
+        txtIdCita.requestFocus();
         //txtCodigoCita.setText("");
        
-        txtMontoTotal.setText("");
-        txtcodigohorario.setText("");
+        //txtestadocita.setText("");
+        txtIdHorarioAtencion.setText("");
         txtfecha.setText("");
         txthorafin.setText("");
-        txtestado.setText("");
+        txtestadohorario.setText("");
         txthorainicio.setText("");
         txtnombreodontologo.setText("");
         txtDniPaciente.setText("");
@@ -92,8 +98,8 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        txtCodigoCita = new javax.swing.JTextField();
-        txtMontoTotal = new javax.swing.JTextField();
+        txtIdCita = new javax.swing.JTextField();
+        txtestadocita = new javax.swing.JTextField();
         botonGuardar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTableHorario = new javax.swing.JTable();
@@ -103,16 +109,16 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
         botonBuscarPaciente = new javax.swing.JButton();
         txtNombrePaciente = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtcodigopaciente = new javax.swing.JTextField();
+        txtidpaciente = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        txtcodigohorario = new javax.swing.JTextField();
+        txtIdHorarioAtencion = new javax.swing.JTextField();
         txthorafin = new javax.swing.JTextField();
-        txtestado = new javax.swing.JTextField();
+        txtestadohorario = new javax.swing.JTextField();
         txtfecha = new javax.swing.JTextField();
         txthorainicio = new javax.swing.JTextField();
         txtnombreodontologo = new javax.swing.JTextField();
@@ -150,9 +156,11 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
 
         jLabel2.setText("Id Cita:");
 
-        jLabel3.setText("Monto Total");
+        jLabel3.setText("Estado");
 
-        txtCodigoCita.setEditable(false);
+        txtIdCita.setEditable(false);
+
+        txtestadocita.setText("No Asistió");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -165,8 +173,8 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(69, 69, 69)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtCodigoCita, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtMontoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdCita, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtestadocita, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -175,11 +183,11 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
                 .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtCodigoCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtIdCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(txtMontoTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtestadocita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
@@ -225,7 +233,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNombrePaciente)
                             .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(txtcodigopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(23, 23, 23))
         );
@@ -242,11 +250,11 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
                     .addComponent(jLabel9)
                     .addComponent(txtNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtcodigopaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtidpaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel10.setText(" CODIGO HORARIO");
+        jLabel10.setText(" ID HORARIO ATENCION");
 
         jLabel11.setText("HORA FIN");
 
@@ -258,11 +266,11 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
 
         jLabel15.setText("ODONTOLOGO");
 
-        txtcodigohorario.setEditable(false);
+        txtIdHorarioAtencion.setEditable(false);
 
         txthorafin.setEditable(false);
 
-        txtestado.setEditable(false);
+        txtestadohorario.setEditable(false);
 
         txtfecha.setEditable(false);
 
@@ -307,9 +315,9 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
                         .addComponent(jLabel15))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
-                        .addComponent(txtcodigohorario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtIdHorarioAtencion, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
-                        .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtestadohorario, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(40, 40, 40)
                         .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(50, 50, 50)
@@ -347,8 +355,8 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
                     .addComponent(jLabel15))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtcodigohorario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtestado, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdHorarioAtencion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtestadohorario, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txthorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txthorafin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,25 +378,25 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarPacienteActionPerformed
-        /*String dniPaciente = txtDniPaciente.getText().trim();
+        String dniPaciente = txtDniPaciente.getText().trim();
 
         try {
             Paciente paciente = registrarCitaServicio.buscarPaciente(dniPaciente);
-            cita.setPaciente(paciente);
-            txtNombrePaciente.setText(paciente.getNombres()+" "+paciente.getApellidos());
-            this.txtcodigopaciente.setText(paciente.getcodigoPaciente());
+            cita.setPacienteID(paciente);
+            txtNombrePaciente.setText(paciente.getPacienteNombres()+" "+paciente.getPacienteApellidos());
+            txtidpaciente.setText(String.valueOf(paciente.getPacienteID()));
             activarBotonGuardar();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
             txtNombrePaciente.setText("");
             txtDniPaciente.requestFocus();
-        }
-*/
+       }
+
 
     }//GEN-LAST:event_botonBuscarPacienteActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-      /*  try {
+       try {
             capturarDatosDeCita();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error de ingreso de datos", "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -403,7 +411,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error al Registrar La Cita : "+" "+e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
             
-        }*/
+        }
         
     }//GEN-LAST:event_botonGuardarActionPerformed
 
@@ -411,7 +419,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
             this.dispose();        
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    /*
+    
     private void guardarCita() throws Exception, HeadlessException{
         registrarCitaServicio.GuardarCita(cita);
         registrarCitaServicio.MostrarHorario(modelo);       
@@ -420,15 +428,15 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
     }
     
     private void capturarDatosDeCita() throws NumberFormatException {
-        cita.setIdCita(Integer.parseInt(txtCodigoCita.getText().trim()));
-        cita.setMontoTotal(Double.parseDouble(txtMontoTotal.getText().trim()));
-        String codigoHorario=txtcodigohorario.getText();
+        cita.setCitaID(Integer.parseInt(txtIdCita.getText().trim()));
+        cita.setCitaEstado(txtestadocita.getText().trim());
+        int IDHorarioAtencion=Integer.parseInt(txtIdHorarioAtencion.getText());
         
         
         try {
-            Horario horario = registrarCitaServicio.buscarHorario(codigoHorario);
+            HorarioAtencion horario = registrarCitaServicio.buscarHorario(IDHorarioAtencion);
            
-            cita.setHorario(horario);
+            cita.setHorarioAtencionID(horario);
             activarBotonGuardar();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -437,14 +445,14 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
     }
 
     private void activarBotonGuardar() {
-        if (cita.getPaciente() != null ) {
+        if (cita.getPacienteID() != null ) {
             botonGuardar.setEnabled(true);
         } else {
             botonGuardar.setEnabled(false);
         }
     }
     
-    */
+    
 
     /**
      * @param args the command line arguments
@@ -509,17 +517,17 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTableHorario;
-    private javax.swing.JTextField txtCodigoCita;
     private javax.swing.JTextField txtDniPaciente;
-    private javax.swing.JTextField txtMontoTotal;
+    private javax.swing.JTextField txtIdCita;
+    private javax.swing.JTextField txtIdHorarioAtencion;
     private javax.swing.JTextField txtNombrePaciente;
-    private javax.swing.JTextField txtcodigohorario;
-    private javax.swing.JTextField txtcodigopaciente;
     private javax.swing.JTextField txtcododontologo;
-    private javax.swing.JTextField txtestado;
+    private javax.swing.JTextField txtestadocita;
+    private javax.swing.JTextField txtestadohorario;
     private javax.swing.JTextField txtfecha;
     private javax.swing.JTextField txthorafin;
     private javax.swing.JTextField txthorainicio;
+    private javax.swing.JTextField txtidpaciente;
     private javax.swing.JTextField txtnombreodontologo;
     // End of variables declaration//GEN-END:variables
 }

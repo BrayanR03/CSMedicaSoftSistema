@@ -11,6 +11,7 @@ import medicasoft_capa2.aplicacion.RegistrarHorarioDeAtencionServicio;
 //import medicasoft_capa3.dominio.Horario;
 import medicasoft_capa3.dominio.Odontologo;
 import java.sql.*;
+import medicasoft_capa3.dominio.HorarioAtencion;
 /**
  *
  * @author HOME
@@ -19,11 +20,12 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
 
     
     private RegistrarHorarioDeAtencionServicio registrarHorarioDeAtencionServicio;
-   // private Horario horario;
+    private HorarioAtencion horario;
     public VentanaRegistrarHorarioDeAtencion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        //inicializarNuevoHorario();
+        inicializarNuevoHorario();
+        
     }
 
     /**
@@ -39,11 +41,11 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        txtcodigo = new javax.swing.JTextField();
+        txtIdHorarioAtencion = new javax.swing.JTextField();
         txthorainicio = new javax.swing.JTextField();
         txtestado = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtcodigoodontologo = new javax.swing.JTextField();
+        txtdniodontologo = new javax.swing.JTextField();
         botonBuscarOdontologo = new javax.swing.JButton();
         txtnombresodontologo = new javax.swing.JTextField();
         botonGuardar = new javax.swing.JButton();
@@ -58,7 +60,7 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("REGISTRAR HORARIOS DE ATENCION");
 
-        jLabel2.setText("CODIGO DE HORARIO");
+        jLabel2.setText("ID HORARIO ATENCION");
 
         jLabel4.setText("FECHA");
 
@@ -69,7 +71,7 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         txtestado.setEditable(false);
         txtestado.setText("Disponible");
 
-        jLabel7.setText("CODIGO ODONTOLOGO");
+        jLabel7.setText("DNI ODONTOLOGO");
 
         botonBuscarOdontologo.setText("BUSCAR");
         botonBuscarOdontologo.addActionListener(new java.awt.event.ActionListener() {
@@ -132,7 +134,7 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
                         .addGap(30, 30, 30)
                         .addComponent(jLabel7)
                         .addGap(30, 30, 30)
-                        .addComponent(txtcodigoodontologo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtdniodontologo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(110, 110, 110)
                         .addComponent(botonBuscarOdontologo)
                         .addGap(36, 36, 36)
@@ -146,7 +148,7 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtIdHorarioAtencion, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addGap(40, 40, 40)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -181,7 +183,7 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
                     .addComponent(jLabel6))
                 .addGap(4, 4, 4)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtcodigo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtIdHorarioAtencion, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txthorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txthorafin, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -191,7 +193,7 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jLabel7))
-                    .addComponent(txtcodigoodontologo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtdniodontologo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(botonBuscarOdontologo)
                     .addComponent(txtnombresodontologo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(49, 49, 49)
@@ -205,25 +207,24 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botonBuscarOdontologoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarOdontologoActionPerformed
-       /* 
-        String codigoodontologo=txtcodigoodontologo.getText();
         
+        String dniodontologo=txtdniodontologo.getText();
         try {
-            Odontologo odontologo=registrarHorarioDeAtencionServicio.buscar(codigoodontologo);
-            horario.setOdontologo(odontologo);
-            txtnombresodontologo.setText(odontologo.getNombres()+" "+odontologo.getApellido());
+            Odontologo odontologo=registrarHorarioDeAtencionServicio.buscar(dniodontologo);
+            horario.setOdontologoID(odontologo);
+            txtnombresodontologo.setText(odontologo.getOdontologoNombres()+" "+odontologo.getOdontologoApellidos());
             activarBotonGuardar();
             
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
             txtnombresodontologo.setText("");
-            txtcodigoodontologo.requestFocus();
-        }*/
+            txtdniodontologo.requestFocus();
+        }
         
     }//GEN-LAST:event_botonBuscarOdontologoActionPerformed
 
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
-        /*
+        
         try {
             capturarDatosHorario();
             
@@ -237,14 +238,14 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
         
-        }*/
+        }
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    /*
+    
     private void guardarHorario() throws Exception, HeadlessException {
         registrarHorarioDeAtencionServicio.guardar(horario);
         JOptionPane.showMessageDialog(this, "Se guardo el horario", "Información", JOptionPane.INFORMATION_MESSAGE);
@@ -253,26 +254,31 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         
         String fecha=txtfecha.getText();
         Date date= Date.valueOf(fecha);
-        horario.setCodigoDeHorario(txtcodigo.getText());
-        horario.setEstado(txtestado.getText().trim());
-        horario.setFecha(date);
-        horario.setHorainicio(txthorainicio.getText());
-        horario.setHorafin(txthorafin.getText());
+        horario.setHorarioAtencionID(Integer.parseInt(txtIdHorarioAtencion.getText()));
+        horario.setHorarioAtencionEstado(txtestado.getText().trim());
+        horario.setHorarioAtencionFechaRegistro(date);
+        horario.setHorarioAtencionHoraInicio(txthorainicio.getText());
+        horario.setHorarioAtencionHoraFin(txthorafin.getText());
         
         
     }
     
     
     public void inicializarNuevoHorario(){
-    
+        int id=0;
         registrarHorarioDeAtencionServicio=new RegistrarHorarioDeAtencionServicio();
-        horario=new Horario();
-        txtcodigo.requestFocus();
-        txtcodigo.setText("");
+        try {
+            id=registrarHorarioDeAtencionServicio.idSiguiente();
+            txtIdHorarioAtencion.setText(String.valueOf(id));
+        } catch (Exception e) {
+        }
+        horario=new HorarioAtencion();
+        //txtcodigo.requestFocus();
+        //txtcodigo.setText("");
         txthorafin.setText("");
         txthorainicio.setText("");
         txtfecha.setText("");
-        txtcodigoodontologo.setText("");
+        txtdniodontologo.setText("");
         txtnombresodontologo.setText("");
         botonGuardar.setEnabled(false);
         
@@ -280,12 +286,12 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
     
     
     private void activarBotonGuardar() {
-        if (horario.getOdontologo() != null && horario.getOdontologo() != null) {
+        if (horario.getOdontologoID() != null && horario.getOdontologoID() != null) {
             botonGuardar.setEnabled(true);
         } else {
             botonGuardar.setEnabled(false);
         }
-    }*/
+    }
     /**
      * @param args the command line arguments
      */
@@ -344,8 +350,8 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField txtcodigo;
-    private javax.swing.JTextField txtcodigoodontologo;
+    private javax.swing.JTextField txtIdHorarioAtencion;
+    private javax.swing.JTextField txtdniodontologo;
     private javax.swing.JTextField txtestado;
     private javax.swing.JTextField txtfecha;
     private javax.swing.JTextField txthorafin;
