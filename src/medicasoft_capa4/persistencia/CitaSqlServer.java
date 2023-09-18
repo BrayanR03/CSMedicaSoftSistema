@@ -165,14 +165,14 @@ public class CitaSqlServer {
     }
     public void MostrarCitasDni(DefaultTableModel modelo,String dniPaciente){
         String consultaSQL="SELECT c.CitaID,HA.HorarioAtencionFechaRegistro AS Fecha,HA.HorarioAtencionHoraInicio AS HoraInicio,\n" +
-"HA.HorarioAtencionHoraFin AS HoraFin\n" +
+"HA.HorarioAtencionHoraFin AS HoraFin,C.CitaEstado\n" +
 "FROM Cita C INNER JOIN Paciente P\n" +
 "ON C.PacienteID=P.PacienteID\n" +
 "INNER JOIN HorarioAtencion HA \n" +
 "on ha.HorarioAtencionID=c.HorarioAtencionID\n" +
-"WHERE P.PacienteDni like ? AND HA.HorarioAtencionFechaRegistro=cast(GETDATE()as date)";
+"WHERE P.PacienteDni like ? AND HA.HorarioAtencionFechaRegistro<=cast(GETDATE()as date)";
         PreparedStatement sentencia;
-        String titulos[]={"CITA ID","FECHA","HORA INICIO","HORA FIN"};
+        String titulos[]={"CITA ID","FECHA","HORA INICIO","HORA FIN","ESTADO"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
@@ -185,7 +185,8 @@ public class CitaSqlServer {
                 java.sql.Date fecha=resultado.getDate("Fecha");
                 String hinicio=resultado.getString("HoraInicio");
                 String hfin=resultado.getString("HoraFin");
-                String fila[]={String.valueOf(idCita),String.valueOf(fecha),hinicio,hfin};
+                String estado=resultado.getString("CitaEstado");
+                String fila[]={String.valueOf(idCita),String.valueOf(fecha),hinicio,hfin,estado};
                 modelo.addRow(fila);
             }
             
@@ -196,14 +197,14 @@ public class CitaSqlServer {
     
     public void MostrarCitas(DefaultTableModel modelo)throws Exception{
         String consultaSQL="SELECT c.CitaID,HA.HorarioAtencionFechaRegistro AS Fecha,HA.HorarioAtencionHoraInicio AS HoraInicio,\n" +
-                           "HA.HorarioAtencionHoraFin AS HoraFin\n" +
+                           "HA.HorarioAtencionHoraFin AS HoraFin, C.CitaEstado\n" +
                             "FROM Cita C INNER JOIN Paciente P\n" +
                             "ON C.PacienteID=P.PacienteID\n" +
                             "INNER JOIN HorarioAtencion HA \n" +
-                            "on ha.HorarioAtencionID=c.HorarioAtencionID\n" +
-                            "WHERE HA.HorarioAtencionFechaRegistro=CAST(GETDATE()AS DATE)";
+                            "on ha.HorarioAtencionID=c.HorarioAtencionID\n"
+                            +"WHERE HA.HorarioAtencionFechaRegistro<=CAST(GETDATE()AS DATE)";
         PreparedStatement sentencia;
-        String titulos[]={"CITA ID","FECHA CITA","HORA INICIO","HORA FIN"};
+        String titulos[]={"CITA ID","FECHA CITA","HORA INICIO","HORA FIN","ESTADO"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
@@ -215,7 +216,8 @@ public class CitaSqlServer {
                 java.sql.Date fecha=resultado.getDate("Fecha");
                 String hinicio=resultado.getString("HoraInicio");
                 String hfin=resultado.getString("HoraFin");
-                String fila[]={String.valueOf(idCita),String.valueOf(fecha),hinicio,hfin};
+                String estado=resultado.getString("CitaEstado");
+                String fila[]={String.valueOf(idCita),String.valueOf(fecha),hinicio,hfin,estado};
                 modelo.addRow(fila);
             }
         } catch (Exception e) {

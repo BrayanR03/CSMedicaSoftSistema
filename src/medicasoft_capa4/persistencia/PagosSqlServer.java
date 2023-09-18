@@ -30,14 +30,30 @@ public class PagosSqlServer {
             sentencia.setInt(1, pagos.getCitaID().getCitaID());
             sentencia.setDate(2, pagos.getFechaPago());
             sentencia.setDouble(3, pagos.getMontoTotal());
-            sentencia.setString(0, pagos.getFormaPagoCodigo().getFormaPagoCodigo());
+            sentencia.setString(4, pagos.getFormaPagoCodigo().getFormaPagoCodigo());
             sentencia.executeUpdate();
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
     
-    
+    public int PagoIDSiguiente(){
+        
+        String consultaSQL="SELECT ISNULL(MAX(PagosID),0)+1 PagosID FROM Pagos";
+        PreparedStatement sentencia;
+        int id=0;
+        try {
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
+            ResultSet resultado=sentencia.executeQuery();
+            if(resultado.next()){
+            
+                id=resultado.getInt("PagosID");
+            }
+        } catch (Exception e) {
+            System.out.println("Error "+e.getMessage());
+        }
+        return id;
+    }
     
     
 }

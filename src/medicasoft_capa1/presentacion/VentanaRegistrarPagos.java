@@ -10,11 +10,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import medicasoft_capa2.aplicacion.RegistrarPagosServicio;
+import medicasoft_capa3.dominio.Cita;
 import medicasoft_capa3.dominio.FormaPago;
 import medicasoft_capa3.dominio.Pagos;
 
@@ -33,10 +39,13 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     private DefaultComboBoxModel<String> comboString;
     private DefaultComboBoxModel<FormaPago> formita;
     private FormaPago formaPago;
+    private Cita cita;
     public VentanaRegistrarPagos() {
         initComponents();
         inicializarNuevoPago();
+        FechaActual();
         try {
+         txtpagosid.setText(String.valueOf(registrarPagosServicio.SiguienteIDPago()));
          registrarPagosServicio.MostrarCitasSinCancelar(modelo);
          formita=registrarPagosServicio.comboFormaPago();
          comboString=new DefaultComboBoxModel<>();
@@ -86,15 +95,29 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                 txtfecha.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(),1).toString());
                 txthorainicio.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(),2).toString());
                 txthorafin.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(),3).toString());
-            
+                txtestadocita.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(),4).toString());
             }
         }
                
         });
     }
+    private void FechaActual(){
+       DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+       Timer timer = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                LocalDate currentDate = LocalDate.now();
+                String formattedDate = currentDate.format(dateFormatter);
+                txtfechapago.setText(formattedDate);
+            }
+        });
 
+        timer.start();
+    }
     private void inicializarNuevoPago(){
         registrarPagosServicio=new RegistrarPagosServicio();
+        formaPago=new FormaPago();
+        cita=new Cita();
         
     }
     /**
@@ -121,6 +144,8 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         txtfecha = new javax.swing.JTextField();
         txthorainicio = new javax.swing.JTextField();
         txthorafin = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        txtestadocita = new javax.swing.JTextField();
         txtpagosid = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -139,9 +164,17 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
 
         jLabel2.setText("Dni Paciente:");
 
+        txtdnipaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtdnipacienteActionPerformed(evt);
+            }
+        });
         txtdnipaciente.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtdnipacienteKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtdnipacienteKeyReleased(evt);
             }
         });
 
@@ -158,6 +191,8 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
 
         jLabel6.setText("HORA FIN");
 
+        jLabel10.setText("ESTADO");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -166,30 +201,39 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(33, 33, 33)
-                        .addComponent(txtdnipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
-                        .addComponent(jButton1))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(33, 33, 33)
+                                .addComponent(txtdnipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(27, 27, 27)
+                                .addComponent(jButton1)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(txtidcita, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txthorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(txthorafin, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(txtestadocita)))
+                        .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(txtidcita, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtfecha, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(txthorainicio, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(28, 28, 28)
-                        .addComponent(txthorafin, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(44, 44, 44)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(47, 47, 47)
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel6))
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(44, 44, 44)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(47, 47, 47)
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel6))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
+                        .addComponent(jLabel10)
+                        .addGap(49, 49, 49))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -206,11 +250,13 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txthorafin, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(txtestadocita, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txthorafin, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                         .addComponent(txtidcita, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
                         .addComponent(txtfecha)
                         .addComponent(txthorainicio)))
@@ -231,6 +277,11 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         jLabel9.setText("Monto Total ");
 
         btnRegistrar.setText("REGISTRAR");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -253,15 +304,15 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(txtfechapago, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(437, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(150, 150, 150)
                 .addComponent(jLabel9)
                 .addGap(26, 26, 26)
-                .addComponent(txtmontototal, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
+                .addComponent(txtmontototal, javax.swing.GroupLayout.DEFAULT_SIZE, 241, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(263, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -281,8 +332,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(131, 131, 131)
-                                .addComponent(btnRegistrar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnRegistrar))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -310,6 +360,74 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         
     }//GEN-LAST:event_cboFormaPagoActionPerformed
 
+    private void txtdnipacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdnipacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtdnipacienteActionPerformed
+
+    private void txtdnipacienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdnipacienteKeyReleased
+        String dni=txtdnipaciente.getText();
+        try {
+            registrarPagosServicio.MostrarCitasSinCancelarDni(modelo, dni);
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txtdnipacienteKeyReleased
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+         try {
+            capturarDatosDePago();
+        } catch (Exception e) {
+             System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
+        }
+        
+        try {
+            guardarPago();
+            //inicializarNuevoPago();          
+            
+            
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error al Registrar La Cita : "+" "+e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
+            
+        }
+        
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+    
+    private void guardarPago()throws Exception{
+        registrarPagosServicio.registrar(pagos);
+        JOptionPane.showMessageDialog(this,"Se Registro El Pago","Informacion",JOptionPane.INFORMATION_MESSAGE);
+    }
+    private void capturarDatosDePago()throws Exception{
+    
+        pagos.setPagoID(Integer.parseInt(txtpagosid.getText().trim()));
+        String fechaText=txtfechapago.getText().trim();
+        Date fechita=Date.valueOf(fechaText);
+        System.out.println("fecha "+fechita);
+        pagos.setFechaPago(fechita);
+        pagos.setMontoTotal(Double.parseDouble(txtmontototal.getText().trim()));
+        
+        try {
+        String codigoFormaPago=txtcodigoformapago.getText().trim();
+        
+            int citaID=Integer.parseInt(txtidcita.getText().trim());
+            cita=registrarPagosServicio.buscarCita(citaID);
+            pagos.setCitaID(cita);
+            FormaPago forma=registrarPagosServicio.buscarFormaPago(codigoFormaPago);
+            pagos.setFormaPagoCodigo(forma);
+           // activarBotonGuardar();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(this, e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
+        }
+        
+    }
+    private void activarBotonGuardar() {
+        if (pagos.getCitaID() != null && pagos.getFormaPagoCodigo()!=null) {
+            btnRegistrar.setEnabled(true);
+        } else {
+            btnRegistrar.setEnabled(false);
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -351,6 +469,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     private javax.swing.JTable datosCitas;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -363,6 +482,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField txtcodigoformapago;
     private javax.swing.JTextField txtdnipaciente;
+    private javax.swing.JTextField txtestadocita;
     private javax.swing.JTextField txtfecha;
     private javax.swing.JTextField txtfechapago;
     private javax.swing.JTextField txthorafin;

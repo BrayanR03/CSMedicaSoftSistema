@@ -63,7 +63,12 @@ public class RegistrarPagosServicio {
         accesoDatosJDBC.cerrarConexion();
         return formaPago;
     }
-    
+    public int SiguienteIDPago()throws Exception{
+        accesoDatosJDBC.abrirConexion();
+        int idPago=pagosSqlServer.PagoIDSiguiente();
+        accesoDatosJDBC.cerrarConexion();
+        return idPago;
+    }
     public void registrar(Pagos pagos)throws Exception{
         
         accesoDatosJDBC.abrirConexion();

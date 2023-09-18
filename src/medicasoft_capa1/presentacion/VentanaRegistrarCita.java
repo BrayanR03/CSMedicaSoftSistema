@@ -160,7 +160,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
 
         txtIdCita.setEditable(false);
 
-        txtestadocita.setText("No Asistió");
+        txtestadocita.setText("Pendiente");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -434,7 +434,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
         int idCita=Integer.parseInt(txtIdCita.getText().trim());
         registrarCitaServicio.EnviarCorreoCita(dni, idHorario, idCita);
     }
-    private void capturarDatosDeCita() throws NumberFormatException {
+    private void capturarDatosDeCita() throws Exception {
         cita.setCitaID(Integer.parseInt(txtIdCita.getText().trim()));
         cita.setCitaEstado(txtestadocita.getText().trim());
         int IDHorarioAtencion=Integer.parseInt(txtIdHorarioAtencion.getText());

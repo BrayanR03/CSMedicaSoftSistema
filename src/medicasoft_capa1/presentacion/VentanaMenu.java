@@ -42,6 +42,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         menuOdontologo = new javax.swing.JMenuItem();
         menuHorarioDeAtencion = new javax.swing.JMenuItem();
         menuCita = new javax.swing.JMenuItem();
+        menuPagos = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -93,6 +94,14 @@ public class VentanaMenu extends javax.swing.JFrame {
             }
         });
         jMenu1.add(menuCita);
+
+        menuPagos.setText("Pagos");
+        menuPagos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuPagosActionPerformed(evt);
+            }
+        });
+        jMenu1.add(menuPagos);
 
         jMenuBar1.add(jMenu1);
 
@@ -146,6 +155,11 @@ public class VentanaMenu extends javax.swing.JFrame {
         formRegistrarCita.setVisible(true);
     }//GEN-LAST:event_menuCitaActionPerformed
 
+    private void menuPagosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuPagosActionPerformed
+        VentanaRegistrarPagos menuPago=new VentanaRegistrarPagos();
+        menuPago.setVisible(true);
+    }//GEN-LAST:event_menuPagosActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -192,6 +206,7 @@ public class VentanaMenu extends javax.swing.JFrame {
     private javax.swing.JMenuItem menuHorarioDeAtencion;
     private javax.swing.JMenuItem menuOdontologo;
     private javax.swing.JMenuItem menuPaciente;
+    private javax.swing.JMenuItem menuPagos;
     // End of variables declaration//GEN-END:variables
     class FondoPanel extends JPanel
     {
