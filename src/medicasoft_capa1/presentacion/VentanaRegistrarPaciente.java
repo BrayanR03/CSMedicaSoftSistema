@@ -1,5 +1,6 @@
-package medicasoft_capa1.presentacion;
 
+package medicasoft_capa1.presentacion;
+import org.netbeans.lib.awtextra.*;
 import java.sql.Date;
 import javax.swing.JOptionPane;
 import medicasoft_capa2.aplicacion.RegistrarPacienteServicio;

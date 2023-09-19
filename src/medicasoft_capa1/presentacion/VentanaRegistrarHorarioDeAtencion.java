@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package medicasoft_capa1.presentacion;
+import org.netbeans.lib.awtextra.*;
 
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
