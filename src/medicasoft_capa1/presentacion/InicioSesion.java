@@ -25,6 +25,7 @@ public class InicioSesion extends javax.swing.JFrame {
         initComponents();
         //this.setContentPane(fondo);
         this.setLocationRelativeTo(null);
+//        ESTO ES UNA PRUEBA
     }
     
     public void CapturaDatos()throws Exception{
