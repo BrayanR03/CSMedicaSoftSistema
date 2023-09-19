@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
-import medicasoft_capa2.aplicacion.RegistrarCitaServicio;
+import medicasoft_capa2.aplicacion.ReservarCitaServicio;
 import medicasoft_capa2.aplicacion.RegistrarHorarioDeAtencionServicio;
 import medicasoft_capa2.aplicacion.RegistrarPacienteServicio;
 import medicasoft_capa3.dominio.Cita;
@@ -21,16 +21,16 @@ import medicasoft_capa3.dominio.Paciente;
  *
  * @author Miguel
  */
-public class VentanaRegistrarCita extends javax.swing.JDialog {
+public class VentanaReservarCita extends javax.swing.JDialog {
     
     DefaultTableModel modelo=new DefaultTableModel();
     private Cita cita;
    // private CitaPostgreSQL citaPostgreSQL;
-    private RegistrarCitaServicio registrarCitaServicio;
-    public VentanaRegistrarCita(java.awt.Frame parent, boolean modal) {
+    private ReservarCitaServicio registrarCitaServicio;
+    public VentanaReservarCita(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-         
+        inicializarNuevaCita();
        
         try {
             registrarCitaServicio.MostrarHorario(modelo);
@@ -65,7 +65,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
     
 
     private void inicializarNuevaCita() {
-        registrarCitaServicio = new RegistrarCitaServicio();
+        registrarCitaServicio = new ReservarCitaServicio();
         try {
             int idSiguienteCita=registrarCitaServicio.MostrarID();
             txtIdCita.setText(String.valueOf(idSiguienteCita));
@@ -133,7 +133,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("REGISTRAR CITA");
+        jLabel1.setText("RESERVAR CITA");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -191,7 +191,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
                 .addContainerGap(23, Short.MAX_VALUE))
         );
 
-        botonGuardar.setText("REGISTRAR CITA");
+        botonGuardar.setText("RESERVAR CITA");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarActionPerformed(evt);
@@ -399,7 +399,8 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
        try {
             capturarDatosDeCita();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error de ingreso de datos", "Advertencia", JOptionPane.WARNING_MESSAGE);
+            System.out.println(e.getMessage());
+            JOptionPane.showMessageDialog(this,e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
         
@@ -410,7 +411,7 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
             
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error al Registrar La Cita : "+" "+e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(null,"Error al Reservar La Cita : "+" "+e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
             
         }
         
@@ -421,10 +422,10 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     
-    private void guardarCita() throws Exception, HeadlessException{
+    private void guardarCita() throws Exception{
         registrarCitaServicio.GuardarCita(cita);
         registrarCitaServicio.MostrarHorario(modelo);       
-        JOptionPane.showMessageDialog(this, "Se guardo la cita", "Información", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Se reservo la cita", "Información", JOptionPane.INFORMATION_MESSAGE);
                
     }
     private void EnviaCorreoCita()throws Exception{
@@ -437,16 +438,18 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
     private void capturarDatosDeCita() throws Exception {
         cita.setCitaID(Integer.parseInt(txtIdCita.getText().trim()));
         cita.setCitaEstado(txtestadocita.getText().trim());
-        int IDHorarioAtencion=Integer.parseInt(txtIdHorarioAtencion.getText());
         
         
         try {
+            int IDHorarioAtencion=Integer.parseInt(txtIdHorarioAtencion.getText());
+        
             HorarioAtencion horario = registrarCitaServicio.buscarHorario(IDHorarioAtencion);
-           
+            
             cita.setHorarioAtencionID(horario);
             activarBotonGuardar();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
+            throw new Exception("Debes seleccionar un horario de atencion",e);
+            //JOptionPane.showMessageDialog(this, "Debes seleccionar un horario de atencion"+e, "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
         
     }
@@ -478,21 +481,23 @@ public class VentanaRegistrarCita extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaRegistrarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaReservarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaRegistrarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaReservarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaRegistrarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaReservarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaRegistrarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaReservarCita.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VentanaRegistrarCita dialog = new VentanaRegistrarCita(new javax.swing.JFrame(), true);
+                VentanaReservarCita dialog = new VentanaReservarCita(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

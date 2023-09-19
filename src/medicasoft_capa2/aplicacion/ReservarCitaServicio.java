@@ -20,14 +20,14 @@ import medicasoft_capa3.dominio.Usuario;
 import medicasoft_capa4.persistencia.AccesoDatosJDBC;
 import medicasoft_capa4.persistencia.AccesoDatosJDBCSqlServer;
 import medicasoft_capa4.persistencia.*;
-public class RegistrarCitaServicio {
+public class ReservarCitaServicio {
 
     private AccesoDatosJDBC accesoDatosJDBC;
     private PacienteSqlServer pacienteSqlServer;
     private CitaSqlServer citaSqlServer;
     private HorarioAtencionSqlServer horarioAtencionSqlServer;
 
-    public RegistrarCitaServicio() {
+    public ReservarCitaServicio() {
         accesoDatosJDBC = new AccesoDatosJDBCSqlServer();
         pacienteSqlServer = new PacienteSqlServer(accesoDatosJDBC);
         citaSqlServer = new CitaSqlServer(accesoDatosJDBC);
@@ -83,7 +83,7 @@ public class RegistrarCitaServicio {
             
             accesoDatosJDBC.terminarTransaccion();
 
-        
+       
     }
     
     public int MostrarID()throws Exception{
@@ -142,9 +142,9 @@ public class RegistrarCitaServicio {
             t.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
             t.close();
         } catch (AddressException ex) {
-            Logger.getLogger(RegistrarCitaServicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReservarCitaServicio.class.getName()).log(Level.SEVERE, null, ex);
         } catch (MessagingException ex) {
-            Logger.getLogger(RegistrarCitaServicio.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ReservarCitaServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

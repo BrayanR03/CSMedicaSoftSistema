@@ -63,7 +63,7 @@ public class VentanaMenu extends javax.swing.JFrame {
 
         jMenu1.setText("Administración");
 
-        menuPaciente.setText("Paciente");
+        menuPaciente.setText("Registrar Paciente");
         menuPaciente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuPacienteActionPerformed(evt);
@@ -71,7 +71,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
         jMenu1.add(menuPaciente);
 
-        menuOdontologo.setText("Odontólogo");
+        menuOdontologo.setText("Registrar Odontólogo");
         menuOdontologo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuOdontologoActionPerformed(evt);
@@ -79,7 +79,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
         jMenu1.add(menuOdontologo);
 
-        menuHorarioDeAtencion.setText("Horario De Atencion");
+        menuHorarioDeAtencion.setText("Registrar Horario De Atencion");
         menuHorarioDeAtencion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuHorarioDeAtencionActionPerformed(evt);
@@ -87,7 +87,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
         jMenu1.add(menuHorarioDeAtencion);
 
-        menuCita.setText("Cita");
+        menuCita.setText("Reservar Cita");
         menuCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuCitaActionPerformed(evt);
@@ -95,7 +95,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         });
         jMenu1.add(menuCita);
 
-        menuPagos.setText("Pagos");
+        menuPagos.setText("Registrar Pagos");
         menuPagos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 menuPagosActionPerformed(evt);
@@ -151,7 +151,7 @@ public class VentanaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuHorarioDeAtencionActionPerformed
 
     private void menuCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCitaActionPerformed
-        VentanaRegistrarCita formRegistrarCita = new VentanaRegistrarCita(this, true);
+        VentanaReservarCita formRegistrarCita = new VentanaReservarCita(this, true);
         formRegistrarCita.setVisible(true);
     }//GEN-LAST:event_menuCitaActionPerformed
 

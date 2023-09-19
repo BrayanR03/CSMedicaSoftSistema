@@ -11,7 +11,7 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuPaciente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Paciente"/>
+                <Property name="text" type="java.lang.String" value="Registrar Paciente"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuPacienteActionPerformed"/>
@@ -19,7 +19,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuOdontologo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Odont&#xf3;logo"/>
+                <Property name="text" type="java.lang.String" value="Registrar Odont&#xf3;logo"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuOdontologoActionPerformed"/>
@@ -27,7 +27,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuHorarioDeAtencion">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Horario De Atencion"/>
+                <Property name="text" type="java.lang.String" value="Registrar Horario De Atencion"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuHorarioDeAtencionActionPerformed"/>
@@ -35,7 +35,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuCita">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Cita"/>
+                <Property name="text" type="java.lang.String" value="Reservar Cita"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuCitaActionPerformed"/>
@@ -43,7 +43,7 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="menuPagos">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Pagos"/>
+                <Property name="text" type="java.lang.String" value="Registrar Pagos"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="menuPagosActionPerformed"/>
