@@ -110,7 +110,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="SISTEMA MEDICASOFT 2022 v1.0"/>
+            <Property name="text" type="java.lang.String" value="SISTEMA MEDICASOFT 2022 v1.1"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

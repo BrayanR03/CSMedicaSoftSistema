@@ -104,7 +104,7 @@ public class InicioSesion extends javax.swing.JFrame {
         });
         jPanel1.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 110, -1));
 
-        jLabel3.setText("SISTEMA MEDICASOFT 2022 v1.0");
+        jLabel3.setText("SISTEMA MEDICASOFT 2022 v1.1");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, 240, -1));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
