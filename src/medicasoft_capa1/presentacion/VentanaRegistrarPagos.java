@@ -16,7 +16,6 @@ import java.time.format.DateTimeFormatter;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.JTextField;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
 import medicasoft_capa2.aplicacion.RegistrarPagosServicio;
@@ -33,30 +32,32 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     /**
      * Creates new form VentanaRegistrarPagos
      */
-    DefaultTableModel modelo=new DefaultTableModel();
+    DefaultTableModel modelo = new DefaultTableModel();
     private Pagos pagos;
-    private RegistrarPagosServicio registrarPagosServicio; 
+    private RegistrarPagosServicio registrarPagosServicio;
     private DefaultComboBoxModel<String> comboString;
     private DefaultComboBoxModel<FormaPago> formita;
     private FormaPago formaPago;
     private Cita cita;
+
     public VentanaRegistrarPagos() {
         initComponents();
+        setLocationRelativeTo(null);
         inicializarNuevoPago();
         FechaActual();
         try {
-         txtpagosid.setText(String.valueOf(registrarPagosServicio.SiguienteIDPago()));
-         registrarPagosServicio.MostrarCitasSinCancelar(modelo);
-         formita=registrarPagosServicio.comboFormaPago();
-         comboString=new DefaultComboBoxModel<>();
-         for (int i = 0; i < formita.getSize(); i++) {
-             formaPago = formita.getElementAt(i);
-             String nombreFormaPago = formaPago.getFormaPagoDescripcion();                     
-             comboString.addElement(nombreFormaPago);
-             
-         }
-         cboFormaPago.setModel(comboString);// Agregamos el JTextField
-            
+            txtpagosid.setText(String.valueOf(registrarPagosServicio.SiguienteIDPago()));
+            registrarPagosServicio.MostrarCitasSinCancelar(modelo);
+            formita = registrarPagosServicio.comboFormaPago();
+            comboString = new DefaultComboBoxModel<>();
+            for (int i = 0; i < formita.getSize(); i++) {
+                formaPago = formita.getElementAt(i);
+                String nombreFormaPago = formaPago.getFormaPagoDescripcion();
+                comboString.addElement(nombreFormaPago);
+
+            }
+            cboFormaPago.setModel(comboString);// Agregamos el JTextField
+
             // Agregamos ActionListener al JComboBox para actualizar el JTextField
             cboFormaPago.addActionListener(new ActionListener() {
                 @Override
@@ -69,7 +70,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                     }
                 }
             });
-            
+
             add(cboFormaPago);
             add(txtcodigoformapago);
 //         cboFormaPago.setModel(comboString);
@@ -82,28 +83,29 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
 //            }
 //        });
         } catch (Exception e) {
-            System.out.println("Error "+e.getMessage());
+            System.out.println("Error " + e.getMessage());
         }
-        
-        datosCitas.addMouseListener(new MouseAdapter(){
-        public void mousePressed(MouseEvent Mouse_evt){
-            JTable table=(JTable) Mouse_evt.getSource();
-            Point point=Mouse_evt.getPoint();
-            int row=table.rowAtPoint(point);
-            if(Mouse_evt.getClickCount()==1){
-                txtidcita.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(),0).toString());
-                txtfecha.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(),1).toString());
-                txthorainicio.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(),2).toString());
-                txthorafin.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(),3).toString());
-                txtestadocita.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(),4).toString());
+
+        datosCitas.addMouseListener(new MouseAdapter() {
+            public void mousePressed(MouseEvent Mouse_evt) {
+                JTable table = (JTable) Mouse_evt.getSource();
+                Point point = Mouse_evt.getPoint();
+                int row = table.rowAtPoint(point);
+                if (Mouse_evt.getClickCount() == 1) {
+                    txtidcita.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(), 0).toString());
+                    txtfecha.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(), 1).toString());
+                    txthorainicio.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(), 2).toString());
+                    txthorafin.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(), 3).toString());
+                    txtestadocita.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(), 4).toString());
+                }
             }
-        }
-               
+
         });
     }
-    private void FechaActual(){
-       DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-       Timer timer = new Timer(1000, new ActionListener() {
+
+    private void FechaActual() {
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        Timer timer = new Timer(1000, new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 LocalDate currentDate = LocalDate.now();
@@ -114,12 +116,15 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
 
         timer.start();
     }
-    private void inicializarNuevoPago(){
-        registrarPagosServicio=new RegistrarPagosServicio();
-        formaPago=new FormaPago();
-        cita=new Cita();
-        
+
+    private void inicializarNuevoPago() {
+        registrarPagosServicio = new RegistrarPagosServicio();
+        pagos = new Pagos();
+        formaPago = new FormaPago();
+        cita = new Cita();
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -156,7 +161,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         btnRegistrar = new javax.swing.JButton();
         txtcodigoformapago = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nro Pago");
 
@@ -255,11 +260,10 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtestadocita, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txthorafin, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                        .addComponent(txtidcita, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
-                        .addComponent(txtfecha)
-                        .addComponent(txthorainicio)))
+                    .addComponent(txthorafin, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(txtidcita, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                    .addComponent(txtfecha)
+                    .addComponent(txthorainicio))
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
@@ -352,12 +356,12 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtdnipacienteKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdnipacienteKeyPressed
-        
+
     }//GEN-LAST:event_txtdnipacienteKeyPressed
 
     private void cboFormaPagoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cboFormaPagoActionPerformed
-        
-        
+
+
     }//GEN-LAST:event_cboFormaPagoActionPerformed
 
     private void txtdnipacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtdnipacienteActionPerformed
@@ -365,7 +369,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtdnipacienteActionPerformed
 
     private void txtdnipacienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdnipacienteKeyReleased
-        String dni=txtdnipaciente.getText();
+        String dni = txtdnipaciente.getText();
         try {
             registrarPagosServicio.MostrarCitasSinCancelarDni(modelo, dni);
         } catch (Exception e) {
@@ -373,61 +377,64 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     }//GEN-LAST:event_txtdnipacienteKeyReleased
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
-         try {
+        try {
             capturarDatosDePago();
         } catch (Exception e) {
-             System.out.println(e.getMessage());
+            System.out.println(e.getMessage());
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
-        
+
         try {
             guardarPago();
             //inicializarNuevoPago();          
-            
-            
+
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"Error al Registrar La Cita : "+" "+e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
-            
+            JOptionPane.showMessageDialog(null, "Error al Registrar La Cita : " + " " + e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
+
         }
-        
+
     }//GEN-LAST:event_btnRegistrarActionPerformed
-    
-    private void guardarPago()throws Exception{
+
+    private void guardarPago() throws Exception {
         registrarPagosServicio.registrar(pagos);
-        JOptionPane.showMessageDialog(this,"Se Registro El Pago","Informacion",JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(this, "Se Registro El Pago", "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
-    private void capturarDatosDePago()throws Exception{
-    
-        pagos.setPagoID(Integer.parseInt(txtpagosid.getText().trim()));
-        String fechaText=txtfechapago.getText().trim();
-        Date fechita=Date.valueOf(fechaText);
-        System.out.println("fecha "+fechita);
-        pagos.setFechaPago(fechita);
-        pagos.setMontoTotal(Double.parseDouble(txtmontototal.getText().trim()));
-        
-        try {
-        String codigoFormaPago=txtcodigoformapago.getText().trim();
-        
-            int citaID=Integer.parseInt(txtidcita.getText().trim());
-            cita=registrarPagosServicio.buscarCita(citaID);
+
+    private void capturarDatosDePago() throws Exception {
+
+        try {            
+            pagos.setPagoID(Integer.parseInt(txtpagosid.getText().trim()));
+            String fechaText = txtfechapago.getText().trim();
+            Date fechita = Date.valueOf(fechaText);
+            System.out.println("fecha " + fechita);
+            pagos.setFechaPago(fechita);
+            pagos.setMontoTotal(Double.parseDouble(txtmontototal.getText().trim()));
+
+            String codigoFormaPago = txtcodigoformapago.getText().trim();
+
+            int citaID = Integer.parseInt(txtidcita.getText().trim());
+            cita = registrarPagosServicio.buscarCita(citaID);
             pagos.setCitaID(cita);
-            FormaPago forma=registrarPagosServicio.buscarFormaPago(codigoFormaPago);
+            FormaPago forma = new FormaPago();
+            forma = registrarPagosServicio.buscarFormaPago(codigoFormaPago);
             pagos.setFormaPagoCodigo(forma);
-           // activarBotonGuardar();
+            // activarBotonGuardar();
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(this, e.getMessage(),"Advertencia",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }
+
     private void activarBotonGuardar() {
-        if (pagos.getCitaID() != null && pagos.getFormaPagoCodigo()!=null) {
+        if (pagos.getCitaID() != null && pagos.getFormaPagoCodigo() != null) {
             btnRegistrar.setEnabled(true);
         } else {
             btnRegistrar.setEnabled(false);
         }
     }
+
     /**
      * @param args the command line arguments
      */

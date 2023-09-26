@@ -69,6 +69,11 @@ public class Pagos {
     public void setFormaPagoCodigo(FormaPago FormaPagoCodigo) {
         this.FormaPagoCodigo = FormaPagoCodigo;
     }
+
+    @Override
+    public String toString() {
+        return "Pagos{" + "PagoID=" + PagoID + ", CitaID=" + CitaID.getCitaID() + ", FechaPago=" + FechaPago + ", MontoTotal=" + MontoTotal + ", FormaPagoCodigo=" + FormaPagoCodigo.getFormaPagoCodigo() + '}';
+    }
     
     
 }

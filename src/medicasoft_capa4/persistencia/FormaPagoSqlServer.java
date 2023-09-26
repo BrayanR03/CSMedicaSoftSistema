@@ -28,7 +28,7 @@ public class FormaPagoSqlServer {
         PreparedStatement sentencia;
         FormaPago formaPago=null;
         try {
-            sentencia=accesoDatosJDBC.prepararSentencia(codigo);
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
             sentencia.setString(1, codigo);
             ResultSet resultado=sentencia.executeQuery();
             if(resultado.next()){

@@ -18,6 +18,7 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
     public VentanaRegistrarPaciente(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(this);
         inicializarNuevoPaciente();
         try {
             int id=registrarPacienteServicio.retornoID();

@@ -25,6 +25,8 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
     public VentanaRegistrarHorarioDeAtencion(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(this);
+        txtIdHorarioAtencion.setEditable(false);
         inicializarNuevoHorario();
         
     }

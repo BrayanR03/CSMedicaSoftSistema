@@ -30,6 +30,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
     public VentanaReservarCita(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        setLocationRelativeTo(this);
         inicializarNuevaCita();
        
         try {
