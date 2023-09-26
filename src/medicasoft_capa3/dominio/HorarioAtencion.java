@@ -83,19 +83,19 @@ public class HorarioAtencion {
     
     public boolean tieneHoraValida() {
         return HorarioAtencionHoraInicio.equalsIgnoreCase("09:00")
-                || HorarioAtencionHoraFin.equalsIgnoreCase("09:59")
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("10:00")
-                || HorarioAtencionHoraFin.equalsIgnoreCase("10:59")
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("11:00")
-                || HorarioAtencionHoraFin.equalsIgnoreCase("11:59")
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("14:00")
-                || HorarioAtencionHoraFin.equalsIgnoreCase("14:59")
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("15:00")
-                || HorarioAtencionHoraFin.equalsIgnoreCase("15:59")
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("16:00")
-                || HorarioAtencionHoraFin.equalsIgnoreCase("16:59")
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("17:00")
-                || HorarioAtencionHoraFin.equalsIgnoreCase("17:59");
+                && HorarioAtencionHoraFin.equalsIgnoreCase("09:59")
+                && HorarioAtencionHoraInicio.equalsIgnoreCase("10:00")
+                && HorarioAtencionHoraFin.equalsIgnoreCase("10:59")
+                && HorarioAtencionHoraInicio.equalsIgnoreCase("11:00")
+                && HorarioAtencionHoraFin.equalsIgnoreCase("11:59")
+                && HorarioAtencionHoraInicio.equalsIgnoreCase("14:00")
+                && HorarioAtencionHoraFin.equalsIgnoreCase("14:59")
+                && HorarioAtencionHoraInicio.equalsIgnoreCase("15:00")
+                && HorarioAtencionHoraFin.equalsIgnoreCase("15:59")
+                && HorarioAtencionHoraInicio.equalsIgnoreCase("16:00")
+                && HorarioAtencionHoraFin.equalsIgnoreCase("16:59")
+                && HorarioAtencionHoraInicio.equalsIgnoreCase("17:00")
+                && HorarioAtencionHoraFin.equalsIgnoreCase("17:59");
     }
     public boolean tieneHoraUnicaValida(List<String> horas) {
         return horas.contains(getHorarioAtencionHoraInicio()) || horas.contains(getHorarioAtencionHoraFin());
