@@ -129,8 +129,8 @@ public class HorarioAtencionSqlServer {
     }
 
   public int SiguienteHorarioAtencionID()throws Exception{
-//      String consultaSQL="SELECT ISNULL(MAX(HorarioAtencionID),0)+1 AS HorarioAtencionID FROM HorarioAtencion";
-      String consultaSQL="SELECT IFNULL(MAX(HorarioAtencionID),0)+1 AS HorarioAtencionID FROM HorarioAtencion";
+      String consultaSQL="SELECT ISNULL(MAX(HorarioAtencionID),0)+1 AS HorarioAtencionID FROM HorarioAtencion";
+//      String consultaSQL="SELECT IFNULL(MAX(HorarioAtencionID),0)+1 AS HorarioAtencionID FROM HorarioAtencion";
       PreparedStatement sentencia;
       int id=0;
       try {

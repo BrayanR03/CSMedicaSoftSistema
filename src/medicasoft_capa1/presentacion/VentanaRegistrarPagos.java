@@ -92,11 +92,13 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                 Point point = Mouse_evt.getPoint();
                 int row = table.rowAtPoint(point);
                 if (Mouse_evt.getClickCount() == 1) {
+                    
                     txtidcita.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(), 0).toString());
                     txtfecha.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(), 1).toString());
                     txthorainicio.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(), 2).toString());
                     txthorafin.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(), 3).toString());
                     txtestadocita.setText(datosCitas.getValueAt(datosCitas.getSelectedRow(), 4).toString());
+                    
                 }
             }
 
@@ -118,11 +120,21 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     }
 
     private void inicializarNuevoPago() {
+        txtdnipaciente.requestFocus();
+        txtcodigoformapago.setVisible(false);
         registrarPagosServicio = new RegistrarPagosServicio();
         pagos = new Pagos();
         formaPago = new FormaPago();
         cita = new Cita();
-
+        txtdnipaciente.setText("");
+        txtmontototal.setText("");
+        txtcodigoformapago.setText("");
+        cboFormaPago.setSelectedIndex(0);
+        txtidcita.setText("");
+        txtfecha.setText("");
+        txthorainicio.setText("");
+        txthorafin.setText("");
+        txtestadocita.setText("");
     }
 
     /**
@@ -140,7 +152,6 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         txtdnipaciente = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         datosCitas = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -186,8 +197,6 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         datosCitas.setModel(modelo);
         jScrollPane1.setViewportView(datosCitas);
 
-        jButton1.setText("BUSCAR");
-
         jLabel3.setText("ID CITA");
 
         jLabel4.setText("FECHA");
@@ -196,7 +205,17 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
 
         jLabel6.setText("HORA FIN");
 
+        txtidcita.setEditable(false);
+
+        txtfecha.setEditable(false);
+
+        txthorainicio.setEditable(false);
+
+        txthorafin.setEditable(false);
+
         jLabel10.setText("ESTADO");
+
+        txtestadocita.setEditable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -210,9 +229,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(33, 33, 33)
-                                .addComponent(txtdnipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(27, 27, 27)
-                                .addComponent(jButton1)
+                                .addComponent(txtdnipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(txtidcita, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -246,8 +263,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtdnipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
+                    .addComponent(txtdnipaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -267,9 +283,13 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                 .addContainerGap(35, Short.MAX_VALUE))
         );
 
+        txtpagosid.setEditable(false);
+
         jLabel7.setText("Forma Pago");
 
         jLabel8.setText("Fecha:");
+
+        txtfechapago.setEditable(false);
 
         cboFormaPago.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cboFormaPago.addActionListener(new java.awt.event.ActionListener() {
@@ -286,6 +306,8 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                 btnRegistrarActionPerformed(evt);
             }
         });
+
+        txtcodigoformapago.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -387,7 +409,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
 
         try {
             guardarPago();
-            //inicializarNuevoPago();          
+            inicializarNuevoPago();          
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error al Registrar La Cita : " + " " + e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -402,38 +424,45 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     }
 
     private void capturarDatosDePago() throws Exception {
-
-        try {            
             pagos.setPagoID(Integer.parseInt(txtpagosid.getText().trim()));
             String fechaText = txtfechapago.getText().trim();
             Date fechita = Date.valueOf(fechaText);
             System.out.println("fecha " + fechita);
             pagos.setFechaPago(fechita);
-            pagos.setMontoTotal(Double.parseDouble(txtmontototal.getText().trim()));
-
+            
+            
             String codigoFormaPago = txtcodigoformapago.getText().trim();
-
+            System.out.println("codigo fforma"+codigoFormaPago);
+            if (codigoFormaPago.isEmpty()) {
+                throw new Exception("Debes seleccionar una forma de pago");
+            }
+            formaPago = registrarPagosServicio.buscarFormaPago(codigoFormaPago);
+            pagos.setFormaPagoCodigo(formaPago);
+//        try {
+//            String codigoFormaPago = txtcodigoformapago.getText().trim();
+//            formaPago = registrarPagosServicio.buscarFormaPago(codigoFormaPago);
+//            pagos.setFormaPagoCodigo(formaPago);
+//            
+//        } catch (Exception e) {
+//        }
+        try {
             int citaID = Integer.parseInt(txtidcita.getText().trim());
             cita = registrarPagosServicio.buscarCita(citaID);
             pagos.setCitaID(cita);
-            FormaPago forma = new FormaPago();
-            forma = registrarPagosServicio.buscarFormaPago(codigoFormaPago);
-            pagos.setFormaPagoCodigo(forma);
-            // activarBotonGuardar();
+            
         } catch (Exception e) {
-            System.out.println(e.getMessage());
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
+            throw new Exception("Debes seleccionar una cita a pagar!",e);
         }
+        try {
+            double monto=Double.parseDouble(txtmontototal.getText().trim());
+            pagos.setMontoTotal(monto);
 
-    }
-
-    private void activarBotonGuardar() {
-        if (pagos.getCitaID() != null && pagos.getFormaPagoCodigo() != null) {
-            btnRegistrar.setEnabled(true);
-        } else {
-            btnRegistrar.setEnabled(false);
+        } catch (Exception e) {
+            throw new Exception("Debes ingresar un monto",e);
         }
     }
+
+    
 
     /**
      * @param args the command line arguments
@@ -474,7 +503,6 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrar;
     private javax.swing.JComboBox<String> cboFormaPago;
     private javax.swing.JTable datosCitas;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

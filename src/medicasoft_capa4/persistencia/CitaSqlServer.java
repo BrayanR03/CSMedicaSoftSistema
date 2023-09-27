@@ -73,7 +73,6 @@ public class CitaSqlServer {
     
     
     public int consultarTotalDeCitasRegistradas(HorarioAtencion horario) throws Exception {
-        // String consultaSQL = "select count(codigohorario) as totalCitas from horario where fecha = ?";
         String consultaSQL = "SELECT COUNT(HA.HorarioAtencionFechaRegistro) AS TotalCitas\n" +
 "FROM Cita C INNER JOIN HorarioAtencion HA\n" +
 "ON C.HorarioAtencionID=HA.HorarioAtencionID\n" +
@@ -164,21 +163,21 @@ public class CitaSqlServer {
         return id;
     }
     public void MostrarCitasDni(DefaultTableModel modelo,String dniPaciente){
-//        String consultaSQL="SELECT c.CitaID,HA.HorarioAtencionFechaRegistro AS Fecha,HA.HorarioAtencionHoraInicio AS HoraInicio,\n" +
-//"HA.HorarioAtencionHoraFin AS HoraFin,C.CitaEstado\n" +
-//"FROM Cita C INNER JOIN Paciente P\n" +
-//"ON C.PacienteID=P.PacienteID\n" +
-//"INNER JOIN HorarioAtencion HA \n" +
-//"on ha.HorarioAtencionID=c.HorarioAtencionID\n" +
-//"WHERE P.PacienteDni like ? AND HA.HorarioAtencionFechaRegistro<=cast(GETDATE()as date)";
+        String consultaSQL="SELECT c.CitaID,HA.HorarioAtencionFechaRegistro AS Fecha,HA.HorarioAtencionHoraInicio AS HoraInicio,\n" +
+"HA.HorarioAtencionHoraFin AS HoraFin,C.CitaEstado\n" +
+"FROM Cita C INNER JOIN Paciente P\n" +
+"ON C.PacienteID=P.PacienteID\n" +
+"INNER JOIN HorarioAtencion HA \n" +
+"on ha.HorarioAtencionID=c.HorarioAtencionID\n" +
+"WHERE P.PacienteDni like ? AND HA.HorarioAtencionFechaRegistro<=cast(GETDATE()as date)";
         
         
-               String consultaSQL="SELECT C.CitaID, HA.HorarioAtencionFechaRegistro AS Fecha, HA.HorarioAtencionHoraInicio AS HoraInicio,\n" +
-"HA.HorarioAtencionHoraFin AS HoraFin, C.CitaEstado\n" +
-"FROM Cita C\n" +
-"INNER JOIN Paciente P ON C.PacienteID = P.PacienteID\n" +
-"INNER JOIN HorarioAtencion HA ON HA.HorarioAtencionID = C.HorarioAtencionID\n" +
-"WHERE P.PacienteDni LIKE ? AND HA.HorarioAtencionFechaRegistro <= CURDATE();";
+//               String consultaSQL="SELECT C.CitaID, HA.HorarioAtencionFechaRegistro AS Fecha, HA.HorarioAtencionHoraInicio AS HoraInicio,\n" +
+//"HA.HorarioAtencionHoraFin AS HoraFin, C.CitaEstado\n" +
+//"FROM Cita C\n" +
+//"INNER JOIN Paciente P ON C.PacienteID = P.PacienteID\n" +
+//"INNER JOIN HorarioAtencion HA ON HA.HorarioAtencionID = C.HorarioAtencionID\n" +
+//"WHERE P.PacienteDni LIKE ? AND HA.HorarioAtencionFechaRegistro <= CURDATE();";
                
                
         PreparedStatement sentencia;

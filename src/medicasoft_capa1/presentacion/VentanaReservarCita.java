@@ -74,9 +74,6 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         }
         cita = new Cita();
         txtIdCita.requestFocus();
-        //txtCodigoCita.setText("");
-       
-        //txtestadocita.setText("");
         txtIdHorarioAtencion.setText("");
         txtfecha.setText("");
         txthorafin.setText("");

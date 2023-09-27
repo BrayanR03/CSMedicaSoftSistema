@@ -123,8 +123,8 @@ public class PacienteSqlServer {
     
     public int PacienteIDSiguiente()throws Exception{
         
-//        String consultaSQL="SELECT ISNULL(MAX(PacienteID),0)+1as PacienteID FROM Paciente";
-        String consultaSQL="SELECT IFNULL(MAX(PacienteID),0)+1as PacienteID FROM Paciente";
+        String consultaSQL="SELECT ISNULL(MAX(PacienteID),0)+1as PacienteID FROM Paciente";
+//        String consultaSQL="SELECT IFNULL(MAX(PacienteID),0)+1as PacienteID FROM Paciente";
         PreparedStatement sentencia;
         int id=0;
         try {

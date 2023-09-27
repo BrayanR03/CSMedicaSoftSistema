@@ -26,7 +26,6 @@ public class PagosSqlServer {
                          "VALUES(?,?,?,?)";
         PreparedStatement sentencia;
         try {
-            
             System.out.println(pagos.toString());
             sentencia=accesoDatosJDBC.prepararSentencia(insertSQL);
             sentencia.setInt(1, pagos.getCitaID().getCitaID());
@@ -41,8 +40,8 @@ public class PagosSqlServer {
     
     public int PagoIDSiguiente(){
         
-//        String consultaSQL="SELECT ISNULL(MAX(PagosID),0)+1 PagosID FROM Pagos";
-        String consultaSQL="SELECT IFNULL(MAX(PagosID),0)+1 PagosID FROM Pagos";
+        String consultaSQL="SELECT ISNULL(MAX(PagosID),0)+1 PagosID FROM Pagos";
+//        String consultaSQL="SELECT IFNULL(MAX(PagosID),0)+1 PagosID FROM Pagos";
         PreparedStatement sentencia;
         int id=0;
         try {

@@ -22,11 +22,11 @@ public class FormaPagoSqlServer {
         this.accesoDatosJDBC=accesoDatosJDBC;
     }
     
-    public FormaPago BuscarFormaPago(String codigo){
+    public FormaPago BuscarFormaPago(String codigo)throws Exception{
     
         String consultaSQL="SELECT FormaPagoDescripcion FROM FormaPago WHERE FormaPagoCodigo=?";
         PreparedStatement sentencia;
-        FormaPago formaPago=null;
+        FormaPago formaPago=new FormaPago();
         try {
             sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
             sentencia.setString(1, codigo);
@@ -38,7 +38,7 @@ public class FormaPagoSqlServer {
                 
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new Exception("Error al seleccionar la forma de pago",e);
         }
         return formaPago;
     }
