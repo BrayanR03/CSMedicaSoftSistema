@@ -9,6 +9,9 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import medicasoft_capa2.aplicacion.RegistrarUsuarioServicio;
+import medicasoft_capa4.persistencia.AccesoDatosJDBC;
+import medicasoft_capa4.persistencia.AccesoDatosJDBCSqlServer;
 import medicasoft_capa4.persistencia.UsuarioSqlServer;
 
 /**
@@ -17,46 +20,58 @@ import medicasoft_capa4.persistencia.UsuarioSqlServer;
  */
 public class InicioSesion extends javax.swing.JFrame {
 
-    FondoPanel fondo=new FondoPanel();
+    FondoPanel fondo = new FondoPanel();
+    AccesoDatosJDBC accesoDatosJDBC;
     UsuarioSqlServer usuarioSqlServer;
-    String user,contra;
+    String user, contra;
     boolean validacion;
+    RegistrarUsuarioServicio usuarioServicio;
+
     public InicioSesion() {
         initComponents();
-        //this.setContentPane(fondo);
+        //this.setContentPane(fondo);       
+        usuarioServicio = new RegistrarUsuarioServicio();
         this.setLocationRelativeTo(null);
 //        ESTO ES UNA PRUEBA
     }
-    
-    public void CapturaDatos()throws Exception{
+
+    public void CapturaDatos() throws Exception {
         try {
-            user=txtusuario.getText().trim();
-            contra="";
-            char password[]=jpcontraseña.getPassword();
-            contra=new String(password);
-                
+            user = txtusuario.getText().trim();
+            contra = "";
+            char password[] = jpcontraseña.getPassword();
+            contra = new String(password);
+//            System.out.println(jpcontraseña.getPassword());
+
             if(user.equalsIgnoreCase("") && contra.equalsIgnoreCase("")){
                 throw new Exception("Ingresa Datos A Los Campos");
             }
-                
+//            if (usuarioSqlServer.ValidarUsuario(txtusuario.getText().trim(), jpcontraseña.gett)) {
+//                throw new Exception("Ingresa Datos A Los Campos");
+//            }
         } catch (Exception e) {
-            throw new Exception("Error Al Capturar Los Datos",e);
+            throw new Exception("Error Al Capturar Los Datos", e);
         }
-        
+
     }
-    public void Validar(){
+
+    public void Validar() {
         try {
-            validacion=usuarioSqlServer.ValidarUsuario(user, contra);
-            if(validacion=true){
-                JOptionPane.showMessageDialog(this, "Bienvenido","Informacion",JOptionPane.INFORMATION_MESSAGE);
-            }else{
-                JOptionPane.showMessageDialog(this,"Datos Incorrectos","Advertencia",JOptionPane.WARNING_MESSAGE);
+            validacion = usuarioServicio.validarUsuario(user, user);
+            if (validacion) {
+                JOptionPane.showMessageDialog(this, "Bienvenido", "Informacion", JOptionPane.INFORMATION_MESSAGE);
+                VentanaMenu menu = new VentanaMenu();
+                menu.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Datos Incorrectos", "Advertencia", JOptionPane.WARNING_MESSAGE);
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,e,"Advertencia",JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, e, "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -140,13 +155,14 @@ public class InicioSesion extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
-//        try {
-//            CapturaDatos();
-//        } catch (Exception e) {
-//            JOptionPane.showMessageDialog(this, e,"Advertencia",JOptionPane.WARNING_MESSAGE);
-//        }
-            VentanaMenu menu=new VentanaMenu();
-            menu.setVisible(true);
+        try {
+            CapturaDatos();
+            Validar();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e, "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+
+
     }//GEN-LAST:event_btningresarActionPerformed
 
     /**
@@ -197,20 +213,19 @@ public class InicioSesion extends javax.swing.JFrame {
     private javax.swing.JPasswordField jpcontraseña;
     private javax.swing.JTextField txtusuario;
     // End of variables declaration//GEN-END:variables
-    class FondoPanel extends JPanel
-    {
+    class FondoPanel extends JPanel {
+
         private Image imagen;
-        
+
         @Override
-        public void paint(Graphics g)
-        {
-           imagen = new ImageIcon(getClass().getResource("/imagenes/LOGIN.png")).getImage();
-           
-           g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
-           
-           setOpaque(false);
-           super.paint(g);
-        }        
+        public void paint(Graphics g) {
+            imagen = new ImageIcon(getClass().getResource("/imagenes/LOGIN.png")).getImage();
+
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+
+            setOpaque(false);
+            super.paint(g);
+        }
     }
-    
+
 }

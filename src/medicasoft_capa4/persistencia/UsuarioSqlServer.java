@@ -65,8 +65,6 @@ public class UsuarioSqlServer {
                 int idUsuario=resultado.getInt("UsuarioID");
                 if(usuario.equalsIgnoreCase(usuarioTabla) && password.equalsIgnoreCase(passwordTabla)){
                     validar=true;
-                }else{
-                    validar=false;
                 }
             }
         } catch (Exception e) {

@@ -2,12 +2,12 @@
 package medicasoft_capa2.aplicacion;
 
 
-import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeBodyPart;
-import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeMultipart;
+//import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeBodyPart;
+//import com.sun.xml.internal.messaging.saaj.packaging.mime.internet.MimeMultipart;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.activation.DataHandler;
-import javax.activation.FileDataSource;
+//import javax.activation.DataHandler;
+//import javax.activation.FileDataSource;
 
 
 import java.util.List;
