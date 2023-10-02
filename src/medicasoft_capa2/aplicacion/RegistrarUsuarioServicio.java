@@ -24,6 +24,7 @@ public class RegistrarUsuarioServicio {
 
     
     public boolean validarUsuario(String usuario, String password) {
+        
         boolean usuarioValidado = false;
         try {
             accesoDatosJDBC.abrirConexion();

@@ -35,36 +35,36 @@ public class InicioSesion extends javax.swing.JFrame {
 //        ESTO ES UNA PRUEBA
     }
 
-    public void CapturaDatos() throws Exception {
-        try {
+    public void CapturaDatos(){
+        
             user = txtusuario.getText().trim();
             contra = "";
             char password[] = jpcontraseña.getPassword();
             contra = new String(password);
-//            System.out.println(jpcontraseña.getPassword());
 
             if(user.equalsIgnoreCase("") && contra.equalsIgnoreCase("")){
-                throw new Exception("Ingresa Datos A Los Campos");
+                JOptionPane.showMessageDialog(this, "Debes Ingresar Datos A Los Campos","Advertencia",JOptionPane.WARNING_MESSAGE);
+                txtusuario.requestFocus();
             }
-//            if (usuarioSqlServer.ValidarUsuario(txtusuario.getText().trim(), jpcontraseña.gett)) {
-//                throw new Exception("Ingresa Datos A Los Campos");
-//            }
-        } catch (Exception e) {
-            throw new Exception("Error Al Capturar Los Datos", e);
-        }
+        
 
     }
 
     public void Validar() {
         try {
-            validacion = usuarioServicio.validarUsuario(user, user);
+            validacion = usuarioServicio.validarUsuario(user, contra);
             if (validacion) {
                 JOptionPane.showMessageDialog(this, "Bienvenido", "Informacion", JOptionPane.INFORMATION_MESSAGE);
                 VentanaMenu menu = new VentanaMenu();
                 menu.setVisible(true);
                 dispose();
+           
             } else {
-                JOptionPane.showMessageDialog(this, "Datos Incorrectos", "Advertencia", JOptionPane.WARNING_MESSAGE);
+                throw new Exception("Datos incorrectos");
+                //JOptionPane.showMessageDialog(this, "Datos Incorrectos", "Advertencia", JOptionPane.WARNING_MESSAGE);
+//                txtusuario.setText("");
+//                jpcontraseña.setText("");
+//                txtusuario.requestFocus();
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e, "Advertencia", JOptionPane.WARNING_MESSAGE);
@@ -158,10 +158,10 @@ public class InicioSesion extends javax.swing.JFrame {
         try {
             CapturaDatos();
             Validar();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e, "Advertencia", JOptionPane.WARNING_MESSAGE);
+        } catch (Exception e) {         
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
+            return;
         }
-
 
     }//GEN-LAST:event_btningresarActionPerformed
 

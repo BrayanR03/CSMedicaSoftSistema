@@ -62,14 +62,19 @@ public class UsuarioSqlServer {
             
                 String usuarioTabla=resultado.getString("Usuario");
                 String passwordTabla=resultado.getString("Password");
+                
                 int idUsuario=resultado.getInt("UsuarioID");
-                if(usuario.equalsIgnoreCase(usuarioTabla) && password.equalsIgnoreCase(passwordTabla)){
+                if(usuario.equalsIgnoreCase(usuarioTabla) || password.equalsIgnoreCase(passwordTabla))
                     validar=true;
-                }
+                    System.out.println("usuario java: "+usuario+"-----"+"usuario sql: "+usuarioTabla);
+                    System.out.println("password java: "+password+"-----"+"password sql: "+passwordTabla);
+                    
+                    System.out.println("validacion es: "+validar);
+                
             }
         } catch (Exception e) {
             System.out.println("ACA"+e);
-            throw new Exception("Datos Inválidos"+e);
+            throw new Exception("Datos Inválidos",e);
         }
         return validar;
     }

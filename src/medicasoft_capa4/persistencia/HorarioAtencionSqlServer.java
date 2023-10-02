@@ -102,7 +102,7 @@ public class HorarioAtencionSqlServer {
       public void Mostrar(DefaultTableModel modelo) throws Exception {
 
         String mostraSQL = "select hor.HorarioAtencionID,hor.HorarioAtencionEstado,hor.HorarioAtencionFechaRegistro,hor.HorarioAtencionHoraInicio,hor.HorarioAtencionHoraFin,hor.OdontologoID ,odo.OdontologoNombres,odo.OdontologoApellidos \n" +
-"from HorarioAtencion HOR LEFT JOIN Odontologo ODO on hor.OdontologoID=odo.OdontologoID  where HOR.HorarioAtencionEstado='DISPONIBLE'";// and HOR.HorarioAtencionFechaRegistro>=GETDATE()";
+"from HorarioAtencion HOR LEFT JOIN Odontologo ODO on hor.OdontologoID=odo.OdontologoID  where HOR.HorarioAtencionEstado='DISPONIBLE' and HOR.HorarioAtencionFechaRegistro>=CAST(GETDATE() AS DATE)";
         PreparedStatement sentencia;
 
         String titulos[] = {"HORARIO ID", "ESTADO", "FECHA", "HORA INICIO", "HORA FIN", "ODONTOLOGO","ID ODONTOLOGO"};
