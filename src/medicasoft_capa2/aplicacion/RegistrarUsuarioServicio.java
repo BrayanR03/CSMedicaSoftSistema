@@ -22,7 +22,16 @@ public class RegistrarUsuarioServicio {
         usuarioSqlServer = new UsuarioSqlServer(accesoDatosJDBC);
     }
 
-    
+    public int retornoIDusuario(String usuario,String password){
+        int usuarioIDretornado=0;
+        try {
+            accesoDatosJDBC.abrirConexion();
+            usuarioIDretornado=usuarioSqlServer.RetornarIDUsuario(usuario, password);
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return usuarioIDretornado;
+    }
     public boolean validarUsuario(String usuario, String password) {
         
         boolean usuarioValidado = false;

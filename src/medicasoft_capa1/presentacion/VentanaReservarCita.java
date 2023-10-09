@@ -25,16 +25,17 @@ public class VentanaReservarCita extends javax.swing.JDialog {
     
     DefaultTableModel modelo=new DefaultTableModel();
     private Cita cita;
-   // private CitaPostgreSQL citaPostgreSQL;
+    private static int usuarioid;
     private ReservarCitaServicio registrarCitaServicio;
-    public VentanaReservarCita(java.awt.Frame parent, boolean modal) {
+    public VentanaReservarCita(java.awt.Frame parent, boolean modal,int idusuario) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(this);
+        this.usuarioid=idusuario;
         inicializarNuevaCita();
-       
+        System.out.println("usuario id ventana cita "+usuarioid);
         try {
-            registrarCitaServicio.MostrarHorario(modelo);
+            registrarCitaServicio.MostrarHorario(modelo,usuarioid);
             
             TableColumn columna = jTableHorario.getColumnModel().getColumn(6);
                 columna.setMaxWidth(0);
@@ -63,7 +64,6 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         });
         
     }
-    
 
     private void inicializarNuevaCita() {
         registrarCitaServicio = new ReservarCitaServicio();
@@ -422,7 +422,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
     
     private void guardarCita() throws Exception{
         registrarCitaServicio.GuardarCita(cita);
-        registrarCitaServicio.MostrarHorario(modelo);       
+        registrarCitaServicio.MostrarHorario(modelo,usuarioid);       
         JOptionPane.showMessageDialog(this, "Se reservo la cita", "Información", JOptionPane.INFORMATION_MESSAGE);
                
     }
@@ -495,7 +495,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                VentanaReservarCita dialog = new VentanaReservarCita(new javax.swing.JFrame(), true);
+                VentanaReservarCita dialog = new VentanaReservarCita(new javax.swing.JFrame(), true,usuarioid);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

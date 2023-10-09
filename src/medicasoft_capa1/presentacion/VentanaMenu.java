@@ -19,11 +19,14 @@ public class VentanaMenu extends javax.swing.JFrame {
     /**
      * Creates new form VentanaMenu
      */
+    private static int usuarioIDlogin;
     FondoPanel fondo=new FondoPanel();
-    public VentanaMenu() {
+    public VentanaMenu(int usuarioIDlogin) {
+        this.usuarioIDlogin=usuarioIDlogin;
         initComponents();
         this.setLocationRelativeTo(null);
         this.setContentPane(fondo);
+        System.out.println("ID USUARIO EN LA INTERFAZ DEL MENU "+usuarioIDlogin);
     }
 
     /**
@@ -151,7 +154,7 @@ public class VentanaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_menuHorarioDeAtencionActionPerformed
 
     private void menuCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCitaActionPerformed
-        VentanaReservarCita formRegistrarCita = new VentanaReservarCita(this, true);
+        VentanaReservarCita formRegistrarCita = new VentanaReservarCita(this, true,usuarioIDlogin);
         formRegistrarCita.setVisible(true);
     }//GEN-LAST:event_menuCitaActionPerformed
 
@@ -190,7 +193,7 @@ public class VentanaMenu extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaMenu().setVisible(true);
+                new VentanaMenu(usuarioIDlogin).setVisible(true);
             }
         });
     }

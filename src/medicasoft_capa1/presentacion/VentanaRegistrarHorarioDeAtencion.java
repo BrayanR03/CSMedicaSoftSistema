@@ -254,14 +254,13 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Se guardo el horario", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
     private void capturarDatosHorario()throws NumberFormatException{
-        
         String fecha=txtfecha.getText();
         Date date= Date.valueOf(fecha);
         horario.setHorarioAtencionID(Integer.parseInt(txtIdHorarioAtencion.getText()));
         horario.setHorarioAtencionEstado(txtestado.getText().trim());
         horario.setHorarioAtencionFechaRegistro(date);
-        horario.setHorarioAtencionHoraInicio(txthorainicio.getText());
-        horario.setHorarioAtencionHoraFin(txthorafin.getText());
+        horario.setHorarioAtencionHoraInicio(txthorainicio.getText().trim());
+        horario.setHorarioAtencionHoraFin(txthorafin.getText().trim());
         
         
     }

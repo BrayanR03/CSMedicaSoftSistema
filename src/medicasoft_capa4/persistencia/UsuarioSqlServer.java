@@ -6,6 +6,8 @@
 package medicasoft_capa4.persistencia;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import medicasoft_capa3.dominio.Usuario;
 
 /**
@@ -58,24 +60,47 @@ public class UsuarioSqlServer {
             sentencia.setString(1, usuario);
             sentencia.setString(2, password);
             ResultSet resultado=sentencia.executeQuery();
+            List<String> usuariobd=new ArrayList();
+            List<String> passwordbd=new ArrayList();
+            List<Integer> idusuariobd=new ArrayList();
             if(resultado.next()){
-            
-                String usuarioTabla=resultado.getString("Usuario");
-                String passwordTabla=resultado.getString("Password");
                 
-                int idUsuario=resultado.getInt("UsuarioID");
-                if(usuario.equalsIgnoreCase(usuarioTabla) || password.equalsIgnoreCase(passwordTabla))
+                String usuarioTabla=resultado.getString("Usuario");
+                String passwordTabla=resultado.getString("Password");           
+                int idUsuarioTabla=resultado.getInt("UsuarioID");
+                
+                usuariobd.add(usuarioTabla.trim());
+                passwordbd.add(passwordTabla.trim());
+                idusuariobd.add(idUsuarioTabla);
+                if(usuariobd.contains(usuario) && passwordbd.contains(password)){
                     validar=true;
-                    System.out.println("usuario java: "+usuario+"-----"+"usuario sql: "+usuarioTabla);
-                    System.out.println("password java: "+password+"-----"+"password sql: "+passwordTabla);
-                    
-                    System.out.println("validacion es: "+validar);
+                }
                 
             }
         } catch (Exception e) {
-            System.out.println("ACA"+e);
+            //System.out.println("ACA"+e);
             throw new Exception("Datos Inválidos",e);
         }
         return validar;
+    }
+    public int RetornarIDUsuario(String usuario,String password)throws Exception{
+        
+        String consultaSQL="SELECT UsuarioID FROM USUARIO where Usuario=? and Password=?";
+        PreparedStatement sentencia;
+        int idUsuarioTabla=0;
+        try {
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
+            sentencia.setString(1, usuario);
+            sentencia.setString(2, password);
+            ResultSet resultado=sentencia.executeQuery();
+            if(resultado.next()){
+                idUsuarioTabla=resultado.getInt("UsuarioID");
+            }
+            
+        } catch (Exception e) {
+            //System.out.println("ACA"+e);
+            throw new Exception("Datos Inválidos",e);
+        }
+        return idUsuarioTabla;
     }
 }

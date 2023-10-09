@@ -25,6 +25,7 @@ public class InicioSesion extends javax.swing.JFrame {
     UsuarioSqlServer usuarioSqlServer;
     String user, contra;
     boolean validacion;
+    int idusuariobd=0;
     RegistrarUsuarioServicio usuarioServicio;
 
     public InicioSesion() {
@@ -41,7 +42,6 @@ public class InicioSesion extends javax.swing.JFrame {
             contra = "";
             char password[] = jpcontraseña.getPassword();
             contra = new String(password);
-
             if(user.equalsIgnoreCase("") && contra.equalsIgnoreCase("")){
                 JOptionPane.showMessageDialog(this, "Debes Ingresar Datos A Los Campos","Advertencia",JOptionPane.WARNING_MESSAGE);
                 txtusuario.requestFocus();
@@ -53,18 +53,17 @@ public class InicioSesion extends javax.swing.JFrame {
     public void Validar() {
         try {
             validacion = usuarioServicio.validarUsuario(user, contra);
+            idusuariobd=usuarioServicio.retornoIDusuario(user, contra);
             if (validacion) {
                 JOptionPane.showMessageDialog(this, "Bienvenido", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-                VentanaMenu menu = new VentanaMenu();
+                VentanaMenu menu = new VentanaMenu(idusuariobd);
                 menu.setVisible(true);
+                
                 dispose();
            
             } else {
                 throw new Exception("Datos incorrectos");
-                //JOptionPane.showMessageDialog(this, "Datos Incorrectos", "Advertencia", JOptionPane.WARNING_MESSAGE);
-//                txtusuario.setText("");
-//                jpcontraseña.setText("");
-//                txtusuario.requestFocus();
+               
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e, "Advertencia", JOptionPane.WARNING_MESSAGE);

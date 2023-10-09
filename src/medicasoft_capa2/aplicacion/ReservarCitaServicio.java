@@ -51,11 +51,11 @@ public class ReservarCitaServicio {
     }
    
 
-    public void MostrarHorario(DefaultTableModel modelo) throws Exception {
+    public void MostrarHorario(DefaultTableModel modelo,int usuarioid) throws Exception {
 
         accesoDatosJDBC.abrirConexion();
         
-        horarioAtencionSqlServer.Mostrar(modelo);
+        horarioAtencionSqlServer.Mostrar(modelo,usuarioid);
         accesoDatosJDBC.cerrarConexion();
 
     }

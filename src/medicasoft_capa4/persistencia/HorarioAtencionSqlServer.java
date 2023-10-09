@@ -89,9 +89,10 @@ public class HorarioAtencionSqlServer {
             sentencia.setDate(1, horario.getHorarioAtencionFechaRegistro());
             ResultSet resultado = sentencia.executeQuery();
             while(resultado.next()) {
-                horas.add(resultado.getString(1));
-                horas.add(resultado.getString(2));
+                horas.add(resultado.getString("HorarioAtencionHoraInicio").trim());
+                horas.add(resultado.getString("HorarioAtencionHoraFin").trim());
             }
+            System.out.println("capa persistencia lista horas "+horas.toString());
         } catch (Exception e) {
             System.out.println("error metodo obtenerhoras" + e);
             throw new Exception("Error al verificar si existe el horario");
@@ -99,10 +100,13 @@ public class HorarioAtencionSqlServer {
         return horas;
     }
      
-      public void Mostrar(DefaultTableModel modelo) throws Exception {
+      public void Mostrar(DefaultTableModel modelo,int usuario) throws Exception {
 
-        String mostraSQL = "select hor.HorarioAtencionID,hor.HorarioAtencionEstado,hor.HorarioAtencionFechaRegistro,hor.HorarioAtencionHoraInicio,hor.HorarioAtencionHoraFin,hor.OdontologoID ,odo.OdontologoNombres,odo.OdontologoApellidos \n" +
-"from HorarioAtencion HOR LEFT JOIN Odontologo ODO on hor.OdontologoID=odo.OdontologoID  where HOR.HorarioAtencionEstado='DISPONIBLE' and HOR.HorarioAtencionFechaRegistro>=CAST(GETDATE() AS DATE)";
+        String mostraSQL ="select hor.HorarioAtencionID,hor.HorarioAtencionEstado,hor.HorarioAtencionFechaRegistro,hor.HorarioAtencionHoraInicio,hor.HorarioAtencionHoraFin,hor.OdontologoID ,odo.OdontologoNombres,odo.OdontologoApellidos\n" +
+"from HorarioAtencion HOR LEFT JOIN Odontologo ODO on hor.OdontologoID=odo.OdontologoID\n" +
+"inner join Empleado e on e.EmpleadoID=odo.EmpleadoID\n" +
+"inner join Usuario u on u.UsuarioID=e.UsuarioID\n" +
+"where HOR.HorarioAtencionEstado='DISPONIBLE' and HOR.HorarioAtencionFechaRegistro>=CAST(GETDATE() AS DATE) and u.UsuarioID=?";
         PreparedStatement sentencia;
 
         String titulos[] = {"HORARIO ID", "ESTADO", "FECHA", "HORA INICIO", "HORA FIN", "ODONTOLOGO","ID ODONTOLOGO"};
@@ -110,6 +114,7 @@ public class HorarioAtencionSqlServer {
         modelo.setColumnIdentifiers(titulos);
         try {
             sentencia = accesoDatosJDBC.prepararSentencia(mostraSQL);
+            sentencia.setInt(1, usuario);
             ResultSet resultado = sentencia.executeQuery();
             while (resultado.next()) {
                 String codigohorario = resultado.getString("HorarioAtencionID");
