@@ -48,5 +48,27 @@ public class EmpleadoSqlServer {
         
     }
     
+    public String DescripcionEmpleado(int idUsuario)throws Exception{
+        
+        String descripcion="";
+        String consultaSQL="SELECT E.EmpleadoDescripcion AS Descripcion\n" +
+                            "FROM Usuario U INNER JOIN Empleado E\n" +
+                            "ON U.UsuarioID=E.UsuarioID\n" +
+                            "WHERE U.UsuarioID=?";
+        
+        PreparedStatement sentencia;
+        try {
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
+            sentencia.setInt(1, idUsuario);
+            ResultSet resultado=sentencia.executeQuery();
+            if(resultado.next()){
+                descripcion=resultado.getString("Descripcion");
+            }
+        } catch (Exception e) {
+            throw new Exception("Error Al Capturar La Descripcion",e);
+        }
+        return descripcion;
+    }
+    
 
 }

@@ -26,6 +26,7 @@ public class InicioSesion extends javax.swing.JFrame {
     String user, contra;
     boolean validacion;
     int idusuariobd=0;
+    String descripcion="";
     RegistrarUsuarioServicio usuarioServicio;
 
     public InicioSesion() {
@@ -54,19 +55,22 @@ public class InicioSesion extends javax.swing.JFrame {
         try {
             validacion = usuarioServicio.validarUsuario(user, contra);
             idusuariobd=usuarioServicio.retornoIDusuario(user, contra);
+            descripcion=usuarioServicio.retornoDescripcion(idusuariobd);
             if (validacion) {
                 JOptionPane.showMessageDialog(this, "Bienvenido", "Informacion", JOptionPane.INFORMATION_MESSAGE);
-                VentanaMenu menu = new VentanaMenu(idusuariobd);
-                menu.setVisible(true);
-                
-                dispose();
-           
+                if(descripcion.equalsIgnoreCase("Asistente")){
+                    System.out.println("menu asistente");
+                }else{                
+                    VentanaMenu menu = new VentanaMenu(idusuariobd);
+                    menu.setVisible(true);                
+                    dispose();
+                }    
             } else {
                 throw new Exception("Datos incorrectos");
                
             }
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e, "Advertencia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
 
     }
@@ -119,7 +123,7 @@ public class InicioSesion extends javax.swing.JFrame {
         });
         jPanel1.add(btningresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 290, 110, -1));
 
-        jLabel3.setText("SISTEMA MEDICASOFT 2024 v1.3");
+        jLabel3.setText("SISTEMA MEDICASOFT 2023 v1.5");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 360, 240, -1));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -159,7 +163,7 @@ public class InicioSesion extends javax.swing.JFrame {
             Validar();
         } catch (Exception e) {         
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
-            return;
+           // return;
         }
 
     }//GEN-LAST:event_btningresarActionPerformed

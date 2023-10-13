@@ -27,10 +27,23 @@ public class RegistrarUsuarioServicio {
         try {
             accesoDatosJDBC.abrirConexion();
             usuarioIDretornado=usuarioSqlServer.RetornarIDUsuario(usuario, password);
+            
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
         return usuarioIDretornado;
+    }
+    public String retornoDescripcion(int idUsuario)throws Exception{
+        String descripcion="";
+        try {
+            accesoDatosJDBC.abrirConexion();
+            descripcion=usuarioSqlServer.DescripcionEmpleado(idUsuario);
+            accesoDatosJDBC.cerrarConexion();
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return descripcion;
     }
     public boolean validarUsuario(String usuario, String password) {
         
