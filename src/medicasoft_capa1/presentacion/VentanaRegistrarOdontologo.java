@@ -24,11 +24,7 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         inicializarNuevoOdontologo();
-        try {
-            int id=registrarOdontologoServicio.retornarID();
-            txtIdOdontologo.setText(String.valueOf(id));
-        } catch (Exception e) {
-        }
+        
     }
 
     /**
@@ -233,6 +229,11 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
         txttelefono.setText("");
         txtcorreo.setText("");
         txtdireccion.setText("");
+        try {
+            int id=registrarOdontologoServicio.retornarID();
+            txtIdOdontologo.setText(String.valueOf(id));
+        } catch (Exception e) {
+        }
         
     }
     private void botonGuardarOdontologoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarOdontologoActionPerformed

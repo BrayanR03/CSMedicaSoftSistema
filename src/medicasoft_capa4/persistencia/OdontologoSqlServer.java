@@ -59,7 +59,6 @@ public class OdontologoSqlServer {
                 
             }
         } catch (Exception e) {
-            System.out.println("error metodo dni unico" + e);
             throw new Exception("Error al verificar si existe el dni");
         }
         return dni;
@@ -87,7 +86,6 @@ public class OdontologoSqlServer {
                 odontologo.setOdontologoCorreo(resultado.getString("OdontologoCorreo"));
                 Empleado empleado=empleadoSqlServer.BuscarEmpleado(resultado.getInt("Empleado"));
                 odontologo.setEmpleadoID(empleado);
-                System.out.println("empleado "+empleado.getEmpleadoDescripcion());
                 return odontologo;
             }
             else {

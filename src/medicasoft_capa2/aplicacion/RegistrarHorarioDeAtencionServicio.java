@@ -43,7 +43,6 @@ public class RegistrarHorarioDeAtencionServicio {
         accesoDatosJDBC.abrirConexion();
         accesoDatosJDBC.iniciarTransaccion();
         List<String> horas = horarioAtencionSqlServer.obtenerHoras(horario);
-        System.out.println("hora lista "+horas.toString());
         if (horario.tieneHoraUnicaValida(horas)) {
             throw new Exception("Ya existe un horario con las horas ingresadas");
         }

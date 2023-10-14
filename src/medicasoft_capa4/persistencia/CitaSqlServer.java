@@ -82,7 +82,6 @@ public class CitaSqlServer {
         int totalDeCitas = 0;
         try {
             sentencia = accesoDatosJDBC.prepararSentencia(consultaSQL);
-            System.out.println(horario.getHorarioAtencionFechaRegistro());
 
             sentencia.setDate(1, horario.getHorarioAtencionFechaRegistro());
             ResultSet resultado = sentencia.executeQuery();
@@ -169,7 +168,7 @@ public class CitaSqlServer {
 "ON C.PacienteID=P.PacienteID\n" +
 "INNER JOIN HorarioAtencion HA \n" +
 "on ha.HorarioAtencionID=c.HorarioAtencionID\n" +
-"WHERE P.PacienteDni like ? AND HA.HorarioAtencionFechaRegistro>=cast(GETDATE()as date)";
+"WHERE P.PacienteDni like ? AND HA.HorarioAtencionFechaRegistro>=cast(GETDATE()as date) AND C.CitaEstado='Pendiente'";
         
         
 //               String consultaSQL="SELECT C.CitaID, HA.HorarioAtencionFechaRegistro AS Fecha, HA.HorarioAtencionHoraInicio AS HoraInicio,\n" +
@@ -211,7 +210,7 @@ public class CitaSqlServer {
                             "ON C.PacienteID=P.PacienteID\n" +
                             "INNER JOIN HorarioAtencion HA \n" +
                             "on ha.HorarioAtencionID=c.HorarioAtencionID\n"
-                            +"WHERE HA.HorarioAtencionFechaRegistro>=CAST(GETDATE()AS DATE)";
+                            +"WHERE HA.HorarioAtencionFechaRegistro>=CAST(GETDATE()AS DATE) AND C.CitaEstado='Pendiente'";
         PreparedStatement sentencia;
         String titulos[]={"CITA ID","FECHA CITA","HORA INICIO","HORA FIN","ESTADO"};
         modelo.getDataVector().removeAllElements();

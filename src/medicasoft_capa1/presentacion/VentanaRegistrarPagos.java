@@ -47,7 +47,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         FechaActual();
         try {
             txtpagosid.setText(String.valueOf(registrarPagosServicio.SiguienteIDPago()));
-            registrarPagosServicio.MostrarCitasSinCancelar(modelo);
+            
             formita = registrarPagosServicio.comboFormaPago();
             comboString = new DefaultComboBoxModel<>();
             for (int i = 0; i < formita.getSize(); i++) {
@@ -56,9 +56,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
                 comboString.addElement(nombreFormaPago);
 
             }
-            cboFormaPago.setModel(comboString);// Agregamos el JTextField
-
-            // Agregamos ActionListener al JComboBox para actualizar el JTextField
+            cboFormaPago.setModel(comboString);
             cboFormaPago.addActionListener(new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent e) {
@@ -73,15 +71,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
 
             add(cboFormaPago);
             add(txtcodigoformapago);
-//         cboFormaPago.setModel(comboString);
-//         cboFormaPago.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//                // Actualizar el JLabel con el elemento seleccionado
-//               String codigo=formaPago.getFormaPagoCodigo();
-//               txtcodigoformapago.setText(codigo);
-//            }
-//        });
+
         } catch (Exception e) {
             System.out.println("Error " + e.getMessage());
         }
@@ -135,6 +125,10 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         txthorainicio.setText("");
         txthorafin.setText("");
         txtestadocita.setText("");
+        try {
+            registrarPagosServicio.MostrarCitasSinCancelar(modelo);
+        } catch (Exception e) {
+        }
     }
 
     /**
@@ -438,13 +432,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
             }
             formaPago = registrarPagosServicio.buscarFormaPago(codigoFormaPago);
             pagos.setFormaPagoCodigo(formaPago);
-//        try {
-//            String codigoFormaPago = txtcodigoformapago.getText().trim();
-//            formaPago = registrarPagosServicio.buscarFormaPago(codigoFormaPago);
-//            pagos.setFormaPagoCodigo(formaPago);
-//            
-//        } catch (Exception e) {
-//        }
+
         try {
             int citaID = Integer.parseInt(txtidcita.getText().trim());
             cita = registrarPagosServicio.buscarCita(citaID);

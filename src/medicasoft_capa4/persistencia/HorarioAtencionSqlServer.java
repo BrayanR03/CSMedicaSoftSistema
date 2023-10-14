@@ -92,9 +92,7 @@ public class HorarioAtencionSqlServer {
                 horas.add(resultado.getString("HorarioAtencionHoraInicio").trim());
                 horas.add(resultado.getString("HorarioAtencionHoraFin").trim());
             }
-            System.out.println("capa persistencia lista horas "+horas.toString());
         } catch (Exception e) {
-            System.out.println("error metodo obtenerhoras" + e);
             throw new Exception("Error al verificar si existe el horario");
         }
         return horas;

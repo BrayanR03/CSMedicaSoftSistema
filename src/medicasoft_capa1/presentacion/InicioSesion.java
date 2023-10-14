@@ -30,11 +30,9 @@ public class InicioSesion extends javax.swing.JFrame {
     RegistrarUsuarioServicio usuarioServicio;
 
     public InicioSesion() {
-        initComponents();
-        //this.setContentPane(fondo);       
+        initComponents();   
         usuarioServicio = new RegistrarUsuarioServicio();
         this.setLocationRelativeTo(null);
-//        ESTO ES UNA PRUEBA
     }
 
     public void CapturaDatos(){
@@ -59,7 +57,10 @@ public class InicioSesion extends javax.swing.JFrame {
             if (validacion) {
                 JOptionPane.showMessageDialog(this, "Bienvenido", "Informacion", JOptionPane.INFORMATION_MESSAGE);
                 if(descripcion.equalsIgnoreCase("Asistente")){
-                    System.out.println("menu asistente");
+                    
+                    VentanaMenuAsistente menuasistente=new VentanaMenuAsistente();
+                    menuasistente.setVisible(true);
+                    dispose();
                 }else{                
                     VentanaMenu menu = new VentanaMenu(idusuariobd);
                     menu.setVisible(true);                
@@ -163,7 +164,7 @@ public class InicioSesion extends javax.swing.JFrame {
             Validar();
         } catch (Exception e) {         
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
-           // return;
+           
         }
 
     }//GEN-LAST:event_btningresarActionPerformed

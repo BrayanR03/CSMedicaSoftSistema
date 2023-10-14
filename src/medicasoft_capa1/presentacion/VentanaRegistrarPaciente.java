@@ -20,12 +20,7 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(this);
         inicializarNuevoPaciente();
-        try {
-            int id=registrarPacienteServicio.retornoID();
-            txtIdPaciente.setText(String.valueOf(id));
-        } catch (Exception e) {
-            System.out.println("Error"+e.getMessage());
-        }
+        
     }
 
     private void inicializarNuevoPaciente() {
@@ -40,6 +35,12 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
         txtTelefono.setText("");
         txtCorreo.setText("");
         txtDireccion.setText("");
+        try {
+            int id=registrarPacienteServicio.retornoID();
+            txtIdPaciente.setText(String.valueOf(id));
+        } catch (Exception e) {
+            System.out.println("Error"+e.getMessage());
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -236,10 +237,10 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
     
     private void capturarDatosPaciente() throws NumberFormatException {
 
-        try {
+        
             String fechanacimiento = txtfechanacimiento.getText();
             Date date = Date.valueOf(fechanacimiento);
-            System.out.println(date);
+            //System.out.println(date);
 
             paciente.setPacienteID(Integer.parseInt(txtIdPaciente.getText().trim()));
             paciente.setPacienteApellidos(txtApellido.getText().trim());
@@ -249,9 +250,7 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
             paciente.setPacienteTelefono(txtTelefono.getText().trim());
             paciente.setPacienteCorreo(txtCorreo.getText().trim());
             paciente.setPacienteDireccion(txtDireccion.getText().trim());
-        } catch (Exception e) {
-            System.out.println("error al capturar datos del paciente "+ e.getMessage());
-        }
+        
 
     }
 

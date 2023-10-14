@@ -29,7 +29,6 @@ public class PacienteSqlServer {
                          "VALUES(?,?,?,?,?,?,?)";
         PreparedStatement sentencia;
         try {
-            System.out.println(paciente.toString());
             sentencia=accesoDatosJDBC.prepararSentencia(insertSQL);
             sentencia.setString(1, paciente.getPacienteApellidos());
             sentencia.setString(2, paciente.getPacienteNombres());
@@ -57,7 +56,6 @@ public class PacienteSqlServer {
                 
             }
         } catch (Exception e) {
-            System.out.println("error metodo dni unico" + e);
             throw new Exception("Error al verificar si existe el dni");
         }
         return horas;

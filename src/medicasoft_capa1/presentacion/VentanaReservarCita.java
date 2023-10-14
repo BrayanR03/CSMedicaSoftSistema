@@ -33,10 +33,9 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         setLocationRelativeTo(this);
         this.usuarioid=idusuario;
         inicializarNuevaCita();
-        System.out.println("usuario id ventana cita "+usuarioid);
         try {
-            registrarCitaServicio.MostrarHorario(modelo,usuarioid);
             
+            registrarCitaServicio.MostrarHorario(modelo,usuarioid);       
             TableColumn columna = jTableHorario.getColumnModel().getColumn(6);
                 columna.setMaxWidth(0);
                 columna.setMinWidth(0);
@@ -72,8 +71,12 @@ public class VentanaReservarCita extends javax.swing.JDialog {
             txtIdCita.setText(String.valueOf(idSiguienteCita));
         } catch (Exception e) {
         }
+        try {
+            registrarCitaServicio.MostrarHorario(modelo, usuarioid);
+        } catch (Exception e) {
+        }
         cita = new Cita();
-        txtIdCita.requestFocus();
+        txtDniPaciente.requestFocus();
         txtIdHorarioAtencion.setText("");
         txtfecha.setText("");
         txthorafin.setText("");
@@ -82,6 +85,8 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         txtnombreodontologo.setText("");
         txtDniPaciente.setText("");
         txtNombrePaciente.setText("");
+        txtidpaciente.setText("");
+        txtidpaciente.setVisible(false);
         botonGuardar.setEnabled(false);
     }
    
@@ -211,6 +216,8 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         txtNombrePaciente.setEditable(false);
 
         jLabel9.setText("Nombre del paciente");
+
+        txtidpaciente.setEditable(false);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -432,6 +439,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         int idHorario=Integer.parseInt(txtIdHorarioAtencion.getText().trim());
         int idCita=Integer.parseInt(txtIdCita.getText().trim());
         registrarCitaServicio.EnviarCorreoCita(dni, idHorario, idCita);
+        JOptionPane.showMessageDialog(this, "Datos de la Cita, enviados a su correo.","Información",JOptionPane.INFORMATION_MESSAGE);
     }
     private void capturarDatosDeCita() throws Exception {
         cita.setCitaID(Integer.parseInt(txtIdCita.getText().trim()));
@@ -447,7 +455,6 @@ public class VentanaReservarCita extends javax.swing.JDialog {
             activarBotonGuardar();
         } catch (Exception e) {
             throw new Exception("Debes seleccionar un horario de atencion",e);
-            //JOptionPane.showMessageDialog(this, "Debes seleccionar un horario de atencion"+e, "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
         
     }

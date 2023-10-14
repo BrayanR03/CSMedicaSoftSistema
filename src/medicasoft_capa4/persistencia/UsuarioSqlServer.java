@@ -78,7 +78,6 @@ public class UsuarioSqlServer {
                 
             }
         } catch (Exception e) {
-            //System.out.println("ACA"+e);
             throw new Exception("Datos Inválidos",e);
         }
         return validar;
@@ -98,7 +97,6 @@ public class UsuarioSqlServer {
             }
             
         } catch (Exception e) {
-            //System.out.println("ACA"+e);
             throw new Exception("Datos Inválidos",e);
         }
         return idUsuarioTabla;

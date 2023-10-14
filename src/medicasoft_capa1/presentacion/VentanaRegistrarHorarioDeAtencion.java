@@ -72,7 +72,7 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         jLabel6.setText("ESTADO");
 
         txtestado.setEditable(false);
-        txtestado.setText("Disponible");
+        txtestado.setText("DISPONIBLE");
 
         jLabel7.setText("DNI ODONTOLOGO");
 
@@ -254,7 +254,7 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "Se guardo el horario", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
     private void capturarDatosHorario()throws NumberFormatException{
-        String fecha=txtfecha.getText();
+        String fecha=txtfecha.getText().trim();
         Date date= Date.valueOf(fecha);
         horario.setHorarioAtencionID(Integer.parseInt(txtIdHorarioAtencion.getText()));
         horario.setHorarioAtencionEstado(txtestado.getText().trim());
@@ -275,15 +275,13 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         } catch (Exception e) {
         }
         horario=new HorarioAtencion();
-        //txtcodigo.requestFocus();
-        //txtcodigo.setText("");
         txthorafin.setText("");
         txthorainicio.setText("");
         txtfecha.setText("");
         txtdniodontologo.setText("");
         txtnombresodontologo.setText("");
         botonGuardar.setEnabled(false);
-        
+        txtfecha.requestFocus();
     }
     
     

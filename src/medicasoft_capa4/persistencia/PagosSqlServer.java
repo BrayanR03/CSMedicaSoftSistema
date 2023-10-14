@@ -26,7 +26,6 @@ public class PagosSqlServer {
                          "VALUES(?,?,?,?)";
         PreparedStatement sentencia;
         try {
-            System.out.println(pagos.toString());
             sentencia=accesoDatosJDBC.prepararSentencia(insertSQL);
             sentencia.setInt(1, pagos.getCitaID().getCitaID());
             sentencia.setDate(2, pagos.getFechaPago());
