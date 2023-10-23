@@ -24,7 +24,6 @@ public class VentanaMenu extends javax.swing.JFrame {
     public VentanaMenu(int usuarioIDlogin) {
         this.usuarioIDlogin=usuarioIDlogin;
         initComponents();
-        this.setLocationRelativeTo(null);
         this.setContentPane(fondo);
         System.out.println("ID USUARIO EN LA INTERFAZ DEL MENU "+usuarioIDlogin);
     }
