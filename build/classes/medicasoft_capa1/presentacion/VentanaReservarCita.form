@@ -102,6 +102,7 @@
           <SubComponents>
             <Component class="javax.swing.JTextField" name="txtestadocita">
               <Properties>
+                <Property name="editable" type="boolean" value="false"/>
                 <Property name="horizontalAlignment" type="int" value="0"/>
                 <Property name="text" type="java.lang.String" value="Pendiente"/>
               </Properties>
@@ -226,6 +227,9 @@
               </Constraints>
             </Component>
             <Component class="javax.swing.JTextField" name="txtcododontologo">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+              </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="10" y="40" width="10" height="-1"/>

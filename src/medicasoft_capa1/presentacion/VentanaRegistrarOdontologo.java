@@ -74,6 +74,8 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
 
         jLabel9.setText("CORREO ELECTRONICO:");
 
+        txtIdOdontologo.setEditable(false);
+
         botonGuardarOdontologo.setText("REGISTRAR ODONTOLOGO");
         botonGuardarOdontologo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

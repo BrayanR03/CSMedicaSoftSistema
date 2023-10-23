@@ -113,6 +113,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         txtNombrePaciente.setText("");
         txtidpaciente.setText("");
         txtidpaciente.setVisible(false);
+        txtcododontologo.setVisible(false);
         botonGuardar.setEnabled(false);
     }
 
@@ -197,6 +198,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtestadocita.setEditable(false);
         txtestadocita.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         txtestadocita.setText("Pendiente");
         jPanel2.add(txtestadocita, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 60, 151, 30));
@@ -240,6 +242,8 @@ public class VentanaReservarCita extends javax.swing.JDialog {
 
         txtidpaciente.setEditable(false);
         jPanel3.add(txtidpaciente, new org.netbeans.lib.awtextra.AbsoluteConstraints(136, 345, 180, -1));
+
+        txtcododontologo.setEditable(false);
         jPanel3.add(txtcododontologo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 10, -1));
 
         jPanel4.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 20, 450, 100));
