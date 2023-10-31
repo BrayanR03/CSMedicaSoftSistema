@@ -32,7 +32,7 @@ public class AccesoDatosJDBCSqlServer extends AccesoDatosJDBC {
             throw new Exception("Ocurrio un problema en la conexión con la base de datos.", e);
         }
     }
-//    
+//    HOLA
 //    private final String HOST = "localhost";
 //    private final String PUERTO = "3306";
 //    private final String DATABASE ="DB_SistemasCitas";
