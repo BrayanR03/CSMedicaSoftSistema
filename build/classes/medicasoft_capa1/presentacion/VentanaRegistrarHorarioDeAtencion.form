@@ -171,7 +171,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="botonGuardar">
       <Properties>
-        <Property name="text" type="java.lang.String" value="REGISTRAR HOARIO"/>
+        <Property name="text" type="java.lang.String" value="REGISTRAR HORARIO"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botonGuardarActionPerformed"/>

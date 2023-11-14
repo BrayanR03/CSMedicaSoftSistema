@@ -85,7 +85,7 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
 
         txtnombresodontologo.setEditable(false);
 
-        botonGuardar.setText("REGISTRAR HOARIO");
+        botonGuardar.setText("REGISTRAR HORARIO");
         botonGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botonGuardarActionPerformed(evt);
