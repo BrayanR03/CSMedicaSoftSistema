@@ -214,7 +214,7 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
         try {
             capturarDatosPaciente();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, "Error de ingreso de datos", "Advertenia", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Advertenia", JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {
@@ -236,12 +236,19 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "se guardo el paciente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
     
-    private void capturarDatosPaciente() throws NumberFormatException {
-
+    private void capturarDatosPaciente() throws NumberFormatException, Exception {
+            if(!paciente.tieneFormatoFechaValida(String.valueOf(paciente.getPacienteFechaNacimiento()))){
+                //JOptionPane.showMessageDialog(this,"La fecha de nacimiento no es válida");
+                throw new Exception("La fecha de nacimiento no es válida");
+                
+            }
         
             String fechanacimiento = txtfechanacimiento.getText();
+            System.out.println("LA FECHA NO PASO!!!!");
+            
             Date date = Date.valueOf(fechanacimiento);
-            //System.out.println(date);
+            
+            System.out.println("LA FECHA ESTA ACA CTMR ->"+date);
 
             paciente.setPacienteID(Integer.parseInt(txtIdPaciente.getText().trim()));
             paciente.setPacienteApellidos(txtApellido.getText().trim());

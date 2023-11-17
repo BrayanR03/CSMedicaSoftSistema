@@ -36,17 +36,20 @@ public class RegistrarPacienteServicio {
     }
     
     public void guardarPaciente(Paciente paciente) throws Exception{
+        
         if(!paciente.tieneEdadValida()){
             throw new Exception("La edad no es valida, tiene que ser mayor a 7");
         }
         
-        
+        if(!paciente.tieneDniValido()){
+            throw new Exception("El DNI no es válido");
+        }
         accesoDatosJDBC.abrirConexion();
         accesoDatosJDBC.iniciarTransaccion();
         List<String> dnipac = pacienteSqlServer.obtenerDNIPaciente(paciente);
 
         if (paciente.TieneDniUnicoPaciente(dnipac)) {
-            throw new Exception("Ya esta registrado este dni en la base de datos");
+            throw new Exception("El paciente con el DNI ingresado ya se encuentra registrado");
         }
         pacienteSqlServer.RegistrarPaciente(paciente);
         accesoDatosJDBC.terminarTransaccion();

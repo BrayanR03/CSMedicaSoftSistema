@@ -390,6 +390,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         String dni = txtDniPaciente.getText().trim();
         int idHorario = Integer.parseInt(txtIdHorarioAtencion.getText().trim());
         int idCita = Integer.parseInt(txtIdCita.getText().trim());
+        System.out.println("id cita desde la caja "+idCita);
         registrarCitaServicio.EnviarCorreoCita(dni, idHorario, idCita);
         JOptionPane.showMessageDialog(this, "Datos de la Cita, enviados a su correo.", "Información", JOptionPane.INFORMATION_MESSAGE);
     }

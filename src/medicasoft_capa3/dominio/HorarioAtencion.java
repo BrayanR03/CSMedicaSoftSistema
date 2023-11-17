@@ -91,6 +91,9 @@ public class HorarioAtencion {
                 || HorarioAtencionHoraInicio.equalsIgnoreCase("11:00")
                 && HorarioAtencionHoraFin.equalsIgnoreCase("11:59")
                 
+                || HorarioAtencionHoraInicio.equalsIgnoreCase("12:00")
+                && HorarioAtencionHoraFin.equalsIgnoreCase("12:59")
+                
                 || HorarioAtencionHoraInicio.equalsIgnoreCase("14:00")
                 && HorarioAtencionHoraFin.equalsIgnoreCase("14:59")
                 
@@ -102,6 +105,8 @@ public class HorarioAtencion {
                 
                 || HorarioAtencionHoraInicio.equalsIgnoreCase("17:00")
                 && HorarioAtencionHoraFin.equalsIgnoreCase("17:59");
+                
+                
     }
     
     

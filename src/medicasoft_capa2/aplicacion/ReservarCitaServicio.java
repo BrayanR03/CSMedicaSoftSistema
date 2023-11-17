@@ -99,12 +99,13 @@ public class ReservarCitaServicio {
         accesoDatosJDBC.abrirConexion();
         HorarioAtencion horario=horarioAtencionSqlServer.buscar(idHorarioAtencion);
         Paciente paciente=pacienteSqlServer.buscar(dniPaciente);
-        Cita cita=citaSqlServer.BuscarCita(idCita);
+        //Cita cita=citaSqlServer.BuscarCita(idCita);
+        //System.out.println(cita.toString());
         accesoDatosJDBC.cerrarConexion();
         String asunto="Cita Pendiente";
         String mensaje="Estimado: "+paciente.getPacienteNombres()+" "+paciente.getPacienteApellidos()+"\n"
                        +"Tiene una cita registrada!\n"
-                       +"Nro Cita: "+cita.getCitaID()+"\n"
+                       +"Nro Cita: "+idCita+"\n"
                        + "Fecha: "+horario.getHorarioAtencionFechaRegistro()+"\n"
                        + "Hora Inicio: "+horario.getHorarioAtencionHoraInicio()+"\n"
                        + "Hora Fin: "+horario.getHorarioAtencionHoraFin()+"\n"

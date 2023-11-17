@@ -1,6 +1,8 @@
 package medicasoft_capa3.dominio;
 
 import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -101,7 +103,21 @@ public class Paciente {
     }
 	
         
+    public boolean tieneFormatoFechaValida(String fechaDesdeTxt){ 
 
+        SimpleDateFormat formatoEsperado = new SimpleDateFormat("yyyy-MM-dd");
+
+        try {
+            Date fecha = (Date) formatoEsperado.parse(fechaDesdeTxt);
+            System.out.println("fecha correcta");
+            return true;
+            
+        } catch (ParseException e) {
+            System.out.println("fecha no correcta");
+            return false;
+        }
+        
+    }
 
 	public boolean tieneEdadValida(){
             String fechas=String.valueOf(PacienteFechaNacimiento);
@@ -121,5 +137,8 @@ public class Paciente {
     
         return dniUnico.contains(getPacienteDni());
     }
-   
+   public boolean tieneDniValido(){
+        int longitudDni = PacienteDni.length();
+        return longitudDni == 8;
+    }
 }//end Paciente

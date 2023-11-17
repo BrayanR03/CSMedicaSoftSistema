@@ -67,6 +67,12 @@ public class Cita {
     public boolean permiteNuevaCitaPaciente(int totalDeCitasPaciente){
         return totalDeCitasPaciente < 1;
     }
+
+    @Override
+    public String toString() {
+        return "Cita{" + "CitaID=" + CitaID + ", HorarioAtencionID=" + HorarioAtencionID + ", PacienteID=" + PacienteID + ", CitaEstado=" + CitaEstado + '}';
+    }
+    
     
  
 
