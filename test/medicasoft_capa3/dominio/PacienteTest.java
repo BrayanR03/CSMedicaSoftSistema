@@ -70,4 +70,21 @@ public class PacienteTest {
         assertEquals(expResult, result);
     }
     
+    @Test
+    public void test1TieneFormatoFechaValido(){
+        System.out.println("test1_TieneFormatoFechaValida");
+        Paciente paciente = new Paciente();
+        boolean expected = true;
+        boolean result = paciente.tieneFormatoFechaValida("2004-03-12");
+        assertEquals(expected, result);
+    }
+    
+    @Test
+    public void test2TieneFormatoFechaValido(){
+        System.out.println("test2_TieneFormatoFechaValida");
+        Paciente paciente = new Paciente();
+        boolean expected = false;
+        boolean result = paciente.tieneFormatoFechaValida("12-03-2004");
+        assertEquals(expected, result);
+    }
 }

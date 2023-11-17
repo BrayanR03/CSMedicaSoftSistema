@@ -7,7 +7,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-
 /**
  * @author HP
  * @version 1.0
@@ -15,14 +14,14 @@ import java.util.List;
  */
 public class Paciente {
 
-        private int PacienteID;
-	private String PacienteApellidos;
-        private String PacienteNombres;
-        private java.sql.Date PacienteFechaNacimiento;
-        private String PacienteDni;
-        private String PacienteTelefono;
-        private String PacienteDireccion;
-        private String PacienteCorreo;
+    private int PacienteID;
+    private String PacienteApellidos;
+    private String PacienteNombres;
+    private java.sql.Date PacienteFechaNacimiento;
+    private String PacienteDni;
+    private String PacienteTelefono;
+    private String PacienteDireccion;
+    private String PacienteCorreo;
 
     public Paciente() {
     }
@@ -101,43 +100,42 @@ public class Paciente {
     public void setPacienteCorreo(String PacienteCorreo) {
         this.PacienteCorreo = PacienteCorreo;
     }
-	
-        
-    public boolean tieneFormatoFechaValida(String fechaDesdeTxt){ 
 
-        SimpleDateFormat formatoEsperado = new SimpleDateFormat("yyyy-MM-dd");
+    public boolean tieneFormatoFechaValida(String fecha) {
+        String[] fechas = fecha.split("-");
 
-        try {
-            Date fecha = (Date) formatoEsperado.parse(fechaDesdeTxt);
-            System.out.println("fecha correcta");
-            return true;
-            
-        } catch (ParseException e) {
-            System.out.println("fecha no correcta");
+        if (fechas.length != 3) {
             return false;
         }
-        
+
+        if (fechas[0].length() != 4 || fechas[1].length() != 2 || fechas[2].length() != 2) {
+            return false;
+        }
+
+        return true;
     }
 
-	public boolean tieneEdadValida(){
-            String fechas=String.valueOf(PacienteFechaNacimiento);
-            int año=Integer.parseInt(fechas.substring(0,4));
-            int mes=Integer.parseInt(fechas.substring(5,7));
-            int dia=Integer.parseInt(fechas.substring(8,10));
+    public boolean tieneEdadValida() {
+        String fechas = String.valueOf(PacienteFechaNacimiento);
+        int año = Integer.parseInt(fechas.substring(0, 4));
+        int mes = Integer.parseInt(fechas.substring(5, 7));
+        int dia = Integer.parseInt(fechas.substring(8, 10));
 
-            Calendar fechanac=new GregorianCalendar(año,mes,dia);
-            Calendar fechactual=Calendar.getInstance();
-            int añoact = fechactual.get(Calendar.YEAR);
-            int añonac=fechanac.get(Calendar.YEAR);
-            int edad=añoact-añonac;
-            
-            return edad>=7;
-	}
-    public boolean TieneDniUnicoPaciente(List<String> dniUnico){
-    
+        Calendar fechanac = new GregorianCalendar(año, mes, dia);
+        Calendar fechactual = Calendar.getInstance();
+        int añoact = fechactual.get(Calendar.YEAR);
+        int añonac = fechanac.get(Calendar.YEAR);
+        int edad = añoact - añonac;
+
+        return edad >= 7;
+    }
+
+    public boolean TieneDniUnicoPaciente(List<String> dniUnico) {
+
         return dniUnico.contains(getPacienteDni());
     }
-   public boolean tieneDniValido(){
+
+    public boolean tieneDniValido() {
         int longitudDni = PacienteDni.length();
         return longitudDni == 8;
     }

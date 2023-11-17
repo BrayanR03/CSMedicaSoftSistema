@@ -1,5 +1,5 @@
-
 package medicasoft_capa1.presentacion;
+
 import org.netbeans.lib.awtextra.*;
 import java.sql.Date;
 import javax.swing.JOptionPane;
@@ -20,7 +20,7 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(this);
         inicializarNuevoPaciente();
-        
+
     }
 
     private void inicializarNuevoPaciente() {
@@ -36,10 +36,10 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
         txtCorreo.setText("");
         txtDireccion.setText("");
         try {
-            int id=registrarPacienteServicio.retornoID();
+            int id = registrarPacienteServicio.retornoID();
             txtIdPaciente.setText(String.valueOf(id));
         } catch (Exception e) {
-            System.out.println("Error"+e.getMessage());
+            System.out.println("Error" + e.getMessage());
         }
     }
 
@@ -219,12 +219,12 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
         }
         try {
             guardarPaciente();
-            
+
             inicializarNuevoPaciente();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
-        
+
     }//GEN-LAST:event_botonGuardarActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
@@ -235,30 +235,23 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
         registrarPacienteServicio.guardarPaciente(paciente);
         JOptionPane.showMessageDialog(this, "se guardo el paciente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
-    
-    private void capturarDatosPaciente() throws NumberFormatException, Exception {
-            if(!paciente.tieneFormatoFechaValida(String.valueOf(paciente.getPacienteFechaNacimiento()))){
-                //JOptionPane.showMessageDialog(this,"La fecha de nacimiento no es válida");
-                throw new Exception("La fecha de nacimiento no es válida");
-                
-            }
-        
-            String fechanacimiento = txtfechanacimiento.getText();
-            System.out.println("LA FECHA NO PASO!!!!");
-            
-            Date date = Date.valueOf(fechanacimiento);
-            
-            System.out.println("LA FECHA ESTA ACA CTMR ->"+date);
 
-            paciente.setPacienteID(Integer.parseInt(txtIdPaciente.getText().trim()));
-            paciente.setPacienteApellidos(txtApellido.getText().trim());
-            paciente.setPacienteNombres(txtNombre.getText().trim());
-            paciente.setPacienteFechaNacimiento(date);
-            paciente.setPacienteDni(txtDni.getText().trim());
-            paciente.setPacienteTelefono(txtTelefono.getText().trim());
-            paciente.setPacienteCorreo(txtCorreo.getText().trim());
-            paciente.setPacienteDireccion(txtDireccion.getText().trim());
-        
+    private void capturarDatosPaciente() throws NumberFormatException, Exception {        
+        String fechanacimiento = txtfechanacimiento.getText();
+
+        if (!paciente.tieneFormatoFechaValida(fechanacimiento)) {
+            throw new Exception("La fecha de nacimiento no es válida");
+        }
+
+        Date date = Date.valueOf(fechanacimiento);
+        paciente.setPacienteID(Integer.parseInt(txtIdPaciente.getText().trim()));
+        paciente.setPacienteApellidos(txtApellido.getText().trim());
+        paciente.setPacienteNombres(txtNombre.getText().trim());
+        paciente.setPacienteFechaNacimiento(date);
+        paciente.setPacienteDni(txtDni.getText().trim());
+        paciente.setPacienteTelefono(txtTelefono.getText().trim());
+        paciente.setPacienteCorreo(txtCorreo.getText().trim());
+        paciente.setPacienteDireccion(txtDireccion.getText().trim());
 
     }
 
