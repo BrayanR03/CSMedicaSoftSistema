@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  * @author USER
  */
 public class PacienteTest {
-    
+
     public PacienteTest() {
     }
 
@@ -24,10 +24,10 @@ public class PacienteTest {
     public void test1TieneEdadValida() {
         System.out.println("tieneEdadValida");
         Paciente paciente = new Paciente();
-        String fecha="2002-10-10";
-        java.sql.Date fechita=Date.valueOf(fecha);
+        String fecha = "2002-10-10";
+        java.sql.Date fechita = Date.valueOf(fecha);
         paciente.setPacienteFechaNacimiento(fechita);
-        boolean expResult =true ;
+        boolean expResult = true;
         boolean result = paciente.tieneEdadValida();
         assertEquals(expResult, result);
     }
@@ -36,13 +36,14 @@ public class PacienteTest {
     public void test2TieneEdadValida() {
         System.out.println("tieneEdadValida");
         Paciente paciente = new Paciente();
-        String fecha="2018-10-10";
-        java.sql.Date fechita=Date.valueOf(fecha);
+        String fecha = "2018-10-10";
+        java.sql.Date fechita = Date.valueOf(fecha);
         paciente.setPacienteFechaNacimiento(fechita);
-        boolean expResult =false;
+        boolean expResult = false;
         boolean result = paciente.tieneEdadValida();
         assertEquals(expResult, result);
     }
+
     @Test
     public void tes1tTieneDniUnicoPaciente() {
         System.out.println("TieneDniUnicoPaciente");
@@ -51,11 +52,12 @@ public class PacienteTest {
         dniUnico.add("75411821");
         dniUnico.add("98765432");
         paciente.setPacienteDni("47586921");
-        System.out.println(dniUnico.toString()+"dnis de lista");
+        System.out.println(dniUnico.toString() + "dnis de lista");
         boolean expResult = false;
         boolean result = paciente.TieneDniUnicoPaciente(dniUnico);
         assertEquals(expResult, result);
     }
+
     @Test
     public void tes2tTieneDniUnicoPaciente() {
         System.out.println("TieneDniUnicoPaciente");
@@ -64,23 +66,43 @@ public class PacienteTest {
         dniUnico.add("75411821");
         dniUnico.add("98765432");
         paciente.setPacienteDni("75411821");
-        System.out.println(dniUnico.toString()+"dnis de lista");
+        System.out.println(dniUnico.toString() + "dnis de lista");
         boolean expResult = true;
         boolean result = paciente.TieneDniUnicoPaciente(dniUnico);
         assertEquals(expResult, result);
     }
-    
+
     @Test
-    public void test1TieneFormatoFechaValido(){
+    public void test1TieneDniValido() {
+        System.out.println("test1_TieneDniValido");
+        Paciente paciente = new Paciente();
+        paciente.setPacienteDni("74890302");
+        boolean expResult = true;
+        boolean result = paciente.tieneDniValido();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void test2TieneDniValido() {
+        System.out.println("test2_TieneDniValido");
+        Paciente paciente = new Paciente();
+        paciente.setPacienteDni("74890");
+        boolean expResult = false;
+        boolean result = paciente.tieneDniValido();
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void test1TieneFormatoFechaValido() {
         System.out.println("test1_TieneFormatoFechaValida");
         Paciente paciente = new Paciente();
         boolean expected = true;
         boolean result = paciente.tieneFormatoFechaValida("2004-03-12");
         assertEquals(expected, result);
     }
-    
+
     @Test
-    public void test2TieneFormatoFechaValido(){
+    public void test2TieneFormatoFechaValido() {
         System.out.println("test2_TieneFormatoFechaValida");
         Paciente paciente = new Paciente();
         boolean expected = false;

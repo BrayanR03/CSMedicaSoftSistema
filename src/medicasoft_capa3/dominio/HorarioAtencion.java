@@ -6,6 +6,9 @@
 package medicasoft_capa3.dominio;
 
 import java.sql.Date;
+import java.time.DayOfWeek;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 /**
@@ -114,5 +117,14 @@ public class HorarioAtencion {
         return horas.contains(getHorarioAtencionHoraInicio()) || horas.contains(getHorarioAtencionHoraFin());
     }
     
-    
+    public boolean tieneDiaValido() {        
+        boolean fechaValida = true;
+        DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");        
+        LocalDate fechaformat = LocalDate.parse(String.valueOf(HorarioAtencionFechaRegistro), formato);        
+        DayOfWeek dia = fechaformat.getDayOfWeek();        
+        if(dia == DayOfWeek.SATURDAY || dia == DayOfWeek.SUNDAY){
+            fechaValida = false;
+        }               
+        return fechaValida;
+    }
 }

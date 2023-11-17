@@ -46,6 +46,9 @@ public class RegistrarHorarioDeAtencionServicio {
         if (horario.tieneHoraUnicaValida(horas)) {
             throw new Exception("Ya existe un horario con las horas ingresadas");
         }
+        if (!horario.tieneDiaValido()) {
+            throw new Exception("No se puede registrar un horario los días SABADO o DOMINGO");
+        }
         horarioAtencionSqlServer.guardar(horario);
         accesoDatosJDBC.terminarTransaccion();
         accesoDatosJDBC.cerrarConexion();
