@@ -41,7 +41,7 @@ public class RegistrarPacienteServicio {
             throw new Exception("La edad no es valida, tiene que ser mayor a 7");
         }
         
-        if(!paciente.tieneDniValido()){
+        if(paciente.tieneDniValido()){
             throw new Exception("El DNI no es válido");
         }
         accesoDatosJDBC.abrirConexion();

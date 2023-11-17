@@ -213,8 +213,13 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         try {
             capturarDatosPaciente();
+            
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Advertenia", JOptionPane.WARNING_MESSAGE);
+            if(e.getMessage().length()==0){
+                JOptionPane.showMessageDialog(this,"Error Al Capturar Datos");
+            }
+            else
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
             return;
         }
         try {

@@ -108,9 +108,7 @@ public class Paciente {
             return false;
         }
 
-        if (fechas[0].length() != 4 || fechas[1].length() != 2 || fechas[2].length() != 2) {
-            return false;
-        }
+      
 
         return true;
     }

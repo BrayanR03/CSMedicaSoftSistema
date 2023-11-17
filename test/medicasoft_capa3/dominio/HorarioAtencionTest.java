@@ -44,7 +44,7 @@ public class HorarioAtencionTest {
         horas.add("11:59");
         horas.add("14:00");
         horas.add("14:59");
-
+        
         HorarioAtencion horario = new HorarioAtencion();
         horario.setHorarioAtencionHoraInicio("15:00");
         horario.setHorarioAtencionHoraFin("15:59");
