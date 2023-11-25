@@ -326,8 +326,11 @@ public class VentanaReservarCita extends javax.swing.JDialog {
 
     private void botonBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarPacienteActionPerformed
         String dniPaciente = txtDniPaciente.getText().trim();
-
+        
         try {
+            if(txtDniPaciente.getText().length()!=8){
+            throw new Exception("El DNI no es valido, debe tener 8 caracteres!!");
+        }
             Paciente paciente = registrarCitaServicio.buscarPaciente(dniPaciente);
             cita.setPacienteID(paciente);
             txtNombrePaciente.setText(paciente.getPacienteNombres() + " " + paciente.getPacienteApellidos());
@@ -398,7 +401,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
     private void capturarDatosDeCita() throws Exception {
         cita.setCitaID(Integer.parseInt(txtIdCita.getText().trim()));
         cita.setCitaEstado(txtestadocita.getText().trim());
-
+        
         try {
             int IDHorarioAtencion = Integer.parseInt(txtIdHorarioAtencion.getText());
 
