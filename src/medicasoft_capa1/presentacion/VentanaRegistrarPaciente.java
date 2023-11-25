@@ -2,6 +2,8 @@ package medicasoft_capa1.presentacion;
 
 import org.netbeans.lib.awtextra.*;
 import java.sql.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 import medicasoft_capa2.aplicacion.RegistrarPacienteServicio;
 import medicasoft_capa3.dominio.Paciente;
@@ -213,13 +215,13 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
     private void botonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonGuardarActionPerformed
         try {
             capturarDatosPaciente();
-            
+
         } catch (Exception e) {
-            if(e.getMessage().length()==0){
-                JOptionPane.showMessageDialog(this,"Error Al Capturar Datos");
-            }
-            else
+            if (e.getMessage().length() == 0) {
+                JOptionPane.showMessageDialog(this, "Error Al Capturar Datos");
+            } else {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
+            }
             return;
         }
         try {
@@ -241,11 +243,52 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(this, "se guardo el paciente", "Informacion", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void capturarDatosPaciente() throws NumberFormatException, Exception {        
+    public static boolean esNumero(String input) {
+        String patronNumerico = "^[0-9]+$";
+        Pattern patron = Pattern.compile(patronNumerico);
+        Matcher matcher = patron.matcher(input);
+        return matcher.matches();
+    }
+
+    public static boolean sonSoloLetras(String input) {
+        String patronLetras = "^[a-zA-Z]+$";
+        Pattern patron = Pattern.compile(patronLetras);
+        Matcher matcher = patron.matcher(input);
+        return matcher.matches();
+    }
+
+    public static boolean esCorreoElectronicoValido(String email) {
+        String patronEmail = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}$";
+        Pattern patron = Pattern.compile(patronEmail, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = patron.matcher(email);
+        return matcher.matches();
+    }
+
+    private void capturarDatosPaciente() throws NumberFormatException, Exception {
         String fechanacimiento = txtfechanacimiento.getText();
 
         if (!paciente.tieneFormatoFechaValida(fechanacimiento)) {
             throw new Exception("La fecha de nacimiento no es válida");
+        }
+
+        if (!esNumero(txtDni.getText())) {
+            throw new Exception("El DNI no es valido, debe contener sólo números");
+        }
+
+        if (!sonSoloLetras(txtApellido.getText())) {
+            throw new Exception("El apellido no es válido");
+        }
+
+        if (!sonSoloLetras(txtNombre.getText())) {
+            throw new Exception("El nombre no es válido");
+        }
+
+        if (!esNumero(txtTelefono.getText())) {
+            throw new Exception("El teléfono no es válido");
+        }
+
+        if (!esCorreoElectronicoValido(txtCorreo.getText())) {
+            throw new Exception("El correo no es válido");
         }
 
         Date date = Date.valueOf(fechanacimiento);

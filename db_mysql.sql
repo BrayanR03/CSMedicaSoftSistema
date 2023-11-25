@@ -1,8 +1,6 @@
-create database DB_SistemasCitas
+create database DB_SistemasCitas;
 
-use DB_SistemasCitas
-
-insert into usuario ()
+use DB_SistemasCitas;
 
 CREATE TABLE Usuario (
 	UsuarioID int not null auto_increment,
@@ -97,4 +95,4 @@ CREATE TABLE Pagos (
     foreign key(CitaID) references Cita(CitaID)
 );
 
-
+insert into usuario(Usuario, password) values("admin", "admin");
