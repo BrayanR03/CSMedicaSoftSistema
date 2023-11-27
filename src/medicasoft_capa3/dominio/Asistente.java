@@ -27,7 +27,7 @@ public class Asistente {
     public Asistente() {
     }
 
-    public Asistente(int AsistenteID, String AsistenteApellidos, String AsistenteNombres, Date AsistenteFechaNacimiento, String AsistenteDni, String AsistenteTelefono, String AsistenteDireccion, String AsistenteCorreo, Empleado UsuarioID) {
+    public Asistente(int AsistenteID, String AsistenteApellidos, String AsistenteNombres, Date AsistenteFechaNacimiento, String AsistenteDni, String AsistenteTelefono, String AsistenteDireccion, String AsistenteCorreo, Empleado EmpleadoID) {
         this.AsistenteID = AsistenteID;
         this.AsistenteApellidos = AsistenteApellidos;
         this.AsistenteNombres = AsistenteNombres;
