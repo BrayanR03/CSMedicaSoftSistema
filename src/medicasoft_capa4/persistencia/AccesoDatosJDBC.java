@@ -67,14 +67,18 @@ public abstract class AccesoDatosJDBC {
     }
 
     public ResultSet ejecutarConsulta(String sql) throws SQLException {
+            Statement sentencia = null;
+            ResultSet resultado = null;
         try {
-            Statement sentencia;
-            ResultSet resultado;
+           
             sentencia = conexion.createStatement();
             resultado = sentencia.executeQuery(sql);
             return resultado;
         } catch (Exception e) {
             throw new SQLException("Ocurrio un problema con la conexión", e);
+        }finally{
+            resultado.close();
+            sentencia.close();
         }
     }
 }

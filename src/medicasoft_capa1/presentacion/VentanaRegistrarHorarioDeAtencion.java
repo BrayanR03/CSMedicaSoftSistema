@@ -286,7 +286,7 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
     
     
     private void activarBotonGuardar() {
-        if (horario.getOdontologoID() != null && horario.getOdontologoID() != null) {
+        if (horario.getOdontologoID() != null) {
             botonGuardar.setEnabled(true);
         } else {
             botonGuardar.setEnabled(false);
