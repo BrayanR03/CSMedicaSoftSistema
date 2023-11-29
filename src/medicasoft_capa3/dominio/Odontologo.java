@@ -3,7 +3,6 @@ package medicasoft_capa3.dominio;
 import java.sql.Date;
 import java.util.List;
 
-
 /**
  * @author HP
  * @version 1.0
@@ -11,105 +10,104 @@ import java.util.List;
  */
 public class Odontologo {
 
-        private int OdontologoID;
-	private String OdontologoApellidos;
-        private String OdontologoNombres;
-        private java.sql.Date OdontologoFechaNacimiento;
-        private String OdontologoDni;
-        private String OdontologoTelefono;
-        private String OdontologoDireccion;
-        private String OdontologoCorreo;
-        private Empleado EmpleadoID;
+    private int odontologoID;
+    private String odontologoApellidos;
+    private String odontologoNombres;
+    private java.sql.Date odontologoFechaNacimiento;
+    private String odontologoDni;
+    private String odontologoTelefono;
+    private String odontologoDireccion;
+    private String odontologoCorreo;
+    private Empleado empleadoID;
+
     public Odontologo() {
     }
 
-    public Odontologo(int OdontologoID, String OdontologoApellidos, String OdontologoNombres, Date OdontologoFechaNacimiento, String OdontologoDni, String OdontologoTelefono, String OdontologoDireccion, String OdontologoCorreo,Empleado EmpleadoID) {
-        this.OdontologoID = OdontologoID;
-        this.OdontologoApellidos = OdontologoApellidos;
-        this.OdontologoNombres = OdontologoNombres;
-        this.OdontologoFechaNacimiento = OdontologoFechaNacimiento;
-        this.OdontologoDni = OdontologoDni;
-        this.OdontologoTelefono = OdontologoTelefono;
-        this.OdontologoDireccion = OdontologoDireccion;
-        this.OdontologoCorreo = OdontologoCorreo;
-        this.EmpleadoID=EmpleadoID;
+    public Odontologo(int odontologoID, String odontologoApellidos, String odontologoNombres, Date odontologoFechaNacimiento, String odontologoDni, String odontologoTelefono, String odontologoDireccion, String odontologoCorreo, Empleado empleadoID) {
+        this.odontologoID = odontologoID;
+        this.odontologoApellidos = odontologoApellidos;
+        this.odontologoNombres = odontologoNombres;
+        this.odontologoFechaNacimiento = odontologoFechaNacimiento;
+        this.odontologoDni = odontologoDni;
+        this.odontologoTelefono = odontologoTelefono;
+        this.odontologoDireccion = odontologoDireccion;
+        this.odontologoCorreo = odontologoCorreo;
+        this.empleadoID = empleadoID;
     }
 
     public int getOdontologoID() {
-        return OdontologoID;
+        return odontologoID;
     }
 
-    public void setOdontologoID(int OdontologoID) {
-        this.OdontologoID = OdontologoID;
+    public void setOdontologoID(int odontologoID) {
+        this.odontologoID = odontologoID;
     }
 
     public String getOdontologoApellidos() {
-        return OdontologoApellidos;
+        return odontologoApellidos;
     }
 
-    public void setOdontologoApellidos(String OdontologoApellidos) {
-        this.OdontologoApellidos = OdontologoApellidos;
+    public void setOdontologoApellidos(String odontologoApellidos) {
+        this.odontologoApellidos = odontologoApellidos;
     }
 
     public String getOdontologoNombres() {
-        return OdontologoNombres;
+        return odontologoNombres;
     }
 
-    public void setOdontologoNombres(String OdontologoNombres) {
-        this.OdontologoNombres = OdontologoNombres;
+    public void setOdontologoNombres(String odontologoNombres) {
+        this.odontologoNombres = odontologoNombres;
     }
 
     public Date getOdontologoFechaNacimiento() {
-        return OdontologoFechaNacimiento;
+        return odontologoFechaNacimiento;
     }
 
-    public void setOdontologoFechaNacimiento(Date OdontologoFechaNacimiento) {
-        this.OdontologoFechaNacimiento = OdontologoFechaNacimiento;
+    public void setOdontologoFechaNacimiento(Date odontologoFechaNacimiento) {
+        this.odontologoFechaNacimiento = odontologoFechaNacimiento;
     }
 
     public String getOdontologoDni() {
-        return OdontologoDni;
+        return odontologoDni;
     }
 
-    public void setOdontologoDni(String OdontologoDni) {
-        this.OdontologoDni = OdontologoDni;
+    public void setOdontologoDni(String odontologoDni) {
+        this.odontologoDni = odontologoDni;
     }
 
     public String getOdontologoTelefono() {
-        return OdontologoTelefono;
+        return odontologoTelefono;
     }
 
-    public void setOdontologoTelefono(String OdontologoTelefono) {
-        this.OdontologoTelefono = OdontologoTelefono;
+    public void setOdontologoTelefono(String odontologoTelefono) {
+        this.odontologoTelefono = odontologoTelefono;
     }
 
     public String getOdontologoDireccion() {
-        return OdontologoDireccion;
+        return odontologoDireccion;
     }
 
-    public void setOdontologoDireccion(String OdontologoDireccion) {
-        this.OdontologoDireccion = OdontologoDireccion;
+    public void setOdontologoDireccion(String odontologoDireccion) {
+        this.odontologoDireccion = odontologoDireccion;
     }
 
     public String getOdontologoCorreo() {
-        return OdontologoCorreo;
+        return odontologoCorreo;
     }
 
-    public void setOdontologoCorreo(String OdontologoCorreo) {
-        this.OdontologoCorreo = OdontologoCorreo;
+    public void setOdontologoCorreo(String odontologoCorreo) {
+        this.odontologoCorreo = odontologoCorreo;
     }
 
     public Empleado getEmpleadoID() {
-        return EmpleadoID;
+        return empleadoID;
     }
 
-    public void setEmpleadoID(Empleado EmpleadoID) {
-        this.EmpleadoID = EmpleadoID;
+    public void setEmpleadoID(Empleado empleadoID) {
+        this.empleadoID = empleadoID;
     }
-    
-        
-        
-    public boolean TieneDniUnicoOdontologo(List<String> dniUnico){
+
+    public boolean tieneDniUnicoOdontologo(List<String> dniUnico) {
         return dniUnico.contains(getOdontologoDni());
     }
 

@@ -34,7 +34,7 @@ public class RegistrarOdontologoServicio {
         accesoDatosJDBC.iniciarTransaccion();
         List<String> dniod = odontologoSqlServer.obtenerDNIOdontologo(odontologo);
 
-        if (odontologo.TieneDniUnicoOdontologo(dniod)) {
+        if (odontologo.tieneDniUnicoOdontologo(dniod)) {
             throw new Exception("Ya esta registrado este dni en la base de datos ");
         }
         odontologoSqlServer.RegistrarOdontologo(odontologo);

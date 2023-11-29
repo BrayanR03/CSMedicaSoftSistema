@@ -11,31 +11,31 @@ package medicasoft_capa3.dominio;
  */
 public class FormaPago {
     
-    private String FormaPagoCodigo;
-    private String FormaPagoDescripcion;
+    private String formaPagoCodigo;
+    private String formaPagoDescripcion;
 
     public FormaPago() {
     }
 
-    public FormaPago(String FormaPagoCodigo, String FormaPagoDescripcion) {
-        this.FormaPagoCodigo = FormaPagoCodigo;
-        this.FormaPagoDescripcion = FormaPagoDescripcion;
+    public FormaPago(String formaPagoCodigo, String formaPagoDescripcion) {
+        this.formaPagoCodigo = formaPagoCodigo;
+        this.formaPagoDescripcion = formaPagoDescripcion;
     }
 
     public String getFormaPagoCodigo() {
-        return FormaPagoCodigo;
+        return formaPagoCodigo;
     }
 
-    public void setFormaPagoCodigo(String FormaPagoCodigo) {
-        this.FormaPagoCodigo = FormaPagoCodigo;
+    public void setFormaPagoCodigo(String formaPagoCodigo) {
+        this.formaPagoCodigo = formaPagoCodigo;
     }
 
     public String getFormaPagoDescripcion() {
-        return FormaPagoDescripcion;
+        return formaPagoDescripcion;
     }
 
-    public void setFormaPagoDescripcion(String FormaPagoDescripcion) {
-        this.FormaPagoDescripcion = FormaPagoDescripcion;
+    public void setFormaPagoDescripcion(String formaPagoDescripcion) {
+        this.formaPagoDescripcion = formaPagoDescripcion;
     }
     
     

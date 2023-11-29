@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package medicasoft_capa3.dominio;
 
 import java.sql.Date;
@@ -17,97 +12,97 @@ import java.util.List;
  */
 public class HorarioAtencion {
     
-    private int HorarioAtencionID;
-    private String HorarioAtencionEstado;
-    private java.sql.Date HorarioAtencionFechaRegistro;
-    private String HorarioAtencionHoraInicio;
-    private String HorarioAtencionHoraFin;
-    private Odontologo OdontologoID;
+    private int horarioAtencionID;
+    private String horarioAtencionEstado;
+    private java.sql.Date horarioAtencionFechaRegistro;
+    private String horarioAtencionHoraInicio;
+    private String horarioAtencionHoraFin;
+    private Odontologo odontologoID;
 
     public HorarioAtencion() {
     }
 
-    public HorarioAtencion(int HorarioAtencionID, String HorarioAtencionEstado, Date HorarioAtencionFechaRegistro, String HorarioAtencionHoraInicio, String HorarioAtencionHoraFin, Odontologo OdontologoID) {
-        this.HorarioAtencionID = HorarioAtencionID;
-        this.HorarioAtencionEstado = HorarioAtencionEstado;
-        this.HorarioAtencionFechaRegistro = HorarioAtencionFechaRegistro;
-        this.HorarioAtencionHoraInicio = HorarioAtencionHoraInicio;
-        this.HorarioAtencionHoraFin = HorarioAtencionHoraFin;
-        this.OdontologoID = OdontologoID;
+    public HorarioAtencion(int horarioAtencionID, String horarioAtencionEstado, Date horarioAtencionFechaRegistro, String horarioAtencionHoraInicio, String horarioAtencionHoraFin, Odontologo odontologoID) {
+        this.horarioAtencionID = horarioAtencionID;
+        this.horarioAtencionEstado = horarioAtencionEstado;
+        this.horarioAtencionFechaRegistro = horarioAtencionFechaRegistro;
+        this.horarioAtencionHoraInicio = horarioAtencionHoraInicio;
+        this.horarioAtencionHoraFin = horarioAtencionHoraFin;
+        this.odontologoID = odontologoID;
     }
 
     public int getHorarioAtencionID() {
-        return HorarioAtencionID;
+        return horarioAtencionID;
     }
 
-    public void setHorarioAtencionID(int HorarioAtencionID) {
-        this.HorarioAtencionID = HorarioAtencionID;
+    public void setHorarioAtencionID(int horarioAtencionID) {
+        this.horarioAtencionID = horarioAtencionID;
     }
 
     public String getHorarioAtencionEstado() {
-        return HorarioAtencionEstado;
+        return horarioAtencionEstado;
     }
 
-    public void setHorarioAtencionEstado(String HorarioAtencionEstado) {
-        this.HorarioAtencionEstado = HorarioAtencionEstado;
+    public void setHorarioAtencionEstado(String horarioAtencionEstado) {
+        this.horarioAtencionEstado = horarioAtencionEstado;
     }
 
     public Date getHorarioAtencionFechaRegistro() {
-        return HorarioAtencionFechaRegistro;
+        return horarioAtencionFechaRegistro;
     }
 
-    public void setHorarioAtencionFechaRegistro(Date HorarioAtencionFechaRegistro) {
-        this.HorarioAtencionFechaRegistro = HorarioAtencionFechaRegistro;
+    public void setHorarioAtencionFechaRegistro(Date horarioAtencionFechaRegistro) {
+        this.horarioAtencionFechaRegistro = horarioAtencionFechaRegistro;
     }
 
     public String getHorarioAtencionHoraInicio() {
-        return HorarioAtencionHoraInicio;
+        return horarioAtencionHoraInicio;
     }
 
-    public void setHorarioAtencionHoraInicio(String HorarioAtencionHoraInicio) {
-        this.HorarioAtencionHoraInicio = HorarioAtencionHoraInicio;
+    public void setHorarioAtencionHoraInicio(String horarioAtencionHoraInicio) {
+        this.horarioAtencionHoraInicio = horarioAtencionHoraInicio;
     }
 
     public String getHorarioAtencionHoraFin() {
-        return HorarioAtencionHoraFin;
+        return horarioAtencionHoraFin;
     }
 
-    public void setHorarioAtencionHoraFin(String HorarioAtencionHoraFin) {
-        this.HorarioAtencionHoraFin = HorarioAtencionHoraFin;
+    public void setHorarioAtencionHoraFin(String horarioAtencionHoraFin) {
+        this.horarioAtencionHoraFin = horarioAtencionHoraFin;
     }
 
     public Odontologo getOdontologoID() {
-        return OdontologoID;
+        return odontologoID;
     }
 
-    public void setOdontologoID(Odontologo OdontologoID) {
-        this.OdontologoID = OdontologoID;
+    public void setOdontologoID(Odontologo odontologoID) {
+        this.odontologoID = odontologoID;
     }
     
     public boolean tieneHoraValida() {
-        return     HorarioAtencionHoraInicio.equalsIgnoreCase("09:00")
-                && HorarioAtencionHoraFin.equalsIgnoreCase("09:59")
+        return     horarioAtencionHoraInicio.equalsIgnoreCase("09:00")
+                && horarioAtencionHoraFin.equalsIgnoreCase("09:59")
                 
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("10:00")
-                && HorarioAtencionHoraFin.equalsIgnoreCase("10:59")
+                || horarioAtencionHoraInicio.equalsIgnoreCase("10:00")
+                && horarioAtencionHoraFin.equalsIgnoreCase("10:59")
                 
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("11:00")
-                && HorarioAtencionHoraFin.equalsIgnoreCase("11:59")
+                || horarioAtencionHoraInicio.equalsIgnoreCase("11:00")
+                && horarioAtencionHoraFin.equalsIgnoreCase("11:59")
                 
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("12:00")
-                && HorarioAtencionHoraFin.equalsIgnoreCase("12:59")
+                || horarioAtencionHoraInicio.equalsIgnoreCase("12:00")
+                && horarioAtencionHoraFin.equalsIgnoreCase("12:59")
                 
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("14:00")
-                && HorarioAtencionHoraFin.equalsIgnoreCase("14:59")
+                || horarioAtencionHoraInicio.equalsIgnoreCase("14:00")
+                && horarioAtencionHoraFin.equalsIgnoreCase("14:59")
                 
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("15:00")
-                && HorarioAtencionHoraFin.equalsIgnoreCase("15:59")
+                || horarioAtencionHoraInicio.equalsIgnoreCase("15:00")
+                && horarioAtencionHoraFin.equalsIgnoreCase("15:59")
                 
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("16:00")
-                && HorarioAtencionHoraFin.equalsIgnoreCase("16:59")
+                || horarioAtencionHoraInicio.equalsIgnoreCase("16:00")
+                && horarioAtencionHoraFin.equalsIgnoreCase("16:59")
                 
-                || HorarioAtencionHoraInicio.equalsIgnoreCase("17:00")
-                && HorarioAtencionHoraFin.equalsIgnoreCase("17:59");
+                || horarioAtencionHoraInicio.equalsIgnoreCase("17:00")
+                && horarioAtencionHoraFin.equalsIgnoreCase("17:59");
                 
                 
     }
@@ -120,7 +115,7 @@ public class HorarioAtencion {
     public boolean tieneDiaValido() {        
         boolean fechaValida = true;
         DateTimeFormatter formato = DateTimeFormatter.ofPattern("yyyy-MM-dd");        
-        LocalDate fechaformat = LocalDate.parse(String.valueOf(HorarioAtencionFechaRegistro), formato);        
+        LocalDate fechaformat = LocalDate.parse(String.valueOf(horarioAtencionFechaRegistro), formato);        
         DayOfWeek dia = fechaformat.getDayOfWeek();        
         if(dia == DayOfWeek.SATURDAY || dia == DayOfWeek.SUNDAY){
             fechaValida = false;
