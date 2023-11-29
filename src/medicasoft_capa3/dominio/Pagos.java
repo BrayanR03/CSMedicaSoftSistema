@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package medicasoft_capa3.dominio;
 
 import java.sql.Date;
@@ -13,66 +9,66 @@ import java.sql.Date;
  */
 public class Pagos {
     
-    private int PagoID;
-    private Cita CitaID;
-    private java.sql.Date FechaPago;
-    private double MontoTotal;
-    private FormaPago FormaPagoCodigo;
+    private int pagoID;
+    private Cita citaID;
+    private java.sql.Date fechaPago;
+    private double montoTotal;
+    private FormaPago formaPagoCodigo;
 
     public Pagos() {
     }
 
-    public Pagos(int PagoID, Cita CitaID, Date FechaPago, double MontoTotal, FormaPago FormaPagoCodigo) {
-        this.PagoID = PagoID;
-        this.CitaID = CitaID;
-        this.FechaPago = FechaPago;
-        this.MontoTotal = MontoTotal;
-        this.FormaPagoCodigo = FormaPagoCodigo;
+    public Pagos(int pagoID, Cita citaID, Date fechaPago, double montoTotal, FormaPago formaPagoCodigo) {
+        this.pagoID = pagoID;
+        this.citaID = citaID;
+        this.fechaPago = fechaPago;
+        this.montoTotal = montoTotal;
+        this.formaPagoCodigo = formaPagoCodigo;
     }
 
     public int getPagoID() {
-        return PagoID;
+        return pagoID;
     }
 
-    public void setPagoID(int PagoID) {
-        this.PagoID = PagoID;
+    public void setPagoID(int pagoID) {
+        this.pagoID = pagoID;
     }
 
     public Cita getCitaID() {
-        return CitaID;
+        return citaID;
     }
 
-    public void setCitaID(Cita CitaID) {
-        this.CitaID = CitaID;
+    public void setCitaID(Cita citaID) {
+        this.citaID = citaID;
     }
 
     public Date getFechaPago() {
-        return FechaPago;
+        return fechaPago;
     }
 
-    public void setFechaPago(Date FechaPago) {
-        this.FechaPago = FechaPago;
+    public void setFechaPago(Date fechaPago) {
+        this.fechaPago = fechaPago;
     }
 
     public double getMontoTotal() {
-        return MontoTotal;
+        return montoTotal;
     }
 
-    public void setMontoTotal(double MontoTotal) {
-        this.MontoTotal = MontoTotal;
+    public void setMontoTotal(double montoTotal) {
+        this.montoTotal = montoTotal;
     }
 
     public FormaPago getFormaPagoCodigo() {
-        return FormaPagoCodigo;
+        return formaPagoCodigo;
     }
 
-    public void setFormaPagoCodigo(FormaPago FormaPagoCodigo) {
-        this.FormaPagoCodigo = FormaPagoCodigo;
+    public void setFormaPagoCodigo(FormaPago formaPagoCodigo) {
+        this.formaPagoCodigo = formaPagoCodigo;
     }
 
     @Override
     public String toString() {
-        return "Pagos{" + "PagoID=" + PagoID + ", CitaID=" + CitaID.getCitaID() + ", FechaPago=" + FechaPago + ", MontoTotal=" + MontoTotal + ", FormaPagoCodigo=" + FormaPagoCodigo.getFormaPagoCodigo() + '}';
+        return "Pagos{" + "PagoID=" + pagoID + ", CitaID=" + citaID.getCitaID() + ", FechaPago=" + fechaPago + ", MontoTotal=" + montoTotal + ", FormaPagoCodigo=" + formaPagoCodigo.getFormaPagoCodigo() + '}';
     }
     
     

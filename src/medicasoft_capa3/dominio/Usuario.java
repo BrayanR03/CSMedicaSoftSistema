@@ -11,41 +11,41 @@ package medicasoft_capa3.dominio;
  */
 public class Usuario {
     
-    private int UsuarioID;
-    private String Usuario;
-    private String Password;
+    private int usuarioID;
+    private String usuario;
+    private String pass;
 
     public Usuario() {
     }
 
-    public Usuario(int UsuarioID, String Usuario, String Password) {
-        this.UsuarioID = UsuarioID;
-        this.Usuario = Usuario;
-        this.Password = Password;
+    public Usuario(int usuarioID, String usuario, String pass) {
+        this.usuarioID = usuarioID;
+        this.usuario = usuario;
+        this.pass = pass;
     }
 
     public int getUsuarioID() {
-        return UsuarioID;
+        return usuarioID;
     }
 
-    public void setUsuarioID(int UsuarioID) {
-        this.UsuarioID = UsuarioID;
+    public void setUsuarioID(int usuarioID) {
+        this.usuarioID = usuarioID;
     }
 
     public String getUsuario() {
-        return Usuario;
+        return usuario;
     }
 
-    public void setUsuario(String Usuario) {
-        this.Usuario = Usuario;
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
     }
 
     public String getPassword() {
-        return Password;
+        return pass;
     }
 
-    public void setPassword(String Password) {
-        this.Password = Password;
+    public void setPassword(String pass) {
+        this.pass = pass;
     }
 
     

@@ -48,7 +48,7 @@ public class RegistrarPacienteServicio {
         accesoDatosJDBC.iniciarTransaccion();
         List<String> dnipac = pacienteSqlServer.obtenerDNIPaciente(paciente);
 
-        if (paciente.TieneDniUnicoPaciente(dnipac)) {
+        if (paciente.tieneDniUnicoPaciente(dnipac)) {
             throw new Exception("El paciente con el DNI ingresado ya se encuentra registrado");
         }
         pacienteSqlServer.RegistrarPaciente(paciente);

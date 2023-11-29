@@ -54,7 +54,7 @@ public class PacienteTest {
         paciente.setPacienteDni("47586921");
         System.out.println(dniUnico.toString() + "dnis de lista");
         boolean expResult = false;
-        boolean result = paciente.TieneDniUnicoPaciente(dniUnico);
+        boolean result = paciente.tieneDniUnicoPaciente(dniUnico);
         assertEquals(expResult, result);
     }
 
@@ -68,7 +68,7 @@ public class PacienteTest {
         paciente.setPacienteDni("75411821");
         System.out.println(dniUnico.toString() + "dnis de lista");
         boolean expResult = true;
-        boolean result = paciente.TieneDniUnicoPaciente(dniUnico);
+        boolean result = paciente.tieneDniUnicoPaciente(dniUnico);
         assertEquals(expResult, result);
     }
 
