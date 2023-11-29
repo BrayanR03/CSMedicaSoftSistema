@@ -356,7 +356,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
 
         try {
             guardarCita();
-            EnviaCorreoCita();
+            enviaCorreoCita();
             inicializarNuevaCita();
 
         } catch (Exception e) {
@@ -388,7 +388,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
 
     }
 
-    private void EnviaCorreoCita() throws Exception {
+    private void enviaCorreoCita() throws Exception {
 
         String dni = txtDniPaciente.getText().trim();
         int idHorario = Integer.parseInt(txtIdHorarioAtencion.getText().trim());

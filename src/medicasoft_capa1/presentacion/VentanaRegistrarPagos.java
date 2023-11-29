@@ -44,7 +44,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         inicializarNuevoPago();
-        FechaActual();
+        fechaActual();
         try {
             txtpagosid.setText(String.valueOf(registrarPagosServicio.siguienteIDPago()));
             
@@ -95,7 +95,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         });
     }
 
-    private void FechaActual() {
+    private void fechaActual() {
         DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         Timer timer = new Timer(1000, new ActionListener() {
             @Override

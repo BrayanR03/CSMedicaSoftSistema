@@ -45,7 +45,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
     }
 
-    public void CapturaDatos() {
+    public void capturaDatos() {
 
         user = txtusuario.getText().trim();
         contra = "";
@@ -58,7 +58,7 @@ public class InicioSesion extends javax.swing.JFrame {
 
     }
 
-    public void Validar() {
+    public void validar() {
         try {
             validacion = usuarioServicio.validarUsuario(user, contra);
             idusuariobd = usuarioServicio.retornoIDusuario(user, contra);
@@ -235,8 +235,8 @@ public class InicioSesion extends javax.swing.JFrame {
 
     private void btningresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btningresarActionPerformed
         try {
-            CapturaDatos();
-            Validar();
+            capturaDatos();
+            validar();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, e.getMessage(), "Advertencia", JOptionPane.WARNING_MESSAGE);
 
