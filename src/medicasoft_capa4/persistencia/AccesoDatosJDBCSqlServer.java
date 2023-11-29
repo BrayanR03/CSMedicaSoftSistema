@@ -37,14 +37,14 @@ public class AccesoDatosJDBCSqlServer extends AccesoDatosJDBC {
     private final String PUERTO = "3306";
     private final String DATABASE ="DB_SistemasCitas";
     private String user = "root";
-    private String password = "admin";
+    private String pass = "admin";
     
         @Override
     public void abrirConexion() throws Exception {
          try {
             String url = "jdbc:mysql://"+HOST+":"+PUERTO+"/"+DATABASE;
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conexion = DriverManager.getConnection(url, user, password);
+            conexion = DriverManager.getConnection(url, user, pass);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ocurrio un error al conectarse con la base de datos:" + e.getMessage() , "Sistema", JOptionPane.ERROR_MESSAGE);
         }        
