@@ -11,33 +11,33 @@ package medicasoft_capa3.dominio;
  */
 public class Empleado {
     
-    private int EmpleadoID;
-    private String EmpleadoDescripcion;
+    private int empleadoID;
+    private String empleadoDescripcion;
     private Usuario usuario;
 
     public Empleado() {
     }
 
-    public Empleado(int EmpleadoID, String EmpleadoDescripcion, Usuario usuario) {
-        this.EmpleadoID = EmpleadoID;
-        this.EmpleadoDescripcion = EmpleadoDescripcion;
+    public Empleado(int empleadoID, String empleadoDescripcion, Usuario usuario) {
+        this.empleadoID = empleadoID;
+        this.empleadoDescripcion = empleadoDescripcion;
         this.usuario = usuario;
     }
 
     public int getEmpleadoID() {
-        return EmpleadoID;
+        return empleadoID;
     }
 
-    public void setEmpleadoID(int EmpleadoID) {
-        this.EmpleadoID = EmpleadoID;
+    public void setEmpleadoID(int empleadoID) {
+        this.empleadoID = empleadoID;
     }
 
     public String getEmpleadoDescripcion() {
-        return EmpleadoDescripcion;
+        return empleadoDescripcion;
     }
 
-    public void setEmpleadoDescripcion(String EmpleadoDescripcion) {
-        this.EmpleadoDescripcion = EmpleadoDescripcion;
+    public void setEmpleadoDescripcion(String empleadoDescripcion) {
+        this.empleadoDescripcion = empleadoDescripcion;
     }
 
     public Usuario getUsuario() {

@@ -10,51 +10,51 @@ import java.util.List;
  */
 public class Cita {
 
-    private int CitaID;
-    private HorarioAtencion HorarioAtencionID;
-    private Paciente PacienteID;
-    private String CitaEstado;
+    private int citaID;
+    private HorarioAtencion horarioAtencionID;
+    private Paciente pacienteID;
+    private String citaEstado;
 
     public Cita() {
     }
 
-    public Cita(int CitaID, HorarioAtencion HorarioAtencionID, Paciente PacienteID, String CitaEstado) {
-        this.CitaID = CitaID;
-        this.HorarioAtencionID = HorarioAtencionID;
-        this.PacienteID = PacienteID;
-        this.CitaEstado = CitaEstado;
+    public Cita(int citaID, HorarioAtencion horarioAtencionID, Paciente pacienteID, String citaEstado) {
+        this.citaID = citaID;
+        this.horarioAtencionID = horarioAtencionID;
+        this.pacienteID = pacienteID;
+        this.citaEstado = citaEstado;
     }
 
     public int getCitaID() {
-        return CitaID;
+        return citaID;
     }
 
-    public void setCitaID(int CitaID) {
-        this.CitaID = CitaID;
+    public void setCitaID(int citaID) {
+        this.citaID = citaID;
     }
 
     public HorarioAtencion getHorarioAtencionID() {
-        return HorarioAtencionID;
+        return horarioAtencionID;
     }
 
-    public void setHorarioAtencionID(HorarioAtencion HorarioAtencionID) {
-        this.HorarioAtencionID = HorarioAtencionID;
+    public void setHorarioAtencionID(HorarioAtencion horarioAtencionID) {
+        this.horarioAtencionID = horarioAtencionID;
     }
 
     public Paciente getPacienteID() {
-        return PacienteID;
+        return pacienteID;
     }
 
-    public void setPacienteID(Paciente PacienteID) {
-        this.PacienteID = PacienteID;
+    public void setPacienteID(Paciente pacienteID) {
+        this.pacienteID = pacienteID;
     }
 
     public String getCitaEstado() {
-        return CitaEstado;
+        return citaEstado;
     }
 
-    public void setCitaEstado(String CitaEstado) {
-        this.CitaEstado = CitaEstado;
+    public void setCitaEstado(String citaEstado) {
+        this.citaEstado = citaEstado;
     }
     
     
@@ -70,7 +70,7 @@ public class Cita {
 
     @Override
     public String toString() {
-        return "Cita{" + "CitaID=" + CitaID + ", HorarioAtencionID=" + HorarioAtencionID + ", PacienteID=" + PacienteID + ", CitaEstado=" + CitaEstado + '}';
+        return "Cita{" + "CitaID=" + citaID + ", HorarioAtencionID=" + horarioAtencionID + ", PacienteID=" + pacienteID + ", CitaEstado=" + citaEstado + '}';
     }
     
     

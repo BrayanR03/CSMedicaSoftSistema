@@ -14,101 +14,101 @@ import java.sql.Date;
 public class Asistente {
     
     
-        private int AsistenteID;
-	private String AsistenteApellidos;
-        private String AsistenteNombres;
-        private java.sql.Date AsistenteFechaNacimiento;
-        private String AsistenteDni;
-        private String AsistenteTelefono;
-        private String AsistenteDireccion;
-        private String AsistenteCorreo;
-        private Empleado EmpleadoID;
+        private int asistenteID
+;	private String asistenteApellidos;
+        private String asistenteNombres;
+        private java.sql.Date asistenteFechaNacimiento;
+        private String asistenteDni;
+        private String asistenteTelefono;
+        private String asistenteDireccion;
+        private String asistenteCorreo;
+        private Empleado empleadoID;
 
     public Asistente() {
     }
 
-    public Asistente(int AsistenteID, String AsistenteApellidos, String AsistenteNombres, Date AsistenteFechaNacimiento, String AsistenteDni, String AsistenteTelefono, String AsistenteDireccion, String AsistenteCorreo, Empleado EmpleadoID) {
-        this.AsistenteID = AsistenteID;
-        this.AsistenteApellidos = AsistenteApellidos;
-        this.AsistenteNombres = AsistenteNombres;
-        this.AsistenteFechaNacimiento = AsistenteFechaNacimiento;
-        this.AsistenteDni = AsistenteDni;
-        this.AsistenteTelefono = AsistenteTelefono;
-        this.AsistenteDireccion = AsistenteDireccion;
-        this.AsistenteCorreo = AsistenteCorreo;
-        this.EmpleadoID = EmpleadoID;
+    public Asistente(int asistenteID, String asistenteApellidos, String asistenteNombres, Date asistenteFechaNacimiento, String asistenteDni, String asistenteTelefono, String asistenteDireccion, String asistenteCorreo, Empleado empleadoID) {
+        this.asistenteID = asistenteID;
+        this.asistenteApellidos = asistenteApellidos;
+        this.asistenteNombres = asistenteNombres;
+        this.asistenteFechaNacimiento = asistenteFechaNacimiento;
+        this.asistenteDni = asistenteDni;
+        this.asistenteTelefono = asistenteTelefono;
+        this.asistenteDireccion = asistenteDireccion;
+        this.asistenteCorreo = asistenteCorreo;
+        this.empleadoID = empleadoID;
     }
 
     public int getAsistenteID() {
-        return AsistenteID;
+        return asistenteID;
     }
 
-    public void setAsistenteID(int AsistenteID) {
-        this.AsistenteID = AsistenteID;
+    public void setAsistenteID(int asistenteID) {
+        this.asistenteID = asistenteID;
     }
 
     public String getAsistenteApellidos() {
-        return AsistenteApellidos;
+        return asistenteApellidos;
     }
 
-    public void setAsistenteApellidos(String AsistenteApellidos) {
-        this.AsistenteApellidos = AsistenteApellidos;
+    public void setAsistenteApellidos(String asistenteApellidos) {
+        this.asistenteApellidos = asistenteApellidos;
     }
 
     public String getAsistenteNombres() {
-        return AsistenteNombres;
+        return asistenteNombres;
     }
 
-    public void setAsistenteNombres(String AsistenteNombres) {
-        this.AsistenteNombres = AsistenteNombres;
+    public void setAsistenteNombres(String asistenteNombres) {
+        this.asistenteNombres = asistenteNombres;
     }
 
     public Date getAsistenteFechaNacimiento() {
-        return AsistenteFechaNacimiento;
+        return asistenteFechaNacimiento;
     }
 
-    public void setAsistenteFechaNacimiento(Date AsistenteFechaNacimiento) {
-        this.AsistenteFechaNacimiento = AsistenteFechaNacimiento;
+    public void setAsistenteFechaNacimiento(Date asistenteFechaNacimiento) {
+        this.asistenteFechaNacimiento = asistenteFechaNacimiento;
     }
 
     public String getAsistenteDni() {
-        return AsistenteDni;
+        return asistenteDni;
     }
 
-    public void setAsistenteDni(String AsistenteDni) {
-        this.AsistenteDni = AsistenteDni;
+    public void setAsistenteDni(String asistenteDni) {
+        this.asistenteDni = asistenteDni;
     }
 
     public String getAsistenteTelefono() {
-        return AsistenteTelefono;
+        return asistenteTelefono;
     }
 
-    public void setAsistenteTelefono(String AsistenteTelefono) {
-        this.AsistenteTelefono = AsistenteTelefono;
+    public void setAsistenteTelefono(String asistenteTelefono) {
+        this.asistenteTelefono = asistenteTelefono;
     }
 
     public String getAsistenteDireccion() {
-        return AsistenteDireccion;
+        return asistenteDireccion;
     }
 
-    public void setAsistenteDireccion(String AsistenteDireccion) {
-        this.AsistenteDireccion = AsistenteDireccion;
+    public void setAsistenteDireccion(String asistenteDireccion) {
+        this.asistenteDireccion = asistenteDireccion;
     }
 
     public String getAsistenteCorreo() {
-        return AsistenteCorreo;
+        return asistenteCorreo;
     }
 
-    public void setAsistenteCorreo(String AsistenteCorreo) {
-        this.AsistenteCorreo = AsistenteCorreo;
+    public void setAsistenteCorreo(String asistenteCorreo) {
+        this.asistenteCorreo = asistenteCorreo;
     }
 
     public Empleado getEmpleadoID() {
-        return EmpleadoID;
+        return empleadoID;
     }
 
-    public void setEmpleadoID(Empleado EmpleadoID) {
-        this.EmpleadoID = EmpleadoID;
+    public void setEmpleadoID(Empleado empleadoID) {
+        this.empleadoID = empleadoID;
     }
     
     
