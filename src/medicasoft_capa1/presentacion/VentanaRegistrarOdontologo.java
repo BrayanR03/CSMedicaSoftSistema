@@ -266,7 +266,7 @@ public class VentanaRegistrarOdontologo extends javax.swing.JDialog {
     private void envioUsuario()throws Exception{
         int id=Integer.parseInt(txtIdOdontologo.getText().trim());
         String correo=txtcorreo.getText().trim();
-        registrarOdontologoServicio.EnviarCorreo(id, correo);
+        registrarOdontologoServicio.enviarCorreo(id, correo);
     }
     private void capturarDatosDeOdontologo(){
         String fechanacimiento=txtfechanacimiento.getText();

@@ -37,7 +37,7 @@ public class RegistrarOdontologoServicio {
         if (odontologo.tieneDniUnicoOdontologo(dniod)) {
             throw new Exception("Ya esta registrado este dni en la base de datos ");
         }
-        odontologoSqlServer.RegistrarOdontologo(odontologo);
+        odontologoSqlServer.registrarOdontologo(odontologo);
         accesoDatosJDBC.terminarTransaccion();
     }
     
@@ -45,14 +45,14 @@ public class RegistrarOdontologoServicio {
     
         accesoDatosJDBC.abrirConexion();
         
-        int idSiguiente=odontologoSqlServer.OdontologoIDSiguiente();
+        int idSiguiente=odontologoSqlServer.odontologoIDSiguiente();
         accesoDatosJDBC.cerrarConexion();
         return idSiguiente;
     }
-    public void EnviarCorreo(int idOdontologo,String correo)throws Exception{
+    public void enviarCorreo(int idOdontologo,String correo)throws Exception{
         
         accesoDatosJDBC.abrirConexion();
-        Usuario usuarioto=odontologoSqlServer.DatosUsuarioOdontologo(idOdontologo);
+        Usuario usuarioto=odontologoSqlServer.datosUsuarioOdontologo(idOdontologo);
         accesoDatosJDBC.cerrarConexion();
         String asunto="Datos Usuario Odontologo";
         String mensaje="Felicidades, ya tienes una cuenta de usuario!!."

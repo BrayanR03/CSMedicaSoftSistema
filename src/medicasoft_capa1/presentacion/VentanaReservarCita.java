@@ -48,7 +48,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         inicializarNuevaCita();
         try {
 
-            registrarCitaServicio.MostrarHorario(modelo, usuarioid);
+            registrarCitaServicio.mostrarHorario(modelo, usuarioid);
             TableColumn columna = jTableHorario.getColumnModel().getColumn(6);
             columna.setMaxWidth(0);
             columna.setMinWidth(0);
@@ -93,12 +93,12 @@ public class VentanaReservarCita extends javax.swing.JDialog {
     private void inicializarNuevaCita() {
         registrarCitaServicio = new ReservarCitaServicio();
         try {
-            int idSiguienteCita = registrarCitaServicio.MostrarID();
+            int idSiguienteCita = registrarCitaServicio.mostrarID();
             txtIdCita.setText(String.valueOf(idSiguienteCita));
         } catch (Exception e) {
         }
         try {
-            registrarCitaServicio.MostrarHorario(modelo, usuarioid);
+            registrarCitaServicio.mostrarHorario(modelo, usuarioid);
         } catch (Exception e) {
         }
         cita = new Cita();
@@ -382,8 +382,8 @@ public class VentanaReservarCita extends javax.swing.JDialog {
     }//GEN-LAST:event_jPanel1MouseDragged
 
     private void guardarCita() throws Exception {
-        registrarCitaServicio.GuardarCita(cita);
-        registrarCitaServicio.MostrarHorario(modelo, usuarioid);
+        registrarCitaServicio.guardarCita(cita);
+        registrarCitaServicio.mostrarHorario(modelo, usuarioid);
         JOptionPane.showMessageDialog(this, "Se reservo la cita", "Información", JOptionPane.INFORMATION_MESSAGE);
 
     }
@@ -394,7 +394,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         int idHorario = Integer.parseInt(txtIdHorarioAtencion.getText().trim());
         int idCita = Integer.parseInt(txtIdCita.getText().trim());
         System.out.println("id cita desde la caja "+idCita);
-        registrarCitaServicio.EnviarCorreoCita(dni, idHorario, idCita);
+        registrarCitaServicio.enviarCorreoCita(dni, idHorario, idCita);
         JOptionPane.showMessageDialog(this, "Datos de la Cita, enviados a su correo.", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
 

@@ -46,7 +46,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         inicializarNuevoPago();
         FechaActual();
         try {
-            txtpagosid.setText(String.valueOf(registrarPagosServicio.SiguienteIDPago()));
+            txtpagosid.setText(String.valueOf(registrarPagosServicio.siguienteIDPago()));
             
             formita = registrarPagosServicio.comboFormaPago();
             comboString = new DefaultComboBoxModel<>();
@@ -126,7 +126,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         txthorafin.setText("");
         txtestadocita.setText("");
         try {
-            registrarPagosServicio.MostrarCitasSinCancelar(modelo);
+            registrarPagosServicio.mostrarCitasSinCancelar(modelo);
         } catch (Exception e) {
         }
     }
@@ -387,7 +387,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
     private void txtdnipacienteKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtdnipacienteKeyReleased
         String dni = txtdnipaciente.getText();
         try {
-            registrarPagosServicio.MostrarCitasSinCancelarDni(modelo, dni);
+            registrarPagosServicio.mostrarCitasSinCancelarDni(modelo, dni);
         } catch (Exception e) {
         }
     }//GEN-LAST:event_txtdnipacienteKeyReleased

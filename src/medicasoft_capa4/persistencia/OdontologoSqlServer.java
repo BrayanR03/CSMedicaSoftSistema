@@ -27,7 +27,7 @@ public class OdontologoSqlServer {
     }
 
     
-    public void RegistrarOdontologo(Odontologo odontologo){
+    public void registrarOdontologo(Odontologo odontologo){
         
         String insertSQL="EXEC RegistrarOdontologo @apellidos=?,@nombres=?,@fecha=?,@dni=?,@direccion=?,@telefono=?,@correo=?";
         PreparedStatement sentencia;
@@ -96,7 +96,7 @@ public class OdontologoSqlServer {
         }
     }
     
-    public int OdontologoIDSiguiente(){
+    public int odontologoIDSiguiente(){
         
         String consultaSQL="SELECT ISNULL(MAX(OdontologoID),0)+ 1 AS OdontologoID FROM ODONTOLOGO";
         PreparedStatement sentencia;
@@ -113,7 +113,7 @@ public class OdontologoSqlServer {
         return idOdontologo;
     }
     
-    public Usuario DatosUsuarioOdontologo(int idOdontologo)throws Exception{
+    public Usuario datosUsuarioOdontologo(int idOdontologo)throws Exception{
         String consultaSQL="EXEC BusquedaUsuarioOdontologo @idOdontologo=?";
         PreparedStatement sentencia;
         Usuario usuaario=new Usuario();

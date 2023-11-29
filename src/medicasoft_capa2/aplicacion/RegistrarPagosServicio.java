@@ -30,12 +30,12 @@ public class RegistrarPagosServicio {
         this.pagosSqlServer=new PagosSqlServer(accesoDatosJDBC);
     }
     
-    public void MostrarCitasSinCancelar(DefaultTableModel modelo)throws Exception{
+    public void mostrarCitasSinCancelar(DefaultTableModel modelo)throws Exception{
         accesoDatosJDBC.abrirConexion();
         citaSqlServer.MostrarCitas(modelo);
         accesoDatosJDBC.cerrarConexion();
     }
-    public void MostrarCitasSinCancelarDni(DefaultTableModel modelo,String dni)throws Exception{
+    public void mostrarCitasSinCancelarDni(DefaultTableModel modelo,String dni)throws Exception{
         accesoDatosJDBC.abrirConexion();
         citaSqlServer.MostrarCitasDni(modelo,dni);
         accesoDatosJDBC.cerrarConexion();
@@ -63,7 +63,7 @@ public class RegistrarPagosServicio {
         accesoDatosJDBC.cerrarConexion();
         return formaPago;
     }
-    public int SiguienteIDPago()throws Exception{
+    public int siguienteIDPago()throws Exception{
         accesoDatosJDBC.abrirConexion();
         int idPago=pagosSqlServer.PagoIDSiguiente();
         accesoDatosJDBC.cerrarConexion();

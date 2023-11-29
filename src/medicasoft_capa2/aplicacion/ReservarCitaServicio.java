@@ -51,7 +51,7 @@ public class ReservarCitaServicio {
     }
    
 
-    public void MostrarHorario(DefaultTableModel modelo,int usuarioid) throws Exception {
+    public void mostrarHorario(DefaultTableModel modelo,int usuarioid) throws Exception {
 
         accesoDatosJDBC.abrirConexion();
         
@@ -60,7 +60,7 @@ public class ReservarCitaServicio {
 
     }
 
-    public void GuardarCita(Cita cita) throws Exception {
+    public void guardarCita(Cita cita) throws Exception {
         
         HorarioAtencion horario = cita.getHorarioAtencionID();
         
@@ -86,7 +86,7 @@ public class ReservarCitaServicio {
        
     }
     
-    public int MostrarID()throws Exception{
+    public int mostrarID()throws Exception{
         accesoDatosJDBC.abrirConexion();
         int idCita=citaSqlServer.SiguienteCita();
         accesoDatosJDBC.cerrarConexion();
@@ -94,7 +94,7 @@ public class ReservarCitaServicio {
     }
     
     
-    public void EnviarCorreoCita(String dniPaciente,int idHorarioAtencion,int idCita)throws Exception{
+    public void enviarCorreoCita(String dniPaciente,int idHorarioAtencion,int idCita)throws Exception{
         
         accesoDatosJDBC.abrirConexion();
         HorarioAtencion horario=horarioAtencionSqlServer.buscar(idHorarioAtencion);

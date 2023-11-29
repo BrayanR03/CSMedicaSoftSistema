@@ -56,7 +56,7 @@ public class RegistrarPacienteServicio {
         
     }
     
-    public void EnviarCorreo(String correo,String asunto,String mensaje){
+    public void enviarCorreo(String correo,String asunto,String mensaje){
     
         try {
             //PropiedadesCorreoJava
