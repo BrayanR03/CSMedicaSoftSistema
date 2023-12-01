@@ -3,9 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Ucv/VIII%20Ciclo/Calidad%20de%20Software/CSMedicaSoftSistema/CSMedicaSoftSistema/src/medicasoft_capa3/dominio/Paciente.java</file>
-            <file>file:/D:/Ucv/VIII%20Ciclo/Calidad%20de%20Software/CSMedicaSoftSistema/CSMedicaSoftSistema/src/medicasoft_capa4/persistencia/AccesoDatosJDBC.java</file>
-            <file>file:/D:/Ucv/VIII%20Ciclo/Calidad%20de%20Software/CSMedicaSoftSistema/CSMedicaSoftSistema/src/medicasoft_capa1/presentacion/VentanaRegistrarHorarioDeAtencion.java</file>
+            <file>file:/C:/Users/USER/Documents/UCV/8TAVO_CICLO-UCV/CALIDAD%20DE%20SOFTWARE/MEDICASOFT_2023/SistemaCitasCSFinal/CSMedicaSoftSistema/src/medicasoft_capa1/presentacion/ProgramaInicio.java</file>
+            <file>file:/C:/Users/USER/Documents/UCV/8TAVO_CICLO-UCV/CALIDAD%20DE%20SOFTWARE/MEDICASOFT_2023/SistemaCitasCSFinal/CSMedicaSoftSistema/src/medicasoft_capa2/aplicacion/RegistrarPacienteServicio.java</file>
+            <file>file:/C:/Users/USER/Documents/UCV/8TAVO_CICLO-UCV/CALIDAD%20DE%20SOFTWARE/MEDICASOFT_2023/SistemaCitasCSFinal/CSMedicaSoftSistema/src/medicasoft_capa1/presentacion/VentanaRegistrarPaciente.java</file>
+            <file>file:/C:/Users/USER/Documents/UCV/8TAVO_CICLO-UCV/CALIDAD%20DE%20SOFTWARE/MEDICASOFT_2023/SistemaCitasCSFinal/CSMedicaSoftSistema/src/medicasoft_capa4/persistencia/AccesoDatosJDBCSqlServer.java</file>
+            <file>file:/C:/Users/USER/Documents/UCV/8TAVO_CICLO-UCV/CALIDAD%20DE%20SOFTWARE/MEDICASOFT_2023/SistemaCitasCSFinal/CSMedicaSoftSistema/src/medicasoft_capa2/aplicacion/ReservarCitaServicio.java</file>
+            <file>file:/C:/Users/USER/Documents/UCV/8TAVO_CICLO-UCV/CALIDAD%20DE%20SOFTWARE/MEDICASOFT_2023/SistemaCitasCSFinal/CSMedicaSoftSistema/src/medicasoft_capa1/presentacion/VentanaRegistrarPagos.java</file>
+            <file>file:/C:/Users/USER/Documents/UCV/8TAVO_CICLO-UCV/CALIDAD%20DE%20SOFTWARE/MEDICASOFT_2023/SistemaCitasCSFinal/CSMedicaSoftSistema/src/medicasoft_capa3/dominio/Paciente.java</file>
+            <file>file:/C:/Users/USER/Documents/UCV/8TAVO_CICLO-UCV/CALIDAD%20DE%20SOFTWARE/MEDICASOFT_2023/SistemaCitasCSFinal/CSMedicaSoftSistema/src/medicasoft_capa1/presentacion/VentanaReservarCita.java</file>
         </group>
     </open-files>
 </project-private>
