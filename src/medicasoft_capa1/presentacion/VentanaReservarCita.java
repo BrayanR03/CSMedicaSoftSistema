@@ -14,18 +14,10 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import medicasoft_capa2.aplicacion.ReservarCitaServicio;
-import medicasoft_capa2.aplicacion.RegistrarHorarioDeAtencionServicio;
-import medicasoft_capa2.aplicacion.RegistrarPacienteServicio;
 import medicasoft_capa3.dominio.Cita;
 import medicasoft_capa3.dominio.HorarioAtencion;
-//import medicasoft_capa3.dominio.Horario;
 import medicasoft_capa3.dominio.Paciente;
-//import medicasoft_capa4.persistencia.CitaPostgreSQL;
 
-/**
- *
- * @author Miguel
- */
 public class VentanaReservarCita extends javax.swing.JDialog {
     
     int xMouse;

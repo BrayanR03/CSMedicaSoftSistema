@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class AccesoDatosJDBCSqlServer extends AccesoDatosJDBC {
 
+    private String pass = "12345";
+    
     @Override
     public void abrirConexion() throws Exception {
          try {
@@ -27,7 +29,7 @@ public class AccesoDatosJDBCSqlServer extends AccesoDatosJDBC {
                     + "encrypt=true;"
                     + "trustServerCertificate=true;"
                     + "loginTimeout=30";
-            conexion = DriverManager.getConnection(url, "sa", "12345");
+            conexion = DriverManager.getConnection(url, "sa", pass);
         } catch (Exception e) {
             throw new Exception("Ocurrio un problema en la conexión con la base de datos.", e);
         }

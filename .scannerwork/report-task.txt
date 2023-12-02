@@ -1,6 +1,6 @@
-projectKey=javaprograma
+projectKey=java3.1
 serverUrl=http://localhost:9000
 serverVersion=10.3.0.82913
-dashboardUrl=http://localhost:9000/dashboard?id=javaprograma
-ceTaskId=AYwUpWxDnb5lFcz15sfV
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYwUpWxDnb5lFcz15sfV
+dashboardUrl=http://localhost:9000/dashboard?id=java3.1
+ceTaskId=AYwo6SULEifyzwNMVqaP
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYwo6SULEifyzwNMVqaP

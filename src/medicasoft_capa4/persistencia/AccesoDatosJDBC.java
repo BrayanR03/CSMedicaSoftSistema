@@ -18,6 +18,7 @@ import java.sql.Statement;
 public abstract class AccesoDatosJDBC {
     
     protected Connection conexion;
+    private final String MENSAJE = "Ocurrio un problema con la conexión"; 
 
     public abstract void abrirConexion() throws Exception;
 
@@ -25,7 +26,7 @@ public abstract class AccesoDatosJDBC {
         try {
             conexion.close();
         } catch (Exception e) {
-            throw new SQLException("Ocurrio un problema con la conexión", e);
+            throw new SQLException(MENSAJE, e);
         }
 
     }
@@ -34,7 +35,7 @@ public abstract class AccesoDatosJDBC {
         try {
             conexion.setAutoCommit(false);
         } catch (Exception e) {
-            throw new SQLException("Ocurrio un problema con la conexión", e);
+            throw new SQLException(MENSAJE, e);
         }
     }
 
@@ -44,7 +45,7 @@ public abstract class AccesoDatosJDBC {
             conexion.setAutoCommit(true);
             conexion.close();
         } catch (Exception e) {
-            throw new SQLException("Ocurrio un problema con la conexión", e);
+            throw new SQLException(MENSAJE, e);
         }
     }
 
@@ -54,7 +55,7 @@ public abstract class AccesoDatosJDBC {
             conexion.setAutoCommit(true);
             conexion.close();
         } catch (Exception e) {
-            throw new SQLException("Ocurrio un problema con la conexión", e);
+            throw new SQLException(MENSAJE, e);
         }
     }
 
@@ -62,22 +63,19 @@ public abstract class AccesoDatosJDBC {
         try {
             return conexion.prepareStatement(sql);
         } catch (Exception e) {
-            throw new SQLException("Ocurrio un problema con la conexión", e);
+            throw new SQLException(MENSAJE, e);
         }
     }
 
     public ResultSet ejecutarConsulta(String sql) throws SQLException {
-            Statement sentencia = null;
-            ResultSet resultado = null;
-        try {
-           
+            Statement sentencia = null;            
+        try {         
             sentencia = conexion.createStatement();
-            resultado = sentencia.executeQuery(sql);
+            ResultSet resultado = sentencia.executeQuery(sql);
             return resultado;
         } catch (Exception e) {
-            throw new SQLException("Ocurrio un problema con la conexión", e);
-        }finally{
-            resultado.close();
+            throw new SQLException(MENSAJE, e);
+        }finally{           
             sentencia.close();
         }
     }
