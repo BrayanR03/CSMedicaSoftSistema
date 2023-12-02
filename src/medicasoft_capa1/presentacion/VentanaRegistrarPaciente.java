@@ -271,19 +271,19 @@ public class VentanaRegistrarPaciente extends javax.swing.JDialog {
             throw new Exception("La fecha de nacimiento no es válida");
         }
 
-        if (!esNumero(txtDni.getText())) {
+        if (!esNumero(txtDni.getText().trim())) {
             throw new Exception("El DNI no es valido, debe contener sólo números");
         }
 
-        if (!sonSoloLetras(txtApellido.getText())) {
+        if (!sonSoloLetras(txtApellido.getText().trim())) {
             throw new Exception("El apellido no es válido");
         }
 
-        if (!sonSoloLetras(txtNombre.getText())) {
+        if (!sonSoloLetras(txtNombre.getText().trim())) {
             throw new Exception("El nombre no es válido");
         }
 
-        if (!esNumero(txtTelefono.getText())) {
+        if (!esNumero(txtTelefono.getText().trim())) {
             throw new Exception("El teléfono no es válido");
         }
 
