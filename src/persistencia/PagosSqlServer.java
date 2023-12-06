@@ -16,7 +16,7 @@ public class PagosSqlServer {
         this.accesoDatosJDBC=accesoDatosJDBC;
     }
     
-    public void RegistrarPago(Pagos pagos){
+    public void registrarPago(Pagos pagos){
         
         String insertSQL="INSERT INTO Pagos(CitaID,FechaPago,MontoTotal,FormaPagoCodigo)\n" +
                          "VALUES(?,?,?,?)";
@@ -33,7 +33,7 @@ public class PagosSqlServer {
         }
     }
     
-    public int PagoIDSiguiente(){
+    public int pagoIdSiguiente(){
         
         String consultaSQL="SELECT ISNULL(MAX(PagosID),0)+1 PagosID FROM Pagos";
         PreparedStatement sentencia;

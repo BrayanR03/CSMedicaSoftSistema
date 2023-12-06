@@ -20,7 +20,7 @@ public class UsuarioSqlServer {
     }
     
     
-    public Usuario BuscarUsuario(int idusuario)throws Exception{
+    public Usuario buscarUsuario(int idusuario)throws Exception{
     
         String consultaSQL="SELECT Usuario,Password FROM Usuario WHERE UsuarioID=?";
         PreparedStatement sentencia;
@@ -46,7 +46,7 @@ public class UsuarioSqlServer {
         
     }
     
-    public boolean ValidarUsuario(String usuario,String password)throws Exception{
+    public boolean validarUsuario(String usuario,String password)throws Exception{
         
         String consultaSQL="SELECT Usuario,Password,UsuarioID FROM USUARIO where Usuario=? and Password=?";
         PreparedStatement sentencia;
@@ -78,7 +78,7 @@ public class UsuarioSqlServer {
         }
         return validar;
     }
-    public int RetornarIDUsuario(String usuario,String password)throws Exception{
+    public int retornarIdUsuario(String usuario,String password)throws Exception{
         
         String consultaSQL="SELECT UsuarioID FROM USUARIO where Usuario=? and Password=?";
         PreparedStatement sentencia;
@@ -97,7 +97,7 @@ public class UsuarioSqlServer {
         }
         return idUsuarioTabla;
     }
-    public String DescripcionEmpleado(int idUsuario)throws Exception{
+    public String descripcionEmpleado(int idUsuario)throws Exception{
         
         String descripcion="";
         String consultaSQL="SELECT E.EmpleadoDescripcion AS Descripcion\n" +

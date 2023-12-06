@@ -26,7 +26,7 @@ public class RegistrarUsuarioServicio {
         int usuarioIDretornado=0;
         try {
             accesoDatosJDBC.abrirConexion();
-            usuarioIDretornado=usuarioSqlServer.RetornarIDUsuario(usuario, password);
+            usuarioIDretornado=usuarioSqlServer.retornarIdUsuario(usuario, password);
             
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -37,7 +37,7 @@ public class RegistrarUsuarioServicio {
         String descripcion="";
         try {
             accesoDatosJDBC.abrirConexion();
-            descripcion=usuarioSqlServer.DescripcionEmpleado(idUsuario);
+            descripcion=usuarioSqlServer.descripcionEmpleado(idUsuario);
             accesoDatosJDBC.cerrarConexion();
 
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class RegistrarUsuarioServicio {
         boolean usuarioValidado = false;
         try {
             accesoDatosJDBC.abrirConexion();
-            usuarioValidado = usuarioSqlServer.ValidarUsuario(usuario, password);
+            usuarioValidado = usuarioSqlServer.validarUsuario(usuario, password);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }

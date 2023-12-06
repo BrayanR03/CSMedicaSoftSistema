@@ -20,7 +20,7 @@ public class EmpleadoSqlServer {
     }
     
     
-    public Empleado BuscarEmpleado(int idEmpleado){
+    public Empleado buscarEmpleado(int idEmpleado){
     
         String consultaSQL="SELECT EmpleadoID,EmpleadoDescripcion,UsuarioID\n" +
                             "FROM Empleado\n" +
@@ -34,7 +34,7 @@ public class EmpleadoSqlServer {
             if(resultado.next()){
             
                 String descripcion=resultado.getString("EmpleadoDescripcion");
-                Usuario usuario=usuarioSqlServer.BuscarUsuario(resultado.getInt("UsuarioID"));
+                Usuario usuario=usuarioSqlServer.buscarUsuario(resultado.getInt("UsuarioID"));
                 empleado=new Empleado(idEmpleado,descripcion,usuario);
             }
         } catch (Exception e) {
@@ -44,7 +44,7 @@ public class EmpleadoSqlServer {
         
     }
     
-    public String DescripcionEmpleado(int idUsuario)throws Exception{
+    public String descripcionEmpleado(int idUsuario)throws Exception{
         
         String descripcion="";
         String consultaSQL="SELECT E.EmpleadoDescripcion AS Descripcion\n" +

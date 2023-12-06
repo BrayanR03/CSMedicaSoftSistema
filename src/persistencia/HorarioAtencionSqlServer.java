@@ -94,7 +94,7 @@ public class HorarioAtencionSqlServer {
         return horas;
     }
      
-      public void Mostrar(DefaultTableModel modelo,int usuario) throws Exception {
+      public void mostrar(DefaultTableModel modelo,int usuario) throws Exception {
 
         String mostraSQL ="select hor.HorarioAtencionID,hor.HorarioAtencionEstado,hor.HorarioAtencionFechaRegistro,hor.HorarioAtencionHoraInicio,hor.HorarioAtencionHoraFin,hor.OdontologoID ,odo.OdontologoNombres,odo.OdontologoApellidos\n" +
 "from HorarioAtencion HOR LEFT JOIN Odontologo ODO on hor.OdontologoID=odo.OdontologoID\n" +
@@ -127,7 +127,7 @@ public class HorarioAtencionSqlServer {
 
     }
 
-  public int SiguienteHorarioAtencionID()throws Exception{
+  public int siguienteHorarioAtencionID()throws Exception{
       String consultaSQL="SELECT ISNULL(MAX(HorarioAtencionID),0)+1 AS HorarioAtencionID FROM HorarioAtencion";
       PreparedStatement sentencia;
       int id=0;

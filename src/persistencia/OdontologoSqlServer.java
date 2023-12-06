@@ -80,7 +80,7 @@ public class OdontologoSqlServer {
                 odontologo.setOdontologoDireccion(resultado.getString("OdontologoDireccion"));
                 odontologo.setOdontologoTelefono(resultado.getString("OdontologoTelefono"));
                 odontologo.setOdontologoCorreo(resultado.getString("OdontologoCorreo"));
-                Empleado empleado=empleadoSqlServer.BuscarEmpleado(resultado.getInt("Empleado"));
+                Empleado empleado=empleadoSqlServer.buscarEmpleado(resultado.getInt("Empleado"));
                 odontologo.setEmpleadoID(empleado);
                 return odontologo;
             }

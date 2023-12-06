@@ -18,7 +18,7 @@ public class PacienteSqlServer {
         this.accesoDatosJDBC=accesoDatosJDBC;
     }
     
-    public void RegistrarPaciente(Paciente paciente){
+    public void registrarPaciente(Paciente paciente){
         
         String insertSQL="INSERT INTO Paciente(PacienteApellidos,PacienteNombres,PacienteFechaNacimiento,PacienteDni,PacienteTelefono,PacienteDireccion,PacienteCorreo)\n" +
                          "VALUES(?,?,?,?,?,?,?)";
@@ -114,7 +114,7 @@ public class PacienteSqlServer {
         }
     }
     
-    public int PacienteIDSiguiente()throws Exception{
+    public int pacienteIDSiguiente()throws Exception{
         
         String consultaSQL="SELECT ISNULL(MAX(PacienteID),0)+1as PacienteID FROM Paciente";
 //        String consultaSQL="SELECT IFNULL(MAX(PacienteID),0)+1as PacienteID FROM Paciente";

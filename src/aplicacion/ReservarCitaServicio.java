@@ -56,7 +56,7 @@ public class ReservarCitaServicio {
 
         accesoDatosJDBC.abrirConexion();
         
-        horarioAtencionSqlServer.Mostrar(modelo,usuarioid);
+        horarioAtencionSqlServer.mostrar(modelo,usuarioid);
         accesoDatosJDBC.cerrarConexion();
 
     }
@@ -89,7 +89,7 @@ public class ReservarCitaServicio {
     
     public int mostrarID()throws Exception{
         accesoDatosJDBC.abrirConexion();
-        int idCita=citaSqlServer.SiguienteCita();
+        int idCita=citaSqlServer.siguienteCita();
         accesoDatosJDBC.cerrarConexion();
         return idCita;
     }
@@ -100,7 +100,7 @@ public class ReservarCitaServicio {
         accesoDatosJDBC.abrirConexion();
         HorarioAtencion horario=horarioAtencionSqlServer.buscar(idHorarioAtencion);
         Paciente paciente=pacienteSqlServer.buscar(dniPaciente);
-        //Cita cita=citaSqlServer.BuscarCita(idCita);
+        //Cita cita=citaSqlServer.buscarCita(idCita);
         //System.out.println(cita.toString());
         accesoDatosJDBC.cerrarConexion();
         String asunto="Cita Pendiente";

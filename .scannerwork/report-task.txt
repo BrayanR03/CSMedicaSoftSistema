@@ -1,6 +1,6 @@
-projectKey=java3.1
+projectKey=javav31
 serverUrl=http://localhost:9000
 serverVersion=10.3.0.82913
-dashboardUrl=http://localhost:9000/dashboard?id=java3.1
-ceTaskId=AYwo6SULEifyzwNMVqaP
-ceTaskUrl=http://localhost:9000/api/ce/task?id=AYwo6SULEifyzwNMVqaP
+dashboardUrl=http://localhost:9000/dashboard?id=javav31
+ceTaskId=AYw8quzvqoB55RqyRN82
+ceTaskUrl=http://localhost:9000/api/ce/task?id=AYw8quzvqoB55RqyRN82

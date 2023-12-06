@@ -17,7 +17,7 @@ public class FormaPagoSqlServer {
         this.accesoDatosJDBC=accesoDatosJDBC;
     }
     
-    public FormaPago BuscarFormaPago(String codigo)throws Exception{
+    public FormaPago buscarFormaPago(String codigo)throws Exception{
     
         String consultaSQL="SELECT FormaPagoDescripcion FROM FormaPago WHERE FormaPagoCodigo=?";
         PreparedStatement sentencia;
@@ -38,7 +38,7 @@ public class FormaPagoSqlServer {
         return formaPago;
     }
     
-    public DefaultComboBoxModel<FormaPago> FormaPagoDescripcion(){
+    public DefaultComboBoxModel<FormaPago> formaPagoDescripcion(){
         String consultaSQL="SELECT FormaPagoCodigo,FormaPagoDescripcion FROM FormaPago ";
         DefaultComboBoxModel<FormaPago> combito=new DefaultComboBoxModel<>();
         PreparedStatement sentencia;

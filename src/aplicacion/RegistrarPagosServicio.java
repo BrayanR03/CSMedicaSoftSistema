@@ -36,26 +36,26 @@ public class RegistrarPagosServicio {
     
     public void mostrarCitasSinCancelar(DefaultTableModel modelo)throws Exception{
         accesoDatosJDBC.abrirConexion();
-        citaSqlServer.MostrarCitas(modelo);
+        citaSqlServer.mostrarCitas(modelo);
         accesoDatosJDBC.cerrarConexion();
     }
     public void mostrarCitasSinCancelarDni(DefaultTableModel modelo,String dni)throws Exception{
         accesoDatosJDBC.abrirConexion();
-        citaSqlServer.MostrarCitasDni(modelo,dni);
+        citaSqlServer.mostrarCitasDni(modelo,dni);
         accesoDatosJDBC.cerrarConexion();
     }
     
     public Cita buscarCita(int citaID)throws Exception{
         
         accesoDatosJDBC.abrirConexion();
-        Cita cita=citaSqlServer.BuscarCita(citaID);
+        Cita cita=citaSqlServer.buscarCita(citaID);
         accesoDatosJDBC.cerrarConexion();
         return cita;
         
     }
     public DefaultComboBoxModel<FormaPago> comboFormaPago()throws Exception{
         accesoDatosJDBC.abrirConexion();
-        DefaultComboBoxModel<FormaPago> forma= formaPagoSqlServer.FormaPagoDescripcion();
+        DefaultComboBoxModel<FormaPago> forma= formaPagoSqlServer.formaPagoDescripcion();
         accesoDatosJDBC.cerrarConexion();
         return forma;
     }
@@ -63,13 +63,13 @@ public class RegistrarPagosServicio {
     public FormaPago buscarFormaPago(String codigo)throws Exception{
     
         accesoDatosJDBC.abrirConexion();
-        FormaPago formaPago=formaPagoSqlServer.BuscarFormaPago(codigo);
+        FormaPago formaPago=formaPagoSqlServer.buscarFormaPago(codigo);
         accesoDatosJDBC.cerrarConexion();
         return formaPago;
     }
     public int siguienteIDPago()throws Exception{
         accesoDatosJDBC.abrirConexion();
-        int idPago=pagosSqlServer.PagoIDSiguiente();
+        int idPago=pagosSqlServer.pagoIdSiguiente();
         accesoDatosJDBC.cerrarConexion();
         return idPago;
     }
@@ -77,7 +77,7 @@ public class RegistrarPagosServicio {
         
         accesoDatosJDBC.abrirConexion();
         accesoDatosJDBC.iniciarTransaccion();
-        pagosSqlServer.RegistrarPago(pagos);
+        pagosSqlServer.registrarPago(pagos);
         accesoDatosJDBC.terminarTransaccion();
     
     }

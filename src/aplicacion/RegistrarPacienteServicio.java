@@ -12,7 +12,6 @@ import java.util.logging.Logger;
 
 import java.util.List;
 import java.util.Properties;
-import javax.mail.BodyPart;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -51,7 +50,7 @@ public class RegistrarPacienteServicio {
         if (paciente.tieneDniUnicoPaciente(dnipac)) {
             throw new Exception("El paciente con el DNI ingresado ya se encuentra registrado");
         }
-        pacienteSqlServer.RegistrarPaciente(paciente);
+        pacienteSqlServer.registrarPaciente(paciente);
         accesoDatosJDBC.terminarTransaccion();
         
     }
@@ -97,7 +96,7 @@ public class RegistrarPacienteServicio {
     
     public int retornoID()throws Exception{
         accesoDatosJDBC.abrirConexion();
-        int id=pacienteSqlServer.PacienteIDSiguiente();
+        int id=pacienteSqlServer.pacienteIDSiguiente();
         accesoDatosJDBC.cerrarConexion();
         return id;
     }

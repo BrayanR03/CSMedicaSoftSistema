@@ -55,7 +55,7 @@ public class RegistrarHorarioDeAtencionServicio {
     
     public int idSiguiente()throws Exception{
         accesoDatosJDBC.abrirConexion();
-        int horarioID=horarioAtencionSqlServer.SiguienteHorarioAtencionID();
+        int horarioID=horarioAtencionSqlServer.siguienteHorarioAtencionID();
         accesoDatosJDBC.cerrarConexion();
         return horarioID;
     }
