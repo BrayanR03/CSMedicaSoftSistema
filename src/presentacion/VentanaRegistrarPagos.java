@@ -39,7 +39,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         inicializarNuevoPago();
         fechaActual();
         try {
-            txtpagosid.setText(String.valueOf(registrarPagosServicio.siguienteIDPago()));
+           
             
             formita = registrarPagosServicio.comboFormaPago();
             comboString = new DefaultComboBoxModel<>();
@@ -104,6 +104,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
 
     private void inicializarNuevoPago() {
         txtdnipaciente.requestFocus();
+        
         txtcodigoformapago.setVisible(false);
         registrarPagosServicio = new RegistrarPagosServicio();
         pagos = new Pagos();
@@ -119,6 +120,7 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         txthorafin.setText("");
         txtestadocita.setText("");
         try {
+             txtpagosid.setText(String.valueOf(registrarPagosServicio.siguienteIDPago()));
             registrarPagosServicio.mostrarCitasSinCancelar(modelo);
         } catch (Exception e) {
         }
@@ -425,12 +427,14 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
             }
             formaPago = registrarPagosServicio.buscarFormaPago(codigoFormaPago);
             pagos.setFormaPagoCodigo(formaPago);
-
+            
         try {
             int citaID = Integer.parseInt(txtidcita.getText().trim());
+            System.out.println("cita de caja de texto "+citaID);
             cita = registrarPagosServicio.buscarCita(citaID);
+            System.out.println("cita de linea 432 "+cita.getCitaID());
             pagos.setCitaID(cita);
-            
+            System.out.println("pagos con citaid capturada "+pagos.getCitaID().getCitaID());
         } catch (Exception e) {
             throw new Exception("Debes seleccionar una cita a pagar!",e);
         }

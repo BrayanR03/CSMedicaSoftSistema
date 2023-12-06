@@ -111,29 +111,38 @@ public class CitaSqlServer {
         return total;
     }
 
-    public Cita buscarCita(int IdCita) {
+    public Cita buscarCita(int IdCita)throws Exception {
 
         String consultaSQL = "SELECT HorarioAtencionID,PacienteID,CitaEstado FROM Cita WHERE CitaID=?";
 
         PreparedStatement sentencia;
-        Cita cita = new Cita();
+        
         try {
             sentencia = accesoDatosJDBC.prepararSentencia(consultaSQL);
             sentencia.setInt(1, IdCita);
             ResultSet resultado = sentencia.executeQuery();
 
             if (resultado.next()) {
+                Cita cita = new Cita();
+                cita.setCitaID(IdCita);
                 int idHorario = resultado.getInt("HorarioAtencionID");
                 HorarioAtencion horario = horarioAtencionSqlServer.buscar(idHorario);
+                cita.setHorarioAtencionID(horario);
                 int idPaciente = resultado.getInt("PacienteID");
+                System.out.println("paciente id de cita sqlserver "+idPaciente);
                 Paciente paciente = pacienteSqlServer.buscarIdPaciente(idPaciente);
-                String estado = resultado.getString("CitaEstado");
-                cita = new Cita(IdCita, horario, paciente, estado);
+                cita.setPacienteID(paciente);
+                cita.setCitaEstado(resultado.getString("CitaEstado"));
+//                String estado = resultado.getString("CitaEstado");
+//                cita = new Cita(IdCita, horario, paciente, estado);
+                return cita;
+            } else {
+                throw new Exception("No existe la cita.");
             }
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            throw new Exception("Error al buscar ",e);//System.out.println(e.getMessage());
         }
-        return cita;
+       
     }
 
     public int siguienteCita() throws Exception {
@@ -192,7 +201,7 @@ public class CitaSqlServer {
                 + "ON C.PacienteID=P.PacienteID\n"
                 + "INNER JOIN HorarioAtencion HA \n"
                 + "on ha.HorarioAtencionID=c.HorarioAtencionID\n"
-                + "WHERE HA.HorarioAtencionFechaRegistro>=(GETDATE() AS DATE) AND C.CitaEstado='Pendiente'";
+                + "WHERE HA.HorarioAtencionFechaRegistro>=CAST(GETDATE() AS DATE) AND C.CitaEstado='Pendiente'";
         PreparedStatement sentencia;
         String titulos[] = {"CITA ID", "FECHA CITA", "HORA INICIO", "HORA FIN", "ESTADO"};
         modelo.getDataVector().removeAllElements();
