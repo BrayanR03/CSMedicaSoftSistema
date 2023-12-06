@@ -35,7 +35,7 @@ public class PagosSqlServer {
     
     public int pagoIdSiguiente(){
         
-        String consultaSQL="SELECT ISNULL(MAX(PagosID),0)+1 PagosID FROM Pagos";
+        String consultaSQL="SELECT ISNULL(MAX(PagosID),0)+1 AS PagosID FROM Pagos";
         PreparedStatement sentencia;
         int id=0;
         try {
