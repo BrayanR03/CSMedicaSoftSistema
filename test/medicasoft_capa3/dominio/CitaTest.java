@@ -5,6 +5,7 @@
  */
 package medicasoft_capa3.dominio;
 
+import dominio.Cita;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

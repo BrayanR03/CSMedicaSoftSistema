@@ -5,6 +5,7 @@
  */
 package medicasoft_capa3.dominio;
 
+import dominio.HorarioAtencion;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
