@@ -38,16 +38,13 @@ public class VentanaRegistrarPagos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         inicializarNuevoPago();
         fechaActual();
-        try {
-           
-            
+        try {                       
             formita = registrarPagosServicio.comboFormaPago();
             comboString = new DefaultComboBoxModel<>();
             for (int i = 0; i < formita.getSize(); i++) {
                 formaPago = formita.getElementAt(i);
                 String nombreFormaPago = formaPago.getFormaPagoDescripcion();
                 comboString.addElement(nombreFormaPago);
-
             }
             cboFormaPago.setModel(comboString);
             cboFormaPago.addActionListener(new ActionListener() {

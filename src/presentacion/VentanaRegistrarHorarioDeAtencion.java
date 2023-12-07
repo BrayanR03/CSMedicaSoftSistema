@@ -4,7 +4,6 @@ package presentacion;
 import java.awt.HeadlessException;
 import javax.swing.JOptionPane;
 import aplicacion.RegistrarHorarioDeAtencionServicio;
-//import medicasoft_capa3.dominio.Horario;
 import dominio.Odontologo;
 import java.sql.*;
 import dominio.HorarioAtencion;
@@ -248,19 +247,12 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         horario.setHorarioAtencionEstado(txtestado.getText().trim());
         horario.setHorarioAtencionFechaRegistro(date);
         horario.setHorarioAtencionHoraInicio(txthorainicio.getText().trim());
-        horario.setHorarioAtencionHoraFin(txthorafin.getText().trim());
-        
-        
+        horario.setHorarioAtencionHoraFin(txthorafin.getText().trim());                
     }
     
     
     public void inicializarNuevoHorario(){        
         registrarHorarioDeAtencionServicio=new RegistrarHorarioDeAtencionServicio();
-        try {
-            int id=registrarHorarioDeAtencionServicio.idSiguiente();
-            txtIdHorarioAtencion.setText(String.valueOf(id));
-        } catch (Exception e) {
-        }
         horario=new HorarioAtencion();
         txthorafin.setText("");
         txthorainicio.setText("");
@@ -269,9 +261,15 @@ public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
         txtnombresodontologo.setText("");
         botonGuardar.setEnabled(false);
         txtfecha.requestFocus();
+        try {
+            int id=registrarHorarioDeAtencionServicio.idSiguiente();
+            txtIdHorarioAtencion.setText(String.valueOf(id));            
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }                
     }
     
-    
+  
     private void activarBotonGuardar() {
         if (horario.getOdontologoID() != null) {
             botonGuardar.setEnabled(true);

@@ -2,7 +2,6 @@ package presentacion;
 
 import com.sun.awt.AWTUtilities;
 import java.awt.Color;
-import java.awt.HeadlessException;
 import java.awt.Point;
 import java.awt.Shape;
 import java.awt.event.MouseAdapter;
@@ -39,7 +38,6 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         this.usuarioid = idusuario;
         inicializarNuevaCita();
         try {
-
             registrarCitaServicio.mostrarHorario(modelo, usuarioid);
             TableColumn columna = jTableHorario.getColumnModel().getColumn(6);
             columna.setMaxWidth(0);
@@ -47,6 +45,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
             columna.setPreferredWidth(0);
             jTableHorario.doLayout();
         } catch (Exception e) {
+            System.out.println(e.getMessage());
         }
         jTableHorario.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent Mouse_evt) {

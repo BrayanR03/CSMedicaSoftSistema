@@ -47,7 +47,6 @@ public class VentanaMenuAsistente extends javax.swing.JFrame {
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         VentanaRegistrarHorarioDeAtencion horarioventana=new VentanaRegistrarHorarioDeAtencion(this,true);
         horarioventana.setVisible(true);
-                
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     public static void main(String args[]) {
