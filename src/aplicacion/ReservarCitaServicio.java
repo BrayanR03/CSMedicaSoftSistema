@@ -3,24 +3,13 @@ package aplicacion;
 import persistencia.HorarioAtencionSqlServer;
 import persistencia.CitaSqlServer;
 import persistencia.PacienteSqlServer;
-import java.util.Properties;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.mail.Message;
-import javax.mail.MessagingException;
-import javax.mail.Session;
-import javax.mail.Transport;
-import javax.mail.internet.AddressException;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeMessage;
-import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import dominio.Cita;
 import dominio.HorarioAtencion;
 import dominio.Paciente;
-import dominio.Usuario;
 import persistencia.AccesoDatosJDBC;
 import persistencia.AccesoDatosJDBCSqlServer;
+import utils.EnviarCorreo;
 public class ReservarCitaServicio {
 
     private AccesoDatosJDBC accesoDatosJDBC;
@@ -83,7 +72,6 @@ public class ReservarCitaServicio {
             citaSqlServer.guardar(cita);
             
             accesoDatosJDBC.terminarTransaccion();
-
        
     }
     
@@ -99,9 +87,7 @@ public class ReservarCitaServicio {
         
         accesoDatosJDBC.abrirConexion();
         HorarioAtencion horario=horarioAtencionSqlServer.buscar(idHorarioAtencion);
-        Paciente paciente=pacienteSqlServer.buscar(dniPaciente);
-        //Cita cita=citaSqlServer.buscarCita(idCita);
-        //System.out.println(cita.toString());
+        Paciente paciente=pacienteSqlServer.buscar(dniPaciente);        
         accesoDatosJDBC.cerrarConexion();
         String asunto="Cita Pendiente";
         String mensaje="Estimado: "+paciente.getPacienteNombres()+" "+paciente.getPacienteApellidos()+"\n"
@@ -110,43 +96,9 @@ public class ReservarCitaServicio {
                        + "Fecha: "+horario.getHorarioAtencionFechaRegistro()+"\n"
                        + "Hora Inicio: "+horario.getHorarioAtencionHoraInicio()+"\n"
                        + "Hora Fin: "+horario.getHorarioAtencionHoraFin()+"\n"
-                       + "Gracias!";
+                       + "Gracias!";        
+        String correo = paciente.getPacienteCorreo();
         
-                       
-        try {
-            //PropiedadesCorreoJava
-            Properties props=new Properties();
-            props.setProperty("mail.smtp.host", "smtp.gmail.com");
-            props.setProperty("mail.smtp.starttls.enable", "true");
-            props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.auth", "true");
-            
-            Session session= Session.getDefaultInstance(props);
-            //DatosCorreo
-            String correoRemitente = "bryanneciosup626@gmail.com";
-            String passwordRemitente = "pwaifdslersttfsm";
-            
-            
-             javax.mail.internet.MimeBodyPart texto = new javax.mail.internet.MimeBodyPart();
-            texto.setContent(mensaje, "text/html");
-            javax.mail.internet.MimeMultipart miltiParte = new javax.mail.internet.MimeMultipart();
-            miltiParte.addBodyPart(texto);
-
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(correoRemitente));
-
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(paciente.getPacienteCorreo()));
-            message.setSubject(asunto);
-            message.setContent(miltiParte);
-            
-            Transport t = session.getTransport("smtp");
-            t.connect(correoRemitente, passwordRemitente);
-            t.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
-            t.close();
-        } catch (AddressException ex) {
-            Logger.getLogger(ReservarCitaServicio.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MessagingException ex) {
-            Logger.getLogger(ReservarCitaServicio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        EnviarCorreo.enviarCorreo(correo, asunto, mensaje);                               
     }
 }

@@ -33,12 +33,12 @@ public class PacienteSqlServer {
             sentencia.setString(6, paciente.getPacienteDireccion());
             sentencia.setString(7, paciente.getPacienteCorreo());
             sentencia.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
     
-    public List<String> obtenerDNIPaciente(Paciente paciente) throws Exception {
+    public List<String> obtenerDNIPaciente(Paciente paciente) throws SQLException {
         String consultaSQL = "SELECT PacienteDni FROM Paciente WHERE PacienteDni=?";
         PreparedStatement sentencia;
         List<String> horas = new ArrayList<>();
@@ -50,12 +50,12 @@ public class PacienteSqlServer {
                 horas.add(resultado.getString(1));
                 
             }
-        } catch (Exception e) {
-            throw new Exception("Error al verificar si existe el dni");
+        } catch (SQLException e) {
+            throw new SQLException("Error al verificar si existe el dni" + e.getMessage());
         }
         return horas;
     }
-    public Paciente buscar(String PacienteDni) throws Exception {
+    public Paciente buscar(String PacienteDni) throws SQLException {
         String consultaSQL = "SELECT PacienteID,PacienteApellidos,PacienteNombres,PacienteFechaNacimiento,PacienteDni,PacienteTelefono,PacienteDireccion,PacienteCorreo"
                 + " FROM Paciente WHERE PacienteDni=?";
         PreparedStatement sentencia;        
@@ -78,13 +78,13 @@ public class PacienteSqlServer {
                 return paciente;
             }
             else {
-                throw new Exception("No existe el paciente.");
+                throw new SQLException("No existe el paciente.");
             }
-        } catch (Exception e) {
-            throw new Exception("Error al intentar buscar el paciente.", e);
+        } catch (SQLException e) {
+            throw new SQLException("Error al intentar buscar el paciente." + e.getMessage());
         }
     }
-    public Paciente buscarIdPaciente(int idPaciente) throws Exception {
+    public Paciente buscarIdPaciente(int idPaciente) throws SQLException {
         String consultaSQL = "SELECT PacienteDni,PacienteApellidos,PacienteNombres,PacienteFechaNacimiento,PacienteDni,PacienteTelefono,PacienteDireccion,PacienteCorreo"
                 + " FROM Paciente WHERE PacienteID=?";
         PreparedStatement sentencia;        
@@ -107,14 +107,14 @@ public class PacienteSqlServer {
                 return paciente;
             }
             else {
-                throw new Exception("No existe el paciente.");
+                throw new SQLException("No existe el paciente.");
             }
-        } catch (Exception e) {
-            throw new Exception("Error al intentar buscar el paciente.", e);
+        } catch (SQLException e) {
+            throw new SQLException("Error al intentar buscar el paciente." + e.getMessage());
         }
     }
     
-    public int pacienteIDSiguiente()throws Exception{
+    public int pacienteIDSiguiente()throws SQLException{
         
         String consultaSQL="SELECT ISNULL(MAX(PacienteID),0)+1 as PacienteID FROM Paciente";
         PreparedStatement sentencia;
@@ -125,7 +125,7 @@ public class PacienteSqlServer {
             if(resultado.next()){
                 id=resultado.getInt("PacienteID");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("error"+e.getMessage());
         }
         return id;

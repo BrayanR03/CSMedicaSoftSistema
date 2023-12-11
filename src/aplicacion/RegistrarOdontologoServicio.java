@@ -17,6 +17,7 @@ import dominio.Usuario;
 import persistencia.AccesoDatosJDBC;
 import persistencia.AccesoDatosJDBCSqlServer;
 import persistencia.OdontologoSqlServer;
+import utils.EnviarCorreo;
 
 public class RegistrarOdontologoServicio {
     private AccesoDatosJDBC accesoDatosJDBC;
@@ -60,40 +61,6 @@ public class RegistrarOdontologoServicio {
                        + "Usuario: "+usuarioto.getUsuario()
                        + "Password: "+usuarioto.getPassword();
                        
-        try {
-            //PropiedadesCorreoJava
-            Properties props=new Properties();
-            props.setProperty("mail.smtp.host", "smtp.gmail.com");
-            props.setProperty("mail.smtp.starttls.enable", "true");
-            props.setProperty("mail.smtp.port", "587");
-            props.setProperty("mail.smtp.auth", "true");
-            
-            Session session= Session.getDefaultInstance(props);
-            //DatosCorreo
-            String correoRemitente = "bryanneciosup626@gmail.com";
-            String passwordRemitente = "pwaifdslersttfsm";
-            
-            
-             javax.mail.internet.MimeBodyPart texto = new javax.mail.internet.MimeBodyPart();
-            texto.setContent(mensaje, "text/html");
-            javax.mail.internet.MimeMultipart miltiParte = new javax.mail.internet.MimeMultipart();
-            miltiParte.addBodyPart(texto);
-
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(correoRemitente));
-
-            message.addRecipient(Message.RecipientType.TO, new InternetAddress(correo));
-            message.setSubject(asunto);
-            message.setContent(miltiParte);
-            
-            Transport t = session.getTransport("smtp");
-            t.connect(correoRemitente, passwordRemitente);
-            t.sendMessage(message, message.getRecipients(Message.RecipientType.TO));
-            t.close();
-        } catch (AddressException ex) {
-            Logger.getLogger(RegistrarPacienteServicio.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (MessagingException ex) {
-            Logger.getLogger(RegistrarPacienteServicio.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        EnviarCorreo.enviarCorreo(correo, asunto, mensaje);        
     }
 }

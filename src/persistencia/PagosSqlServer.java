@@ -28,23 +28,23 @@ public class PagosSqlServer {
             sentencia.setDouble(3, pagos.getMontoTotal());
             sentencia.setString(4, pagos.getFormaPagoCodigo().getFormaPagoCodigo());
             sentencia.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }
     
     public int pagoIdSiguiente(){
         
-        String consultaSQL="SELECT ISNULL(MAX(PagosID),0)+1 AS PagosID FROM Pagos";
+        String consultaSqlSiguienteId="SELECT ISNULL(MAX(PagosID),0)+1 AS PagosID FROM Pagos";
         PreparedStatement sentencia;
         int id=0;
         try {
-            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
+            sentencia=accesoDatosJDBC.prepararSentencia(consultaSqlSiguienteId);
             ResultSet resultado=sentencia.executeQuery();
             if(resultado.next()){
                 id=resultado.getInt("PagosID");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error "+e.getMessage());
         }
         return id;

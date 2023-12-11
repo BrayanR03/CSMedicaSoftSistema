@@ -38,13 +38,13 @@ public class HorarioAtencionSqlServer {
             sentencia.setInt(5, horario.getOdontologoID().getOdontologoID());
             sentencia.executeUpdate();
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("ERROR AL INGRESAR DATOS" + e.getMessage());
         }
 
     }
     
-    public HorarioAtencion buscar(int horarioID) throws Exception {
+    public HorarioAtencion buscar(int horarioID) throws SQLException {
         String consultaSQL ="SELECT HA.HorarioAtencionEstado,HA.HorarioAtencionFechaRegistro,HA.HorarioAtencionHoraInicio,\n" +
 "HA.HorarioAtencionHoraFin,ODO.OdontologoDni \n" +
 "FROM HorarioAtencion HA INNER JOIN Odontologo ODO\n" +
@@ -68,15 +68,15 @@ public class HorarioAtencionSqlServer {
 
                 return horario;
             } else {
-                throw new Exception("No existe el odontologo.");
+                throw new SQLException("No existe el odontologo.");
             }
-        } catch (Exception e) {
-            throw new Exception("Error al buscar ", e);
+        } catch (SQLException e) {
+            throw new SQLException("Error al buscar " + e.getMessage());
         }
     }
     
     
-     public List<String> obtenerHoras(HorarioAtencion horario) throws Exception {
+     public List<String> obtenerHoras(HorarioAtencion horario) throws SQLException {
         String consultaSQL = "SELECT HorarioAtencionHoraInicio,HorarioAtencionHoraFin FROM HorarioAtencion WHERE HorarioAtencionFechaRegistro=?";
         PreparedStatement sentencia;
         List<String> horas = new ArrayList<>();
@@ -88,13 +88,13 @@ public class HorarioAtencionSqlServer {
                 horas.add(resultado.getString("HorarioAtencionHoraInicio").trim());
                 horas.add(resultado.getString("HorarioAtencionHoraFin").trim());
             }
-        } catch (Exception e) {
-            throw new Exception("Error al verificar si existe el horario");
+        } catch (SQLException e) {
+            throw new SQLException("Error al verificar si existe el horario" + e.getMessage());
         }
         return horas;
     }
      
-      public void mostrar(DefaultTableModel modelo,int usuario) throws Exception {
+      public void mostrar(DefaultTableModel modelo,int usuario) throws SQLException {
 
         String mostraSQL ="select hor.HorarioAtencionID,hor.HorarioAtencionEstado,hor.HorarioAtencionFechaRegistro,hor.HorarioAtencionHoraInicio,hor.HorarioAtencionHoraFin,hor.OdontologoID ,odo.OdontologoNombres,odo.OdontologoApellidos\n" +
 "from HorarioAtencion HOR LEFT JOIN Odontologo ODO on hor.OdontologoID=odo.OdontologoID\n" +
@@ -103,7 +103,7 @@ public class HorarioAtencionSqlServer {
 "where HOR.HorarioAtencionEstado='DISPONIBLE' and HOR.HorarioAtencionFechaRegistro>=CAST(GETDATE() AS DATE) and u.UsuarioID=?";
         PreparedStatement sentencia;
 
-        String titulos[] = {"HORARIO ID", "ESTADO", "FECHA", "HORA INICIO", "HORA FIN", "ODONTOLOGO","ID ODONTOLOGO"};
+        String[] titulos = {"HORARIO ID", "ESTADO", "FECHA", "HORA INICIO", "HORA FIN", "ODONTOLOGO","ID ODONTOLOGO"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
@@ -118,16 +118,16 @@ public class HorarioAtencionSqlServer {
                 String horafin = resultado.getString("HorarioAtencionHoraFin");
                 int odontologoID=resultado.getInt("OdontologoID");
                 String nombresyapellidos = resultado.getString("OdontologoNombres")+" "+resultado.getString("OdontologoApellidos");
-                String fila[] = {codigohorario, estado, String.valueOf(fecha), horainicio, horafin, nombresyapellidos,String.valueOf(odontologoID)};
+                String[] fila = {codigohorario, estado, String.valueOf(fecha), horainicio, horafin, nombresyapellidos,String.valueOf(odontologoID)};
                 modelo.addRow(fila);
             }
-        } catch (Exception e) {
-            throw new Exception("Error al intentar buscar el horario.", e);
+        } catch (SQLException e) {
+            throw new SQLException("Error al intentar buscar el horario.", e);
         }
 
     }
 
-  public int siguienteHorarioAtencionID()throws Exception{
+  public int siguienteHorarioAtencionID()throws SQLException{
       String consultaSQL="SELECT ISNULL(MAX(HorarioAtencionID),0)+1 AS HorarioAtencionID FROM HorarioAtencion";
       PreparedStatement sentencia;
       int id=0;
@@ -137,7 +137,7 @@ public class HorarioAtencionSqlServer {
           if(resultado.next()){
               id=resultado.getInt("HorarioAtencionID");
           }
-      } catch (Exception e) {
+      } catch (SQLException e) {
           System.out.println("Error"+e.getMessage());
       }
       return id;

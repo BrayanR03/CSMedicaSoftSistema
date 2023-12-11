@@ -6,6 +6,7 @@ package aplicacion;
 
 import persistencia.AccesoDatosJDBC;
 import persistencia.AccesoDatosJDBCSqlServer;
+import persistencia.EmpleadoSqlServer;
 import persistencia.UsuarioSqlServer;
 
 /**
@@ -16,10 +17,12 @@ public class RegistrarUsuarioServicio {
 
     private AccesoDatosJDBC accesoDatosJDBC;
     private UsuarioSqlServer usuarioSqlServer;
+    private EmpleadoSqlServer empleadoSqlServer;
 
     public RegistrarUsuarioServicio() {
         accesoDatosJDBC = new AccesoDatosJDBCSqlServer();
         usuarioSqlServer = new UsuarioSqlServer(accesoDatosJDBC);
+        empleadoSqlServer = new EmpleadoSqlServer(accesoDatosJDBC);
     }
 
     public int retornoIDusuario(String usuario,String password){
@@ -37,7 +40,7 @@ public class RegistrarUsuarioServicio {
         String descripcion="";
         try {
             accesoDatosJDBC.abrirConexion();
-            descripcion=usuarioSqlServer.descripcionEmpleado(idUsuario);
+            descripcion=empleadoSqlServer.descripcionEmpleado(idUsuario);
             accesoDatosJDBC.cerrarConexion();
 
         } catch (Exception e) {

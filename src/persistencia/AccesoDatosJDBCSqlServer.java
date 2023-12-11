@@ -2,6 +2,7 @@
 package persistencia;
 
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -9,7 +10,8 @@ import java.sql.DriverManager;
  */
 public class AccesoDatosJDBCSqlServer extends AccesoDatosJDBC {
 
-    private String pass = "12345";
+    private final String PASS = "12345";
+    private final String USER = "sa";
     
     @Override
     public void abrirConexion() throws Exception {
@@ -21,9 +23,9 @@ public class AccesoDatosJDBCSqlServer extends AccesoDatosJDBC {
                     + "encrypt=true;"
                     + "trustServerCertificate=true;"
                     + "loginTimeout=30";
-            conexion = DriverManager.getConnection(url, "sa", pass);
-        } catch (Exception e) {
-            throw new Exception("Ocurrio un problema en la conexión con la base de datos.", e);
+            conexion = DriverManager.getConnection(url, USER, PASS);
+        } catch (SQLException e) {
+            throw new Exception("Ocurrio un problema en la conexión con la base de datos." + e.getMessage());
         }
     }
 

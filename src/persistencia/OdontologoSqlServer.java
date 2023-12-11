@@ -60,7 +60,7 @@ public class OdontologoSqlServer {
         return dni;
     }
     
-    public Odontologo buscar(String dni) throws Exception {
+    public Odontologo buscar(String dni) throws SQLException {
         String consultaSQL = "SELECT O.OdontologoID,O.OdontologoApellidos,O.OdontologoNombres,O.OdontologoFechaNacimiento,O.OdontologoDni,\n" +
                              "O.OdontologoDireccion,O.OdontologoTelefono,O.OdontologoCorreo,e.EmpleadoID as Empleado\n" +
                              "FROM Odontologo O INNER JOIN Empleado E ON e.EmpleadoID=O.EmpleadoID\n" +
@@ -85,10 +85,10 @@ public class OdontologoSqlServer {
                 return odontologo;
             }
             else {
-                throw new Exception("No existe el odontologo.");
+                throw new SQLException("No existe el odontologo.");
             }
-        } catch (Exception e) {
-            throw new Exception("Error al intentar buscar el odontologo.", e);
+        } catch (SQLException e) {
+            throw new SQLException("Error al intentar buscar el odontologo." + e.getMessage());
         }
     }
     

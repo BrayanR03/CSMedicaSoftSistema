@@ -18,7 +18,7 @@ import dominio.HorarioAtencion;
 import dominio.Paciente;
 
 public class VentanaReservarCita extends javax.swing.JDialog {
-    
+
     int xMouse;
     int yMouse;
 
@@ -48,10 +48,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
             System.out.println(e.getMessage());
         }
         jTableHorario.addMouseListener(new MouseAdapter() {
-            public void mousePressed(MouseEvent Mouse_evt) {
-                JTable table = (JTable) Mouse_evt.getSource();
-                Point point = Mouse_evt.getPoint();
-                int row = table.rowAtPoint(point);
+            public void mousePressed(MouseEvent Mouse_evt) {//                
                 if (Mouse_evt.getClickCount() == 1) {
                     txtIdHorarioAtencion.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(), 0).toString());
                     txthorafin.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(), 4).toString());
@@ -62,12 +59,11 @@ public class VentanaReservarCita extends javax.swing.JDialog {
                     txtcododontologo.setText(jTableHorario.getValueAt(jTableHorario.getSelectedRow(), 6).toString());
                 }
             }
-
         });
 
     }
-    
-    private void cambiarEstilosTextField(){
+
+    private void cambiarEstilosTextField() {
         txtIdCita.setBorder(new LineBorder(Color.decode("#0097B2"), 1));
         txtestadocita.setBorder(new LineBorder(Color.decode("#0097B2"), 1));
         txtDniPaciente.setBorder(new LineBorder(Color.decode("#0097B2"), 1));
@@ -316,11 +312,11 @@ public class VentanaReservarCita extends javax.swing.JDialog {
 
     private void botonBuscarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botonBuscarPacienteActionPerformed
         String dniPaciente = txtDniPaciente.getText().trim();
-        
+
         try {
-            if(txtDniPaciente.getText().length()!=8){
-            throw new Exception("El DNI no es valido, debe tener 8 caracteres!!");
-        }
+            if (txtDniPaciente.getText().length() != 8) {
+                throw new Exception("El DNI no es valido, debe tener 8 caracteres!!");
+            }
             Paciente paciente = registrarCitaServicio.buscarPaciente(dniPaciente);
             cita.setPacienteID(paciente);
             txtNombrePaciente.setText(paciente.getPacienteNombres() + " " + paciente.getPacienteApellidos());
@@ -383,7 +379,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
         String dni = txtDniPaciente.getText().trim();
         int idHorario = Integer.parseInt(txtIdHorarioAtencion.getText().trim());
         int idCita = Integer.parseInt(txtIdCita.getText().trim());
-        System.out.println("id cita desde la caja "+idCita);
+        System.out.println("id cita desde la caja " + idCita);
         registrarCitaServicio.enviarCorreoCita(dni, idHorario, idCita);
         JOptionPane.showMessageDialog(this, "Datos de la Cita, enviados a su correo.", "Información", JOptionPane.INFORMATION_MESSAGE);
     }
@@ -391,7 +387,7 @@ public class VentanaReservarCita extends javax.swing.JDialog {
     private void capturarDatosDeCita() throws Exception {
         cita.setCitaID(Integer.parseInt(txtIdCita.getText().trim()));
         cita.setCitaEstado(txtestadocita.getText().trim());
-        
+
         try {
             int IDHorarioAtencion = Integer.parseInt(txtIdHorarioAtencion.getText());
 

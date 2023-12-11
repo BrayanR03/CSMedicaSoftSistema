@@ -37,12 +37,12 @@ public class CitaSqlServer {
             sentencia.setString(3, cita.getCitaEstado());
             sentencia.executeUpdate();
 
-        } catch (Exception ex) {
+        } catch (SQLException ex) {
             System.out.println("ERROR" + ex.getMessage());
         }
     }
 
-    public boolean verificarHorarioDisponible(HorarioAtencion horario) throws Exception {
+    public boolean verificarHorarioDisponible(HorarioAtencion horario) throws SQLException {
         String consultaSQL = "SELECT HorarioAtencionEstado FROM HorarioAtencion WHERE HorarioAtencionID=?";
         PreparedStatement sentencia;
         String estado = "";
@@ -60,11 +60,11 @@ public class CitaSqlServer {
             return false;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            throw new Exception("Error al intentar consultar citas.", e);
+            throw new SQLException("Error al intentar consultar citas.", e);
         }
     }
 
-    public int consultarTotalDeCitasRegistradas(HorarioAtencion horario) throws Exception {
+    public int consultarTotalDeCitasRegistradas(HorarioAtencion horario) throws SQLException {
         String consultaSQL = "SELECT COUNT(HA.HorarioAtencionFechaRegistro) AS TotalCitas\n"
                 + "FROM Cita C INNER JOIN HorarioAtencion HA\n"
                 + "ON C.HorarioAtencionID=HA.HorarioAtencionID\n"
@@ -83,12 +83,12 @@ public class CitaSqlServer {
             return totalDeCitas;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            throw new Exception("Error al intentar consultar citas.", e);
+            throw new SQLException("Error al intentar consultar citas.", e);
         }
 
     }
 
-    public int verificarNumeroDeCitasPaciente(Cita cita) throws Exception {
+    public int verificarNumeroDeCitasPaciente(Cita cita) throws SQLException {
         String consultaSQL = "SELECT COUNT(P.PacienteID) AS TotalCitasPacienteDia\n"
                 + "FROM CITA C INNER JOIN HorarioAtencion HA\n"
                 + "ON HA.HorarioAtencionID=C.HorarioAtencionID\n"
@@ -106,12 +106,12 @@ public class CitaSqlServer {
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-            throw new Exception("Error al intentar consultar citas.", e);
+            throw new SQLException("Error al intentar consultar citas.", e);
         }
         return total;
     }
 
-    public Cita buscarCita(int IdCita)throws Exception {
+    public Cita buscarCita(int IdCita)throws SQLException {
 
         String consultaSQL = "SELECT HorarioAtencionID,PacienteID,CitaEstado FROM Cita WHERE CitaID=?";
 
@@ -137,15 +137,15 @@ public class CitaSqlServer {
 //                cita = new Cita(IdCita, horario, paciente, estado);
                 return cita;
             } else {
-                throw new Exception("No existe la cita.");
+                throw new SQLException("No existe la cita.");
             }
-        } catch (Exception e) {
-            throw new Exception("Error al buscar ",e);//System.out.println(e.getMessage());
+        } catch (SQLException e) {
+            throw new SQLException("Error al buscar " + e.getMessage());//System.out.println(e.getMessage());
         }
        
     }
 
-    public int siguienteCita() throws Exception {
+    public int siguienteCita() throws SQLException {
         String consultaSQL = "SELECT ISNULL(MAX(CitaID),0)+1 AS CitaID FROM Cita";
         PreparedStatement sentencia;
         int id = 0;
@@ -155,7 +155,7 @@ public class CitaSqlServer {
             if (resultado.next()) {
                 id = resultado.getInt("CitaID");
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error" + e.getMessage());
         }
         return id;
@@ -171,7 +171,7 @@ public class CitaSqlServer {
                 + "WHERE P.PacienteDni like ? AND HA.HorarioAtencionFechaRegistro>=CAST(GETDATE() AS DATE) AND C.CitaEstado='Pendiente'";
 
         PreparedStatement sentencia;
-        String titulos[] = {"CITA ID", "FECHA", "HORA INICIO", "HORA FIN", "ESTADO"};
+        String[] titulos = {"CITA ID", "FECHA", "HORA INICIO", "HORA FIN", "ESTADO"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
@@ -185,16 +185,16 @@ public class CitaSqlServer {
                 String hinicio = resultado.getString("HoraInicio");
                 String hfin = resultado.getString("HoraFin");
                 String estado = resultado.getString("CitaEstado");
-                String fila[] = {String.valueOf(idCita), String.valueOf(fecha), hinicio, hfin, estado};
+                String[]  fila= {String.valueOf(idCita), String.valueOf(fecha), hinicio, hfin, estado};
                 modelo.addRow(fila);
             }
 
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error" + e.getMessage());
         }
     }
 
-    public void mostrarCitas(DefaultTableModel modelo) throws Exception {
+    public void mostrarCitas(DefaultTableModel modelo) throws SQLException {
         String consultaSQL = "SELECT c.CitaID,HA.HorarioAtencionFechaRegistro AS Fecha,HA.HorarioAtencionHoraInicio AS HoraInicio,\n"
                 + "HA.HorarioAtencionHoraFin AS HoraFin, C.CitaEstado\n"
                 + "FROM Cita C INNER JOIN Paciente P\n"
@@ -203,7 +203,7 @@ public class CitaSqlServer {
                 + "on ha.HorarioAtencionID=c.HorarioAtencionID\n"
                 + "WHERE HA.HorarioAtencionFechaRegistro>=CAST(GETDATE() AS DATE) AND C.CitaEstado='Pendiente'";
         PreparedStatement sentencia;
-        String titulos[] = {"CITA ID", "FECHA CITA", "HORA INICIO", "HORA FIN", "ESTADO"};
+        String[] titulos = {"CITA ID", "FECHA CITA", "HORA INICIO", "HORA FIN", "ESTADO"};
         modelo.getDataVector().removeAllElements();
         modelo.setColumnIdentifiers(titulos);
         try {
@@ -216,10 +216,10 @@ public class CitaSqlServer {
                 String hinicio = resultado.getString("HoraInicio");
                 String hfin = resultado.getString("HoraFin");
                 String estado = resultado.getString("CitaEstado");
-                String fila[] = {String.valueOf(idCita), String.valueOf(fecha), hinicio, hfin, estado};
+                String[] fila = {String.valueOf(idCita), String.valueOf(fecha), hinicio, hfin, estado};
                 modelo.addRow(fila);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println("Error" + e.getMessage());
         }
     }

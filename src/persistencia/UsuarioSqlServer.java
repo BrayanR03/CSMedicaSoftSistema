@@ -20,7 +20,7 @@ public class UsuarioSqlServer {
     }
     
     
-    public Usuario buscarUsuario(int idusuario)throws Exception{
+    public Usuario buscarUsuario(int idusuario)throws SQLException{
     
         String consultaSQL="SELECT Usuario,Password FROM Usuario WHERE UsuarioID=?";
         PreparedStatement sentencia;
@@ -38,15 +38,15 @@ public class UsuarioSqlServer {
                 
                 return user;
             }else{
-                throw new Exception("No existe el Usuario");
+                throw new SQLException("No existe el Usuario");
             }
-        } catch (Exception e) {
-            throw new Exception("Error Al Buscar",e);
+        } catch (SQLException e) {
+            throw new SQLException("Error Al Buscar" + e.getMessage());
         }
         
     }
     
-    public boolean validarUsuario(String usuario,String password)throws Exception{
+    public boolean validarUsuario(String usuario,String password)throws SQLException{
         
         String consultaSQL="SELECT Usuario,Password,UsuarioID FROM USUARIO where Usuario=? and Password=?";
         PreparedStatement sentencia;
@@ -57,28 +57,25 @@ public class UsuarioSqlServer {
             sentencia.setString(2, password);
             ResultSet resultado=sentencia.executeQuery();
             List<String> usuariobd=new ArrayList();
-            List<String> passwordbd=new ArrayList();
-            List<Integer> idusuariobd=new ArrayList();
+            List<String> passwordbd=new ArrayList();            
             if(resultado.next()){
                 
                 String usuarioTabla=resultado.getString("Usuario");
-                String passwordTabla=resultado.getString("Password");           
-                int idUsuarioTabla=resultado.getInt("UsuarioID");
+                String passwordTabla=resultado.getString("Password");                           
                 
                 usuariobd.add(usuarioTabla.trim());
-                passwordbd.add(passwordTabla.trim());
-                idusuariobd.add(idUsuarioTabla);
+                passwordbd.add(passwordTabla.trim());                
                 if(usuariobd.contains(usuario) && passwordbd.contains(password)){
                     validar=true;
                 }
                 
             }
-        } catch (Exception e) {
-            throw new Exception("Datos Inválidos",e);
+        } catch (SQLException e) {
+            throw new SQLException("Datos Inválidos",e);
         }
         return validar;
     }
-    public int retornarIdUsuario(String usuario,String password)throws Exception{
+    public int retornarIdUsuario(String usuario,String password)throws SQLException{
         
         String consultaSQL="SELECT UsuarioID FROM USUARIO where Usuario=? and Password=?";
         PreparedStatement sentencia;
@@ -92,30 +89,9 @@ public class UsuarioSqlServer {
                 idUsuarioTabla=resultado.getInt("UsuarioID");
             }
             
-        } catch (Exception e) {
-            throw new Exception("Datos Inválidos",e);
+        } catch (SQLException e) {
+            throw new SQLException("Datos Inválidos" + e.getMessage());
         }
         return idUsuarioTabla;
-    }
-    public String descripcionEmpleado(int idUsuario)throws Exception{
-        
-        String descripcion="";
-        String consultaSQL="SELECT E.EmpleadoDescripcion AS Descripcion\n" +
-                            "FROM Usuario U INNER JOIN Empleado E\n" +
-                            "ON U.UsuarioID=E.UsuarioID\n" +
-                            "WHERE U.UsuarioID=?";
-        
-        PreparedStatement sentencia;
-        try {
-            sentencia=accesoDatosJDBC.prepararSentencia(consultaSQL);
-            sentencia.setInt(1, idUsuario);
-            ResultSet resultado=sentencia.executeQuery();
-            if(resultado.next()){
-                descripcion=resultado.getString("Descripcion");
-            }
-        } catch (Exception e) {
-            throw new Exception("Error Al Capturar La Descripcion",e);
-        }
-        return descripcion;
-    }
+    }    
 }
