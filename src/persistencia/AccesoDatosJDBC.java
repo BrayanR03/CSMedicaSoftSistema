@@ -1,4 +1,3 @@
-
 package persistencia;
 
 import java.sql.Connection;
@@ -12,16 +11,16 @@ import java.sql.Statement;
  * @author HOME
  */
 public abstract class AccesoDatosJDBC {
-    
-    protected Connection conexion;
-    private final String MENSAJE = "Ocurrio un problema con la conexión"; 
 
-    public abstract void abrirConexion() throws Exception;
+    protected Connection conexion;
+    private final String MENSAJE = "Ocurrio un problema con la conexión";
+
+    public abstract void abrirConexion() throws SQLException;
 
     public void cerrarConexion() throws SQLException {
         try {
             conexion.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new SQLException(MENSAJE, e);
         }
 
@@ -30,7 +29,7 @@ public abstract class AccesoDatosJDBC {
     public void iniciarTransaccion() throws SQLException {
         try {
             conexion.setAutoCommit(false);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new SQLException(MENSAJE, e);
         }
     }
@@ -40,7 +39,7 @@ public abstract class AccesoDatosJDBC {
             conexion.commit();
             conexion.setAutoCommit(true);
             conexion.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new SQLException(MENSAJE, e);
         }
     }
@@ -50,7 +49,7 @@ public abstract class AccesoDatosJDBC {
             conexion.rollback();
             conexion.setAutoCommit(true);
             conexion.close();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new SQLException(MENSAJE, e);
         }
     }
@@ -58,21 +57,19 @@ public abstract class AccesoDatosJDBC {
     public PreparedStatement prepararSentencia(String sql) throws SQLException {
         try {
             return conexion.prepareStatement(sql);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new SQLException(MENSAJE, e);
         }
     }
 
     public ResultSet ejecutarConsulta(String sql) throws SQLException {
-            Statement sentencia = null;            
-        try {         
-            sentencia = conexion.createStatement();
+
+        try {            
+            Statement sentencia = conexion.createStatement();
             ResultSet resultado = sentencia.executeQuery(sql);
             return resultado;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw new SQLException(MENSAJE, e);
-        }finally{           
-            sentencia.close();
         }
     }
 }
