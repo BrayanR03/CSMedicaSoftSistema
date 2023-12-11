@@ -37,14 +37,14 @@ public class EmpleadoSqlServer {
                 Usuario usuario=usuarioSqlServer.buscarUsuario(resultado.getInt("UsuarioID"));
                 empleado=new Empleado(idEmpleado,descripcion,usuario);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
         return empleado;
         
     }
     
-    public String descripcionEmpleado(int idUsuario)throws Exception{
+    public String descripcionEmpleado(int idUsuario)throws SQLException{
         
         String descripcion="";
         String consultaSQL="SELECT E.EmpleadoDescripcion AS Descripcion\n" +
@@ -60,8 +60,8 @@ public class EmpleadoSqlServer {
             if(resultado.next()){
                 descripcion=resultado.getString("Descripcion");
             }
-        } catch (Exception e) {
-            throw new Exception("Error Al Capturar La Descripcion",e);
+        } catch (SQLException e) {
+            throw new SQLException("Error Al Capturar La Descripcion",e);
         }
         return descripcion;
     }
