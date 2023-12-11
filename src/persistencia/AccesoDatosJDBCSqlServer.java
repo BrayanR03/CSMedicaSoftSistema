@@ -10,10 +10,10 @@ import java.sql.SQLException;
  */
 public class AccesoDatosJDBCSqlServer extends AccesoDatosJDBC {
 
-    private final static String PASS = "12345";    
+    private String pass = "12345";    
     
     @Override
-    public void abrirConexion() throws Exception {
+    public void abrirConexion() throws SQLException {
          try {
             String url = "jdbc:sqlserver://LAPTOP-D05MS1MQ\\SQLEXPRESS:1433;"
                     + "database=BD_SistemaCitas;"
@@ -22,9 +22,9 @@ public class AccesoDatosJDBCSqlServer extends AccesoDatosJDBC {
                     + "encrypt=true;"
                     + "trustServerCertificate=true;"
                     + "loginTimeout=30";
-            conexion = DriverManager.getConnection(url, "sa", PASS);
+            conexion = DriverManager.getConnection(url, "sa", pass);
         } catch (SQLException e) {
-            throw new Exception("Ocurrio un problema en la conexión con la base de datos." + e.getMessage());
+            throw new SQLException("Ocurrio un problema en la conexión con la base de datos." + e.getMessage());
         }
     }
 
