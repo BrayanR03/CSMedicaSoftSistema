@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import dominio.Paciente;
 
-/**
- *
- * @author USER
- */
 public class PacienteSqlServer {
     
     private AccesoDatosJDBC accesoDatosJDBC;

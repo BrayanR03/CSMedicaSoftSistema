@@ -4,10 +4,6 @@ package persistencia;
 import java.sql.*;
 import dominio.Pagos;
 
-/**
- *
- * @author USER
- */
 public class PagosSqlServer {
     
     private AccesoDatosJDBC accesoDatosJDBC;

@@ -8,10 +8,6 @@ import dominio.Cita;
 import dominio.HorarioAtencion;
 import dominio.Paciente;
 
-/**
- *
- * @author USER
- */
 public class CitaSqlServer {
 
     private AccesoDatosJDBC accesoDatosJDBC;

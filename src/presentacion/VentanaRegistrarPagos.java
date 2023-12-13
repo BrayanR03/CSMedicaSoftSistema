@@ -19,10 +19,6 @@ import dominio.Cita;
 import dominio.FormaPago;
 import dominio.Pagos;
 
-/**
- *
- * @author USER
- */
 public class VentanaRegistrarPagos extends javax.swing.JFrame {
 
     DefaultTableModel modelo = new DefaultTableModel();

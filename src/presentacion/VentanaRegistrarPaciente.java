@@ -7,10 +7,6 @@ import javax.swing.JOptionPane;
 import aplicacion.RegistrarPacienteServicio;
 import dominio.Paciente;
 
-/**
- *
- * @author Miguel
- */
 public class VentanaRegistrarPaciente extends javax.swing.JDialog {
 
     private Paciente paciente;

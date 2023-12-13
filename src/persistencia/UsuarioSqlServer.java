@@ -6,10 +6,6 @@ import java.util.ArrayList;
 import java.util.List;
 import dominio.Usuario;
 
-/**
- *
- * @author USER
- */
 public class UsuarioSqlServer {
     
     

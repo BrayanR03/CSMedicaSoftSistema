@@ -18,7 +18,6 @@ public class EnviarCorreo {
     public static void enviarCorreo(String correo,String asunto,String mensaje){
     
         try {
-            //PropiedadesCorreoJava
             Properties props=new Properties();
             props.setProperty("mail.smtp.host", "smtp.gmail.com");
             props.setProperty("mail.smtp.starttls.enable", "true");

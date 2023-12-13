@@ -5,10 +5,6 @@ import java.sql.*;
 import dominio.Empleado;
 import dominio.Usuario;
 
-/**
- *
- * @author USER
- */
 public class EmpleadoSqlServer {
     
     private AccesoDatosJDBC accesoDatosJDBC;

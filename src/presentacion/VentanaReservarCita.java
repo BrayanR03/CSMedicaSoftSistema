@@ -2,13 +2,11 @@ package presentacion;
 
 import com.sun.awt.AWTUtilities;
 import java.awt.Color;
-import java.awt.Point;
 import java.awt.Shape;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.geom.RoundRectangle2D;
 import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;

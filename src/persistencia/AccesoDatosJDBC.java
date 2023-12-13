@@ -6,10 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- *
- * @author HOME
- */
 public abstract class AccesoDatosJDBC {
 
     protected Connection conexion;

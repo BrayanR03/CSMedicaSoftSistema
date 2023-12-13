@@ -6,10 +6,6 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-/**
- *
- * @author HP
- */
 public class VentanaMenu extends javax.swing.JFrame {
 
 

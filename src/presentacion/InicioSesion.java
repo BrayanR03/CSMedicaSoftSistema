@@ -9,8 +9,6 @@ import java.awt.geom.RoundRectangle2D;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import aplicacion.RegistrarUsuarioServicio;
-import persistencia.AccesoDatosJDBC;
-import persistencia.UsuarioSqlServer;
 
 
 public class InicioSesion extends javax.swing.JFrame {

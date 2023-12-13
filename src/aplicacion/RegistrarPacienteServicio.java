@@ -8,8 +8,6 @@ import persistencia.AccesoDatosJDBC;
 import persistencia.AccesoDatosJDBCSqlServer;
 import persistencia.PacienteSqlServer;
 
-
-
 public class RegistrarPacienteServicio {
     private AccesoDatosJDBC accesoDatosJDBC;
     private PacienteSqlServer pacienteSqlServer;

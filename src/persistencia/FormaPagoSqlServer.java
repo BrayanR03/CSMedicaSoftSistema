@@ -5,10 +5,6 @@ import java.sql.*;
 import javax.swing.DefaultComboBoxModel;
 import dominio.FormaPago;
 
-/**
- *
- * @author USER
- */
 public class FormaPagoSqlServer {
     
     private AccesoDatosJDBC accesoDatosJDBC;

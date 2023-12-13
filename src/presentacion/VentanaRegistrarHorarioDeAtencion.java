@@ -7,10 +7,7 @@ import aplicacion.RegistrarHorarioDeAtencionServicio;
 import dominio.Odontologo;
 import java.sql.*;
 import dominio.HorarioAtencion;
-/**
- *
- * @author HOME
- */
+
 public class VentanaRegistrarHorarioDeAtencion extends javax.swing.JDialog {
 
     

@@ -8,10 +8,7 @@ import javax.swing.table.DefaultTableModel;
 import dominio.HorarioAtencion;
 import dominio.Odontologo;
 
-/**
- *
- * @author USER
- */
+
 public class HorarioAtencionSqlServer {
      
     private AccesoDatosJDBC accesoDatosJDBC;

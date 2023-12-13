@@ -4,10 +4,6 @@ package persistencia;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- *
- * @author HOME
- */
 public class AccesoDatosJDBCSqlServer extends AccesoDatosJDBC {
 
     private String pass = "12345";    

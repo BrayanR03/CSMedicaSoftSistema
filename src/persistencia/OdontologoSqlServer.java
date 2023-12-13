@@ -8,10 +8,6 @@ import dominio.Empleado;
 import dominio.Odontologo;
 import dominio.Usuario;
 
-/**
- *
- * @author USER
- */
 public class OdontologoSqlServer {
     
     private AccesoDatosJDBC accesoDatosJDBC;
